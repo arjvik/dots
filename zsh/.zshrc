@@ -1,8 +1,25 @@
+#!/bin/zsh
+
+# Install oh-my-zsh if it is not already installed
+if ! [ -d ~/.oh-my-zsh ]; then
+	rm -rf ~/.oh-my-zsh
+	echo exit | sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+	echo "***  Arjun's oh-my-zsh install script:"
+	echo "*** Removing oh-my-zsh's configuration and installing ours over it"
+	rm ~/.zshrc
+	mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc
+	echo "*** Done!"
+	echo "*** Installing powerlevel9k theme:    ="
+	git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+	echo "*** Done!"
+fi
+
+
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH="/home/arjvik/.oh-my-zsh"
+export ZSH="/home/arjvik/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
