@@ -25,7 +25,22 @@ info_important () {
 	printf "${BLUE}${BOLD}!!! $1 ${NORMAL}\n"
 }
 
+info_ascii () {
+printf "${GREEN}${BOLD}
+             _       _ _         __ _       _        
+            (_)     (_) |       / /| |     | |       
+   __ _ _ __ ___   ___| | __   / /_| | ___ | |_ ___  
+  / _' | '__| \ \ / / | |/ /  / / _' |/ _ \| __/ __| 
+ | (_| | |  | |\ V /| |   <  / / (_| | (_) | |_\__ \ 
+  \__,_|_|  | | \_/ |_|_|\_\/_/ \__,_|\___/ \__|___/ 
+           _/ |
+          |__/
+${NORMAL}"
+sleep 1
+}
+
 reset
+info_ascii
 
 if (( $EUID == 0 )); then
 	info_error "Do not run this script as root"
@@ -50,8 +65,15 @@ sudo apt install -y stow
 info_done
 
 info "Cloning arjvik/dots"
-rm -rf dots
-git clone https://github.com/arjvik/dots
+if ! [[ -d ~/dots/.git ]]; then
+	rm -rf dots
+	git clone https://github.com/arjvik/dots
+else
+	info "dots already exists, performing git pull"
+	cd dots
+	git pull
+	cd ../
+fi
 info_done
 
 info "Stowing zsh"
@@ -135,3 +157,26 @@ cd dots
 stow polybar
 info_done
 
+info "Installing Adapta GTK Theme"
+if ! [[ -e /etc/apt/sources.list.d ]]; then
+	sudo add-apt-repository -yu ppa:tista/adapta
+	sudo apt update
+else
+	info "PPA Already added"
+	sudo apt install -y adapta-gtk-theme adapta-backgrounds
+fi
+info_done
+
+info "Installing gnome-tweaks"
+sudo apt install -y gnome-tweaks
+info_important "#############################################"
+info_important "#  PLEASE SELECT ADAPTA-NOKTO AS GTK THEME  #"
+info_important "#     PRESS ENTER TO LAUNCH GNOME-TWEAKS    #"
+info_important "#############################################"
+read -n 1 -s
+gnome-tweaks > /dev/null
+info_done
+
+info_important "Installation complete! Thank you for using arjvik's dots!"
+
+info_ascii

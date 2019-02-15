@@ -1,25 +1,5 @@
 #!/bin/zsh
 
-# Install oh-my-zsh if it is not already installed
-if ! [ -d ~/.oh-my-zsh ]; then
-	echo "*** Arjun's oh-my-zsh install script:"
-	echo "*** Installing oh-my-zsh:"
-	rm -rf ~/.oh-my-zsh
-	echo exit | sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-	echo "*** Done!"
-	echo "*** Removing wget log:"
-	rm wget-log*
-	echo "*** Done!"
-	echo "*** Removing oh-my-zsh's configuration and installing ours over it"
-	rm ~/.zshrc
-	mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc
-	echo "*** Done!"
-	echo "*** Installing powerlevel9k theme:"
-	git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
-	echo "*** Done!"
-fi
-
-
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -37,11 +17,6 @@ POWERLEVEL9K_OS_ICON_BACKGROUND="blue"
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir dir_writable vcs root_indicator background_jobs status)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
-POWERLEVEL9K_SHOREN_STRATEGY="truncate_to_last"
-
-# POWERLEVEL9K_DIR_PATH_SEPARATOR=" $(print_icon 'LEFT_SUBSEGMENT_SEPARATOR') "
 
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
@@ -99,6 +74,28 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
+
+
+# Install oh-my-zsh if it is not already installed
+if ! [ -d ~/.oh-my-zsh ]; then
+	echo "*** Arjun's oh-my-zsh install script:"
+	echo "*** Installing oh-my-zsh:"
+	rm -rf ~/.oh-my-zsh
+	echo exit | sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+	echo "*** Done!"
+	echo "*** Removing wget log:"
+	rm wget-log*
+	echo "*** Done!"
+	echo "*** Removing oh-my-zsh's configuration and installing ours over it"
+	rm ~/.zshrc
+	mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc
+	echo "*** Done!"
+	echo "*** Installing powerlevel9k theme:"
+	git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+	echo "*** Done!"
+fi
+
+
 
 source $ZSH/oh-my-zsh.sh
 
