@@ -1,0 +1,9 @@
+#!/bin/bash
+
+killall -q polybar
+
+polybar laptop &
+
+sleep 1
+
+xrandr | grep "HDMI-1 connected" && polybar extern &

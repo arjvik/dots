@@ -1,0 +1,6 @@
+#!/bin/bash
+
+for daemon in /usr/lib/gnome-settings-daemon/*
+do
+	$daemon &
+done
