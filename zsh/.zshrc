@@ -2,14 +2,19 @@
 
 # Install oh-my-zsh if it is not already installed
 if ! [ -d ~/.oh-my-zsh ]; then
+	echo "*** Arjun's oh-my-zsh install script:"
+	echo "*** Installing oh-my-zsh:"
 	rm -rf ~/.oh-my-zsh
 	echo exit | sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-	echo "***  Arjun's oh-my-zsh install script:"
+	echo "*** Done!"
+	echo "*** Removing wget log:"
+	rm wget-log*
+	echo "*** Done!"
 	echo "*** Removing oh-my-zsh's configuration and installing ours over it"
 	rm ~/.zshrc
 	mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc
 	echo "*** Done!"
-	echo "*** Installing powerlevel9k theme:    ="
+	echo "*** Installing powerlevel9k theme:"
 	git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 	echo "*** Done!"
 fi
