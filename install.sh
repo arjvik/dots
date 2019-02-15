@@ -50,12 +50,8 @@ sudo apt install -y stow
 info_done
 
 info "Cloning arjvik/dots"
-if ! [ -d dots/.git ]; then
-	rm -rf dots
-	git clone https://github.com/arjvik/dots
-else
-	info "dots already exists"
-fi
+rm -rf dots
+git clone https://github.com/arjvik/dots
 info_done
 
 info "Stowing zsh"
