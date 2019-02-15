@@ -100,6 +100,8 @@ info_done
 info "Stowing i3"
 cd ~
 rm -rf ~/.config/i3
+rm -rf ~/bin/gnome-settings-daemon
+rm -rf ~/bin/i3lock-fancy-multimonitor
 cd dots
 stow i3
 info_done
