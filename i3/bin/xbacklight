@@ -1,0 +1,42 @@
+#!/bin/bash
+
+if ! (( $EUID == 0 )); then
+	exec sudo $0 $@
+fi
+
+clip () {
+	MIN=$(( $1 > $2 ? $1 : $2 ))
+	ANS=$(( $MIN < $3 ? $MIN : $3 ))
+	echo $ANS
+}
+
+set_brightness () {
+	echo $(clip $1 0 $MAX_BRIGHTNESS) > $BRIGHTNESS_FILE
+}
+
+DIR="/sys/class/backlight/intel_backlight/"
+BRIGHTNESS_FILE="$DIR/brightness"
+BRIGHTNESS=$(cat "$BRIGHTNESS_FILE")
+MAX_BRIGHTNESS=$(cat "$DIR/max_brightness")
+
+case $1 in
+"-get")
+	echo $(( 100 * $BRIGHTNESS / $MAX_BRIGHTNESS ))
+	;;
+"-set")
+	NEW_BRIGHTNESS=$(( $2 * $MAX_BRIGHTNESS / 100 ))
+	set_brightness $NEW_BRIGHTNESS
+	;;
+"-inc")
+	NEW_BRIGHTNESS=$(( BRIGHTNESS + $2 * $MAX_BRIGHTNESS / 100 ))
+	set_brightness $NEW_BRIGHTNESS
+	;;
+"-dec")
+	NEW_BRIGHTNESS=$(( BRIGHTNESS - $2 * $MAX_BRIGHTNESS / 100 ))
+	set_brightness $NEW_BRIGHTNESS
+	;;
+*)
+	echo "Not a valid option: $1"
+	echo "Usage: xbacklight [-get | -set XX | -inc XX | -dec XX]"
+	;;
+esac

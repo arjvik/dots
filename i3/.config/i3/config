@@ -189,8 +189,8 @@ set $pa_sink_2 2
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $pa_sink_1 +5% && pactl set-sink-volume $pa_sink_2 +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $pa_sink_1 -5% && pactl set-sink-volume $pa_sink_2 -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $pa_sink_1 toggle && pactl set-sink-mute $pa_sink_2 toggle
-# bindsym XF86MonBrightnessUp exec --no-startup-id ~/bin/xbacklight -inc 20 # increase screen brightness
-# bindsym XF86MonBrightnessDown exec --no-startup-id ~/bin/xbacklight -dec 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id ~/bin/xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id ~/bin/xbacklight -dec 20 # decrease screen brightness
 
 # Gnome Settings Daemons
 exec --no-startup-id ~/bin/gnome-settings-daemon

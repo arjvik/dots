@@ -144,4 +144,5 @@ man() {
 }
 
 alias rr2="~/Programming/IronReign/ftc_app_rr2"
+alias contests="~/Programming/java/contests/Contests"
 alias gs="git status"
