@@ -77,11 +77,10 @@ fi
 info_done
 
 info "Stowing zsh"
-cd dots
 rm -rf ~/.zsh
 rm -rf ~/.oh-my-zsh
+cd ~/dots
 stow zsh
-cd ~
 info_done
 
 info "Installing zsh"
@@ -89,8 +88,8 @@ sudo apt install -y zsh
 info_done
 
 info "Installing zsh configuration (oh-my-zsh)"
-rm -rf .oh-my-zsh
-zsh .zshrc
+rm -rf ~/.oh-my-zsh
+zsh ~/.zshrc
 info_important "Installed zsh and oh-my-zsh and powerlevel9k"
 info_done
 
@@ -120,11 +119,10 @@ info_important "Installed i3-gaps"
 info_done
 
 info "Stowing i3"
-cd ~
 rm -rf ~/.config/i3
 rm -rf ~/bin/gnome-settings-daemon
 rm -rf ~/bin/i3lock-fancy-multimonitor
-cd dots
+cd ~/dots
 stow i3
 info_done
 
@@ -150,10 +148,9 @@ info_important "Installed polybar"
 info_done
 
 info "Stowing polybar"
-cd ~
 rm -rf ~/.config/polybar
 rm -rf ~/bin/launch-polybar
-cd dots
+cd ~/dots
 stow polybar
 info_done
 
@@ -175,6 +172,16 @@ info_important "#     PRESS ENTER TO LAUNCH GNOME-TWEAKS    #"
 info_important "#############################################"
 read -n 1 -s
 gnome-tweaks > /dev/null
+info_done
+
+info "Installing qutebrowser"
+sudo apt install -y qutebrowser
+info_done
+
+info "Stowing qutebrowser"
+rm -rf ~/.config/qutebrowser/config.py
+cd ~/dots
+stow qutebrowser
 info_done
 
 info_important "Installation complete! Thank you for using arjvik's dots!"
