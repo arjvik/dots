@@ -16,3 +16,13 @@ My growing collection of dotfiles, along with an install script.
 ```shell
 bash -c "$(wget https://raw.githubusercontent.com/arjvik/dots/master/install.sh -O -)"
 ```
+
+## Contents
+- i3-gaps
+- polybar
+- rofi
+- qutebrowser
+- zsh (oh-my-zsh with powerlevel9k)
+
+## Extras (not installed)
+- Argos plugins for gnome-shell
