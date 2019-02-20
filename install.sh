@@ -155,19 +155,31 @@ stow polybar
 info_done
 
 info "Installing Adapta GTK Theme"
-if ! [[ -e /etc/apt/sources.list.d ]]; then
+if ! [[ -e /etc/apt/sources.list.d/tista-ubuntu-adapta-bionic.list ]]; then
 	sudo add-apt-repository -yu ppa:tista/adapta
 	sudo apt update
 else
 	info "PPA Already added"
-	sudo apt install -y adapta-gtk-theme adapta-backgrounds
 fi
+sudo apt install -y adapta-gtk-theme adapta-backgrounds
 info_done
+
+info "Installing Paper Icon Theme"
+if ! [[ -e /etc/apt/sources.list.d/snwh-ubuntu-ppa-bionic.list ]]; then
+	sudo add-apt-repository -yu ppa:snwh/ppa
+	sudo apt update
+else
+	info "PPA Already added"
+fi
+sudo apt install -y paper-icon-theme
+info_done
+
 
 info "Installing gnome-tweaks"
 sudo apt install -y gnome-tweaks
 info_important "#############################################"
 info_important "#  PLEASE SELECT ADAPTA-NOKTO AS GTK THEME  #"
+info_important "#       AND SELECT PAPER AS ICON THEME      #"
 info_important "#     PRESS ENTER TO LAUNCH GNOME-TWEAKS    #"
 info_important "#############################################"
 read -n 1 -s
