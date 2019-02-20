@@ -232,7 +232,15 @@ _rofi_set_theme "$HOME/.local/share/rofi/themes/material.rasi"
 
 info_done
 
+info "Installing Java 8 and 11 JDK"
+sudo apt install -y openjdk-11-jdk openjdk-11-source openjdk-8-jdk openjdk-8-source
+info_done
+
 
 info_important "Installation complete! Thank you for using arjvik's dots!"
+info_important "Arjun's usual installation checklist after this:"
+info_important "[ ] Eclipse"
+info_important "[ ] Android Studio"
+info_important "[ ] Fetch tab config"
 
 info_ascii
