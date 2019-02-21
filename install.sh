@@ -93,6 +93,12 @@ zsh ~/.zshrc
 info_important "Installed zsh and oh-my-zsh and powerlevel9k"
 info_done
 
+info "Installing git-proxy scripts"
+rm -rf ~/bin/git-proxy-on ~/bin/git-proxy-off
+cd ~/dots
+stow git-proxy
+info_done
+
 info "Installing i3"
 cd /opt
 if ! type i3; then
