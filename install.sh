@@ -161,19 +161,31 @@ stow polybar
 info_done
 
 info "Installing Adapta GTK Theme"
-if ! [[ -e /etc/apt/sources.list.d ]]; then
+if ! [[ -e /etc/apt/sources.list.d/tista-ubuntu-adapta-bionic.list ]]; then
 	sudo add-apt-repository -yu ppa:tista/adapta
 	sudo apt update
 else
 	info "PPA Already added"
-	sudo apt install -y adapta-gtk-theme adapta-backgrounds
 fi
+sudo apt install -y adapta-gtk-theme adapta-backgrounds
 info_done
+
+info "Installing Paper Icon Theme"
+if ! [[ -e /etc/apt/sources.list.d/snwh-ubuntu-ppa-bionic.list ]]; then
+	sudo add-apt-repository -yu ppa:snwh/ppa
+	sudo apt update
+else
+	info "PPA Already added"
+fi
+sudo apt install -y paper-icon-theme
+info_done
+
 
 info "Installing gnome-tweaks"
 sudo apt install -y gnome-tweaks
 info_important "#############################################"
 info_important "#  PLEASE SELECT ADAPTA-NOKTO AS GTK THEME  #"
+info_important "#       AND SELECT PAPER AS ICON THEME      #"
 info_important "#     PRESS ENTER TO LAUNCH GNOME-TWEAKS    #"
 info_important "#############################################"
 read -n 1 -s
@@ -190,6 +202,51 @@ cd ~/dots
 stow qutebrowser
 info_done
 
+info "Installing rofi"
+sudo apt install -y rofi
+rm -rf ~/.local/share/rofi/
+cd ~/dots
+stow rofi
+
+## WEIRD WORKAROUND:
+git checkout -- rofi/.local/share/rofi/themes/material.rasi
+
+# ROFI THEME INSTALLER - stolen from rofi-theme-selector
+###
+# Create if not exists, then removes #include of .theme file (if present) and add the selected theme to the end.
+# Repeated calls should leave the config clean-ish
+###
+function _rofi_set_theme()
+{
+	CDIR="$HOME/.config/rofi"
+	if [ ! -d "${CDIR}" ]; then
+		mkdir -p ${CDIR}
+	fi
+
+	if [ -f "${CDIR}/config.rasi" ]; then
+	        sed -i "/@import.*/d" "${CDIR}/config.rasi"
+	        echo "@import \"${1}\"" >> "${CDIR}/config.rasi"
+	else 
+		if [ -f "${CDIR}/config" ]; then
+			sed -i "/rofi\.theme: .*\.rasi$/d" "${CDIR}/config"
+		fi
+		echo "rofi.theme: ${1}" >> "${CDIR}/config"
+	fi
+}
+
+_rofi_set_theme "$HOME/.local/share/rofi/themes/material.rasi"
+
+info_done
+
+info "Installing Java 8 and 11 JDK"
+sudo apt install -y openjdk-11-jdk openjdk-11-source openjdk-8-jdk openjdk-8-source
+info_done
+
+
 info_important "Installation complete! Thank you for using arjvik's dots!"
+info_important "Arjun's usual installation checklist after this:"
+info_important "[ ] Eclipse"
+info_important "[ ] Android Studio"
+info_important "[ ] Fetch tab config"
 
 info_ascii
