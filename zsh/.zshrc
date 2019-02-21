@@ -143,6 +143,8 @@ man() {
 	      man "$@"
 }
 
-alias rr2="~/Programming/IronReign/ftc_app_rr2"
-alias contests="~/Programming/java/contests/Contests"
+alias rr2="cd ~/Programming/IronReign/ftc_app_rr2"
+alias contests="cd ~/Programming/java/contests/Contests"
+alias dots="cd ~/dots"
 alias gs="git status"
+
