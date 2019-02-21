@@ -24,5 +24,6 @@ bash -c "$(wget https://raw.githubusercontent.com/arjvik/dots/master/install.sh 
 - qutebrowser
 - zsh (oh-my-zsh with powerlevel9k)
 
-## Extras (not installed)
-- Argos plugins for gnome-shell
+## Extras
+- Argos plugins for gnome-shell (not installed by default)
+- Git proxy scripts for use with NetShare (Android hotspot app)
