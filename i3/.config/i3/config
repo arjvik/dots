@@ -183,12 +183,16 @@ for_window [class="^.*"] border pixel 2
 gaps inner 10
 gaps outer 10
 
-# special keys (https://faq.i3wm.org/question/3747/enabling-multimedia-keys.1.html)
+# media keys (https://faq.i3wm.org/question/3747/enabling-multimedia-keys.1.html)
 set $pa_sink_1 1
 set $pa_sink_2 2
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $pa_sink_1 +5% && pactl set-sink-volume $pa_sink_2 +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $pa_sink_1 -5% && pactl set-sink-volume $pa_sink_2 -5%
+bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $pa_sink_1 +1% && pactl set-sink-volume $pa_sink_2 +1%
+bindsym Shift+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $pa_sink_1 -1% && pactl set-sink-volume $pa_sink_2 -1%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $pa_sink_1 toggle && pactl set-sink-mute $pa_sink_2 toggle
+
+# brightness keys
 bindsym XF86MonBrightnessUp exec --no-startup-id ~/bin/xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id ~/bin/xbacklight -dec 20 # decrease screen brightness
 
