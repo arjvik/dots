@@ -18,6 +18,11 @@ POWERLEVEL9K_OS_ICON_BACKGROUND="blue"
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir dir_writable vcs root_indicator background_jobs status)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+POWERLEVEL9K_SHORTEN_STRATEGY=truncate_folders
+POWERLEVEL9K_DIR_PATH_SEPARATOR="  "
+
+
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
 
