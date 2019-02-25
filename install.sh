@@ -103,7 +103,7 @@ info "Installing i3"
 cd /opt
 if ! type i3; then
 	sudo git clone https://github.com/Airblader/i3 i3-gaps
-	sudo chown -R arjvik:arjvik i3-gaps
+	sudo chown -R $USER:$USER i3-gaps
 	cd i3-gaps
 	info "First, installing dependencies"
 	sudo apt install libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \
@@ -136,7 +136,7 @@ info "Installing polybar"
 cd /opt
 if ! type polybar; then
 	sudo git clone --recursive https://github.com/jaagr/polybar
-	sudo chown -R arjvik:arjvik polybar
+	sudo chown -R $USER:$USER polybar
 	cd polybar
 	info "First, installing dependencies"
 	sudo apt install build-essential git cmake cmake-data \
