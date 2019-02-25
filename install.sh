@@ -146,7 +146,7 @@ if ! type polybar; then
 		libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libasound2-dev \
 		libpulse-dev libjsoncpp-dev libmpdclient-dev \
 		libcurl4-openssl-dev libnl-genl-3-dev
-	yes | ./build.sh
+	./build.sh --all-features -g -A
 else
 	info "polybar found"
 fi
