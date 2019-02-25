@@ -248,6 +248,7 @@ info_important "Installation complete! Thank you for using arjvik's dots!"
 info_important "Arjun's usual installation checklist after this:"
 info_important "[ ] Eclipse"
 info_important "[ ] Android Studio"
+info_important "[ ] Install Nerd Fonts"
 info_important "[ ] Fetch tab config"
 
 info_ascii
