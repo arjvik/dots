@@ -76,15 +76,15 @@ else
 fi
 info_done
 
+info "Installing zsh"
+sudo apt install -y zsh
+info_done
+
 info "Stowing zsh"
-rm -rf ~/.zsh
+rm -rf ~/.zsh*
 rm -rf ~/.oh-my-zsh
 cd ~/dots
 stow zsh
-info_done
-
-info "Installing zsh"
-sudo apt install -y zsh
 info_done
 
 info "Installing zsh configuration (oh-my-zsh)"
