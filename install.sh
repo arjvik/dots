@@ -90,6 +90,7 @@ info_done
 info "Installing zsh configuration (oh-my-zsh)"
 rm -rf ~/.oh-my-zsh
 zsh ~/.zshrc
+chsh -s $(grep /zsh$ /etc/shells | tail -1)
 info_important "Installed zsh and oh-my-zsh and powerlevel9k"
 info_done
 
