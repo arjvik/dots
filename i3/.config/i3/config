@@ -169,6 +169,10 @@ for_window [class="^.*"] border pixel 2
 gaps inner 10
 gaps outer 10
 
+# scratchpad
+bindsym $mod+minus move scratchpad
+bindsym $mod+equal scratchpad show; floating disable
+
 # media keys (https://faq.i3wm.org/question/3747/enabling-multimedia-keys.1.html)
 bindsym XF86AudioRaiseVolume exec --no-startup-id ~/bin/pactl-set-all-sink-volumes +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id ~/bin/pactl-set-all-sink-volumes -5%
