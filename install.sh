@@ -76,20 +76,21 @@ else
 fi
 info_done
 
+info "Installing zsh"
+sudo apt install -y zsh
+info_done
+
 info "Stowing zsh"
-rm -rf ~/.zsh
+rm -rf ~/.zsh*
 rm -rf ~/.oh-my-zsh
 cd ~/dots
 stow zsh
 info_done
 
-info "Installing zsh"
-sudo apt install -y zsh
-info_done
-
 info "Installing zsh configuration (oh-my-zsh)"
 rm -rf ~/.oh-my-zsh
 zsh ~/.zshrc
+chsh -s $(grep /zsh$ /etc/shells | tail -1)
 info_important "Installed zsh and oh-my-zsh and powerlevel9k"
 info_done
 
@@ -103,7 +104,7 @@ info "Installing i3"
 cd /opt
 if ! type i3; then
 	sudo git clone https://github.com/Airblader/i3 i3-gaps
-	sudo chown -R arjvik:arjvik i3-gaps
+	sudo chown -R $USER:$USER i3-gaps
 	cd i3-gaps
 	info "First, installing dependencies"
 	sudo apt install libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \
@@ -136,17 +137,17 @@ info "Installing polybar"
 cd /opt
 if ! type polybar; then
 	sudo git clone --recursive https://github.com/jaagr/polybar
-	sudo chown -R arjvik:arjvik polybar
+	sudo chown -R $USER:$USER polybar
 	cd polybar
 	info "First, installing dependencies"
-	sudo apt install build-essential git cmake cmake-data \
+	sudo apt install -y build-essential git cmake cmake-data \
 		pkg-config libcairo2-dev libxcb1-dev libxcb-util0-dev \
 		libxcb-randr0-dev libxcb-composite0-dev python-xcbgen \
 		xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev \
 		libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libasound2-dev \
 		libpulse-dev libjsoncpp-dev libmpdclient-dev \
 		libcurl4-openssl-dev libnl-genl-3-dev
-	yes | ./build
+	./build.sh --all-features -g -A
 else
 	info "polybar found"
 fi
@@ -247,6 +248,7 @@ info_important "Installation complete! Thank you for using arjvik's dots!"
 info_important "Arjun's usual installation checklist after this:"
 info_important "[ ] Eclipse"
 info_important "[ ] Android Studio"
+info_important "[ ] Install Nerd Fonts"
 info_important "[ ] Fetch tab config"
 
 info_ascii
