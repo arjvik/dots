@@ -60,7 +60,7 @@ font-1 = SauceCodePro Nerd Font:pixelsize=10;1
 
 modules-left = i3
 modules-center = 
-modules-right = filesystem xbacklight pulseaudio xkeyboard memory cpu wlan battery battery2 temperature date powermenu
+modules-right = filesystem xbacklight pulseaudio xkeyboard memory cpu wlan wlan2 battery battery2 temperature date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -248,6 +248,10 @@ ramp-signal-3 = 
 ramp-signal-4 = 
 ramp-signal-foreground = ${colors.foreground-alt}
 
+[module/wlan2]
+inherit = module/wlan
+interface = wlo1
+
 [module/eth]
 type = internal/network
 interface = net0
@@ -418,7 +422,6 @@ type     = custom/script
 exec     = ~/bin/gpmdp-polybar
 exec-if  = pgrep "Google Play Mus"
 interval = 2
-
 
 [settings]
 screenchange-reload = true
