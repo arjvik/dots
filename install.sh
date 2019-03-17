@@ -134,7 +134,7 @@ stow i3
 info_done
 
 info "Installing feh"
-sudo apt install feh
+sudo apt install -y feh
 info_done
 
 info "Installing polybar"
