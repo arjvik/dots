@@ -133,6 +133,10 @@ cd ~/dots
 stow i3
 info_done
 
+info "Installing feh"
+sudo apt install feh
+info_done
+
 info "Installing polybar"
 cd /opt
 if ! type polybar; then
@@ -249,6 +253,7 @@ info_important "Arjun's usual installation checklist after this:"
 info_important "[ ] Eclipse"
 info_important "[ ] Android Studio"
 info_important "[ ] Install Nerd Fonts"
+info_important "[ ] Set wallpaper"
 info_important "[ ] Fetch tab config"
 
 info_ascii
