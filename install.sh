@@ -136,6 +136,10 @@ info "Installing feh"
 sudo apt install -y feh
 info_done
 
+info "Installing compton"
+sudo apt install -y compton
+info_done
+
 info "Installing polybar"
 cd /opt
 if ! type polybar; then
