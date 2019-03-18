@@ -95,7 +95,6 @@ info_important "Installed zsh and oh-my-zsh and powerlevel9k"
 info_done
 
 info "Installing git-proxy scripts"
-rm -rf ~/bin/git-proxy-on ~/bin/git-proxy-off
 cd ~/dots
 stow git-proxy
 info_done
@@ -185,14 +184,26 @@ fi
 sudo apt install -y paper-icon-theme
 info_done
 
+info "Installing Nerd Fonts (Source Code Pro and Ubuntu Mono)"
+cd /tmp
+git clone --depth=1 https://github.com/ryanoasis/nerd-fonts
+nerd-fonts/install.sh SourceCodePro UbuntuMono
+cd ~
+info_done
+
 
 info "Installing gnome-tweaks"
 sudo apt install -y gnome-tweaks
 info_important "#############################################"
-info_important "#  PLEASE SELECT ADAPTA-NOKTO AS GTK THEME  #"
-info_important "#       AND SELECT PAPER AS ICON THEME      #"
+info_important "#  PLEASE PERFORM THE FOLLOWING TASKS       #"
+info_important "#    [ ] Select Paper as icon theme         #"
+info_important "#    [ ] Select Adapta-Nokto as GTK theme   #"
+info_important "#    [ ] Select SauceCodePro Nerd Font      #"
+info_important "#         (12pt) asdefault monospace font   #"
+info_important "#                                           #"
 info_important "#     PRESS ENTER TO LAUNCH GNOME-TWEAKS    #"
 info_important "#############################################"
+
 read -n 1 -s
 gnome-tweaks > /dev/null
 info_done
@@ -252,7 +263,6 @@ info_important "Installation complete! Thank you for using arjvik's dots!"
 info_important "Arjun's usual installation checklist after this:"
 info_important "[ ] Eclipse"
 info_important "[ ] Android Studio"
-info_important "[ ] Install Nerd Fonts"
 info_important "[ ] Set wallpaper"
 info_important "[ ] Fetch tab config"
 
