@@ -95,7 +95,6 @@ info_important "Installed zsh and oh-my-zsh and powerlevel9k"
 info_done
 
 info "Installing git-proxy scripts"
-rm -rf ~/bin/git-proxy-on ~/bin/git-proxy-off
 cd ~/dots
 stow git-proxy
 info_done
@@ -107,7 +106,7 @@ if ! type i3; then
 	sudo chown -R $USER:$USER i3-gaps
 	cd i3-gaps
 	info "First, installing dependencies"
-	sudo apt install libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \
+	sudo apt install -y libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \
 		libxcb-util0-dev libxcb-icccm4-dev libyajl-dev \
 		libstartup-notification0-dev libxcb-randr0-dev \
 		libev-dev libxcb-cursor-dev libxcb-xinerama0-dev \
@@ -131,6 +130,14 @@ rm -rf ~/bin/gnome-settings-daemon
 rm -rf ~/bin/i3lock-fancy-multimonitor
 cd ~/dots
 stow i3
+info_done
+
+info "Installing feh"
+sudo apt install -y feh
+info_done
+
+info "Installing compton"
+sudo apt install -y compton
 info_done
 
 info "Installing polybar"
@@ -181,14 +188,26 @@ fi
 sudo apt install -y paper-icon-theme
 info_done
 
+info "Installing Nerd Fonts (Source Code Pro and Ubuntu Mono)"
+cd /tmp
+git clone --depth=1 https://github.com/ryanoasis/nerd-fonts
+nerd-fonts/install.sh SourceCodePro UbuntuMono
+cd ~
+info_done
+
 
 info "Installing gnome-tweaks"
 sudo apt install -y gnome-tweaks
 info_important "#############################################"
-info_important "#  PLEASE SELECT ADAPTA-NOKTO AS GTK THEME  #"
-info_important "#       AND SELECT PAPER AS ICON THEME      #"
+info_important "#  PLEASE PERFORM THE FOLLOWING TASKS       #"
+info_important "#    [ ] Select Paper as icon theme         #"
+info_important "#    [ ] Select Adapta-Nokto as GTK theme   #"
+info_important "#    [ ] Select SauceCodePro Nerd Font      #"
+info_important "#         (12pt) asdefault monospace font   #"
+info_important "#                                           #"
 info_important "#     PRESS ENTER TO LAUNCH GNOME-TWEAKS    #"
 info_important "#############################################"
+
 read -n 1 -s
 gnome-tweaks > /dev/null
 info_done
@@ -248,7 +267,7 @@ info_important "Installation complete! Thank you for using arjvik's dots!"
 info_important "Arjun's usual installation checklist after this:"
 info_important "[ ] Eclipse"
 info_important "[ ] Android Studio"
-info_important "[ ] Install Nerd Fonts"
+info_important "[ ] Set wallpaper"
 info_important "[ ] Fetch tab config"
 
 info_ascii
