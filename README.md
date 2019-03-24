@@ -27,3 +27,6 @@ bash -c "$(wget https://raw.githubusercontent.com/arjvik/dots/master/install.sh 
 ## Extras
 - Argos plugins for gnome-shell (not installed by default)
 - Git proxy scripts for use with NetShare (Android hotspot app)
+
+## Screenshot
+![](screenshot.png)
