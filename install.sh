@@ -124,6 +124,10 @@ fi
 info_important "Installed i3-gaps"
 info_done
 
+info "Installing i3lock and scrot (needed for i3lock-fancy-multimonitor"
+sudo apt install -y i3lock scrot
+info_done
+
 info "Stowing i3"
 rm -rf ~/.config/i3
 rm -rf ~/bin/gnome-settings-daemon
