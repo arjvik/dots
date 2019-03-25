@@ -16,7 +16,10 @@ My growing collection of dotfiles, along with an install script.
 ```shell
 bash -c "$(wget https://raw.githubusercontent.com/arjvik/dots/master/install.sh -O -)"
 ```
-
+If you wish to skip the `apt upgrade`, such as on a live system, before proceeding with the installation, execute
+```shell
+export NO_APT_UPGRADE=1
+```
 ## Contents
 - i3-gaps
 - polybar
