@@ -53,7 +53,7 @@ cd ~
 
 info "Updating packages"
 sudo apt update
-sudo apt upgrade -y
+[[ -z "${NO_APT_UPGRADE}" ]] && sudo apt upgrade -y || info_important "Skipping apt upgrade"
 info_done
 
 info "Installing git"
