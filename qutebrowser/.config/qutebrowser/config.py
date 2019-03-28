@@ -72,3 +72,6 @@ c.url.start_pages = 'https://arjvik.github.io/tab'
 config.bind('<alt+left>', 'back')
 config.bind('<alt+right>', 'forward')
 config.bind('q', None)
+
+
+config.source('nord-qutebrowser.py')
