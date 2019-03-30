@@ -1,5 +1,14 @@
 #!/bin/bash
 
+cat >/dev/null <<ENDCOMMENT
+Please add the following lines to /etc/sudoers (using sudo visudo):
+
+# Allow all users to run xbacklight without a password
+ALL ALL=(root) NOPASSWD: /home/arjvik/bin/xbacklight
+ENDCOMMENT
+
+
+
 if ! (( $EUID == 0 )); then
 	exec sudo $0 $@
 fi
