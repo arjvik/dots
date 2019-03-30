@@ -221,7 +221,7 @@ sudo apt install -y qutebrowser
 info_done
 
 info "Stowing qutebrowser"
-rm -rf ~/.config/qutebrowser/config.py
+rm -rf ~/.config/qutebrowser
 cd ~/dots
 stow qutebrowser
 info_done
