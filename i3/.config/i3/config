@@ -39,6 +39,8 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec i3-dmenu-desktop --dmenu='rofi -dmenu -i'
 bindsym $mod+Shift+d exec rofi -show window
 
+# start qutebrowser (web browser)
+bindsym $mod+q exec qutebrowser
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
