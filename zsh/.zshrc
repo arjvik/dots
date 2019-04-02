@@ -100,7 +100,10 @@ if ! [ -d ~/.oh-my-zsh ]; then
 	echo "*** Done!"
 fi
 
-
+# Set ZSH_DISABLE_COMPFIX=true if we are root
+if [[ $(whoami) == "root" ]]; then
+	export ZSH_DISABLE_COMPFIX="true"
+fi
 
 source $ZSH/oh-my-zsh.sh
 
@@ -153,3 +156,4 @@ alias contests="cd ~/Programming/java/contests/Contests"
 alias dots="cd ~/dots"
 alias gs="git status"
 alias keybind="xev -event keyboard  | egrep -o 'keycode.*\)'"
+alias xinput-map-touchscreen="xinput map-to-output 'ELAN2097:00 04F3:273D' eDP-1"
