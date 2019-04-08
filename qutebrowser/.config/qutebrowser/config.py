@@ -71,6 +71,7 @@ c.url.start_pages = 'https://arjvik.github.io/tab'
 # Bindings for normal mode
 config.bind('<alt+left>', 'back')
 config.bind('<alt+right>', 'forward')
+config.bind('<ctrl+shift+e>', 'edit-url')
 config.bind('q', None)
 
 
