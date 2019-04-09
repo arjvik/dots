@@ -1,0 +1,6 @@
+#!/bin/bash
+
+INPUT=$(rofi -dmenu -p "=" -lines 0)
+ANS=$(echo "$INPUT" | bc -l)
+
+rofi -dmenu -p "$INPUT = $ANS" -lines 0

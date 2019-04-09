@@ -39,6 +39,9 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec i3-dmenu-desktop --dmenu='rofi -dmenu -i'
 bindsym $mod+Shift+d exec rofi -show window
 
+# rofi calculator
+bindsym $mod+c exec --no-startup-id calc
+
 # start qutebrowser (web browser)
 bindsym $mod+q exec qutebrowser
 
