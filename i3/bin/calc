@@ -1,6 +1,10 @@
 #!/bin/bash
 
-INPUT=$(rofi -dmenu -p "=" -lines 0)
-ANS=$(echo "$INPUT" | bc -l)
+OLD_INPUT="quit"
 
-rofi -dmenu -p "$INPUT = $ANS" -lines 0
+while [[ "$INPUT" != "$OLD_INPUT" ]]; do
+	OLD_INPUT="$INPUT"
+	INPUT=$(rofi -dmenu -p "$INPUT=" -filter "$ANS" -lines 0)
+	ANS=$(echo "$INPUT" | bc -l)
+done
+

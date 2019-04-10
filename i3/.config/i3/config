@@ -37,7 +37,8 @@ bindsym $mod+Shift+q kill
 
 # start rofi (dmenu replacement)
 bindsym $mod+d exec i3-dmenu-desktop --dmenu='rofi -dmenu -i'
-bindsym $mod+Shift+d exec rofi -show window
+#bindsym $mod+Shift+d exec rofi -show window
+bindsym $mod+Shift+d exec rofi -show drun -modi drun#window#ssh -show-icons -drun-icon-theme Paper
 
 # rofi calculator
 bindsym $mod+c exec --no-startup-id calc
