@@ -1,10 +1,10 @@
 #!/bin/bash
 
-OLD_INPUT="quit"
-
-while [[ "$INPUT" != "$OLD_INPUT" ]]; do
-	OLD_INPUT="$INPUT"
+INPUT=" "
+START=""
+while [[ "$INPUT" != "$ANS" || "$START" == "x" ]]; do
 	INPUT=$(rofi -dmenu -p "$INPUT=" -filter "$ANS" -lines 0)
 	ANS=$(echo "$INPUT" | bc -l)
+	START="x$START"
 done
 
