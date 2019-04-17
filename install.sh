@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euo pipefail # strict mode
+set -eo pipefail # strict mode
 
 RED="$(tput setaf 1)"
 GREEN="$(tput setaf 2)"
