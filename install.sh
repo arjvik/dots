@@ -222,6 +222,11 @@ info_done
 
 info "Stowing qutebrowser"
 rm -rf ~/.config/qutebrowser
+cd ~/.local/share
+rm -f icons/qutebrowser.png
+mkdir icons
+touch icons/.keep
+rm -f applications/qutebrowser.desktop
 cd ~/dots
 stow qutebrowser
 info_done
