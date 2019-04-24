@@ -153,6 +153,7 @@ man() {
 
 alias rr2="cd ~/Programming/IronReign/ftc_app_rr2"
 alias contests="cd ~/Programming/java/contests/Contests"
+alias irbot="cd ~/Programming/java/robotics/ironreignbot"
 alias dots="cd ~/dots"
 alias gs="git status"
 alias keybind="xev -event keyboard  | egrep -o 'keycode.*\)'"
