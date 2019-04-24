@@ -1,8 +1,8 @@
 #!/bin/bash
 
-INPUT=" "
+INPUT=""
 START=""
-while [[ "$INPUT" != "$ANS" || "$START" == "x" ]]; do
+while [[ "$INPUT" != "$ANS" || "$START" == "" || "$START" == "x" ]]; do
 	INPUT=$(rofi -dmenu -p "$INPUT=" -filter "$ANS" -lines 0)
 	ANS=$(echo "$INPUT" | bc -l)
 	START="x$START"
