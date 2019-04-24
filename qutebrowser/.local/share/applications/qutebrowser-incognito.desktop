@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=qutebrowser incognito
+GenericName=Private Mode Web Browser
+Icon=/home/arjvik/.local/share/icons/qutebrowser-incognito.png
+Type=Application
+Categories=Network;WebBrowser;
+Exec=qutebrowser %u
+Terminal=false
+StartupNotify=false
+Keywords=Browser
+MimeType=x-scheme-handler/unknown;x-scheme-handler/about;text/html;text/xml;application/xhtml+xml;application/xml;application/rdf+xml;image/gif;image/jpeg;image/png;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/qute;
