@@ -60,7 +60,7 @@ font-1 = SauceCodePro Nerd Font:pixelsize=10;1
 
 modules-left = i3
 modules-center = 
-modules-right = filesystem xbacklight pulseaudio xkeyboard memory cpu wlan wlan2 battery battery2 temperature date powermenu
+modules-right = filesystem xbacklight pulseaudio mpd xkeyboard memory cpu wlan wlan2 battery battery2 temperature date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -177,13 +177,13 @@ label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
 [module/mpd]
 type = internal/mpd
-format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+format-online = <label-song>  <icon-prev>  <toggle>  <icon-next>
 
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
 
 label-song-maxlen = 25
 label-song-ellipsis = true
