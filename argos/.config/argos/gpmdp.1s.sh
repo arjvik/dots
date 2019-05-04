@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cd "/home/arjvik/.config/Google Play Music Desktop Player/json_store"
+cd "~/.config/Google Play Music Desktop Player/json_store"
 
 TITLE=$(jq --raw-output ".song.title" playback.json)
 ARTIST=$(jq --raw-output ".song.artist" playback.json)
