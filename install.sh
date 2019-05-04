@@ -53,7 +53,7 @@ cd ~
 
 info "Updating packages"
 sudo apt update
-[[ -z "${NO_APT_UPGRADE}" ]] && sudo apt upgrade -y || info_important "Skipping apt upgrade"
+[[ -z "${SKIP_LONG_INSTALLS}" ]] && sudo apt upgrade -y || info_important "Skipping apt upgrade"
 info_done
 
 info "Installing git"
@@ -172,33 +172,36 @@ cd ~/dots
 stow polybar
 info_done
 
-info "Installing Adapta GTK Theme"
-if ! [[ -e /etc/apt/sources.list.d/tista-ubuntu-adapta-bionic.list ]]; then
-	sudo add-apt-repository -yu ppa:tista/adapta
-	sudo apt update
+if [[ -z "${SKIP_LONG_INSTALLS}" ]]; then
+	info "Installing Adapta GTK Theme"
+	if ! [[ -e /etc/apt/sources.list.d/tista-ubuntu-adapta-bionic.list ]]; then
+		sudo add-apt-repository -yu ppa:tista/adapta
+		sudo apt update
+	else
+		info "PPA Already added"
+	fi
+	sudo apt install -y adapta-gtk-theme adapta-backgrounds
+	info_done
+
+	info "Installing Paper Icon Theme"
+	if ! [[ -e /etc/apt/sources.list.d/snwh-ubuntu-ppa-bionic.list ]]; then
+		sudo add-apt-repository -yu ppa:snwh/ppa
+		sudo apt update
+	else
+		info "PPA Already added"
+	fi
+	sudo apt install -y paper-icon-theme
+	info_done
+
+	info "Installing Nerd Fonts (Source Code Pro and Ubuntu Mono)"
+	cd /tmp
+	git clone --depth=1 https://github.com/ryanoasis/nerd-fonts
+	nerd-fonts/install.sh SourceCodePro UbuntuMono
+	cd ~
+	info_done
 else
-	info "PPA Already added"
+	info_important "Skipping installation of Adapta GTK Theme, Paper Icon Theme, and Nerd Fonts"
 fi
-sudo apt install -y adapta-gtk-theme adapta-backgrounds
-info_done
-
-info "Installing Paper Icon Theme"
-if ! [[ -e /etc/apt/sources.list.d/snwh-ubuntu-ppa-bionic.list ]]; then
-	sudo add-apt-repository -yu ppa:snwh/ppa
-	sudo apt update
-else
-	info "PPA Already added"
-fi
-sudo apt install -y paper-icon-theme
-info_done
-
-info "Installing Nerd Fonts (Source Code Pro and Ubuntu Mono)"
-cd /tmp
-git clone --depth=1 https://github.com/ryanoasis/nerd-fonts
-nerd-fonts/install.sh SourceCodePro UbuntuMono
-cd ~
-info_done
-
 
 info "Installing gnome-tweaks"
 sudo apt install -y gnome-tweaks
@@ -268,7 +271,9 @@ _rofi_set_theme "$HOME/.local/share/rofi/themes/material.rasi"
 info_done
 
 info "Installing Java 8 and 11 JDK"
-sudo apt install -y openjdk-11-jdk openjdk-11-source openjdk-8-jdk openjdk-8-source
+[[ -z "${SKIP_LONG_INSTALLS}" ]] \
+	&& sudo apt install -y openjdk-11-jdk openjdk-11-source openjdk-8-jdk openjdk-8-source \
+	|| info_important "Skipping installing java" 
 info_done
 
 
@@ -276,7 +281,9 @@ info_important "Installation complete! Thank you for using arjvik's dots!"
 info_important "Arjun's usual installation checklist after this:"
 info_important "[ ] Eclipse"
 info_important "[ ] Android Studio"
-info_important "[ ] Set wallpaper"
+info_important "[ ] Set wallpaper (\"feh --bg-scale path/to/img.png\" from home directory) "
 info_important "[ ] Fetch tab config"
+info_important "[ ] Configure Gnome Terminal"
+info_important "[ ] Choose themes/fonts in Gnome Tweaks again"
 
 info_ascii
