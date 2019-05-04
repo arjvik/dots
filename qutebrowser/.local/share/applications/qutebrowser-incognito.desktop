@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=qutebrowser incognito
 GenericName=Private Mode Web Browser
-Icon=/home/arjvik/.local/share/icons/qutebrowser-incognito.png
+Icon=/home/arjvik/.config/qutebrowser/qutebrowser-incognito.png
 Type=Application
 Categories=Network;WebBrowser;
 Exec=qutebrowser --temp-basedir %u
