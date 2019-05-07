@@ -29,7 +29,7 @@ alert = #bd2c40
 
 [monitors]
 laptop = eDP-1
-extern = HDMI-1
+extern = DP-2
 
 [bar/laptop]
 monitor = ${monitors.laptop}
@@ -250,7 +250,7 @@ ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/wlan2]
 inherit = module/wlan
-interface = wlo1
+interface = wlp2s0
 
 [module/eth]
 type = internal/network
@@ -377,7 +377,7 @@ battery = BAT1
 
 [module/temperature]
 type = internal/temperature
-thermal-zone = 7
+thermal-zone = 8
 warn-temperature = 60
 
 format = <ramp> <label>

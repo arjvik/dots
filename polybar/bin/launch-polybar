@@ -4,4 +4,4 @@ killall -q polybar
 
 polybar laptop &
 
-xrandr | grep "HDMI-1 connected" && polybar extern &
+xrandr | grep "DP-2 connected" && polybar extern &
