@@ -60,7 +60,7 @@ font-1 = SauceCodePro Nerd Font:pixelsize=10;1
 
 modules-left = i3
 modules-center = 
-modules-right = filesystem xbacklight pulseaudio mpd xkeyboard memory cpu wlan wlan2 battery battery2 temperature date powermenu
+modules-right = filesystem xbacklight pulseaudio mpd xkeyboard memory cpu wlan battery temperature date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -228,7 +228,7 @@ label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
-interface = wlp1s0
+interface = wlp2s0
 interval = 3.0
 
 format-connected =  <label-connected>
@@ -247,10 +247,6 @@ ramp-signal-2 = 
 ramp-signal-3 = 
 ramp-signal-4 = 
 ramp-signal-foreground = ${colors.foreground-alt}
-
-[module/wlan2]
-inherit = module/wlan
-interface = wlp2s0
 
 [module/eth]
 type = internal/network
@@ -371,13 +367,9 @@ animation-charging-2 = 
 animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-framerate = 750
 
-[module/battery2]
-inherit = module/battery
-battery = BAT1
-
 [module/temperature]
 type = internal/temperature
-thermal-zone = 8
+thermal-zone = 7
 warn-temperature = 60
 
 format = <ramp> <label>
