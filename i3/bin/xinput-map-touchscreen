@@ -1,0 +1,3 @@
+#!/bin/bash
+
+xinput | sed -nE "s/.*ELAN2514.*id=([0-9]*).*pointer.*/\1/p" | xargs -I {} xinput map-to-output {} eDP-1
