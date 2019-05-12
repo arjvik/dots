@@ -164,7 +164,7 @@ bindsym $mod+r mode "resize"
 # }
 
 # Launch polybar
-exec --no-startup-id launch-polybar
+exec_always --no-startup-id launch-polybar
 bindsym $mod+Shift+p exec --no-startup-id launch-polybar
 
 # disable window title bars for gaps to work correctly
