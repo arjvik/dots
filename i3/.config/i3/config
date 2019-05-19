@@ -218,3 +218,5 @@ exec --no-startup-id nm-applet
 
 # launch GetPlan.co for project management
 exec --no-startup-id qutebrowser https://getplan.co/u/me/summer-64ca/list
+bindsym $mod+p exec --no-startup-id qutebrowser https://getplan.co/u/me/summer-64ca/list
+
