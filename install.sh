@@ -144,6 +144,11 @@ info "Installing compton"
 sudo apt install -y compton
 info_done
 
+info "Stowing compton"
+cd ~/dots
+stow compton
+info_done
+
 info "Installing polybar"
 cd /opt
 if ! type polybar; then
