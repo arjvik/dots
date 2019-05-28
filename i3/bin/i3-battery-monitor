@@ -1,0 +1,34 @@
+#!/bin/bash
+
+BATTERY="BAT0"
+FULL=100
+LOW=20
+CRITICAL=10
+
+warn() {
+	if [[ -z "$2" ]]; then
+		echo "$1" | rofi -dmenu -p "Warning" -lines 1
+	else
+		echo -e "$1\n$2" | rofi -dmenu -p "Warning" -lines 2 -format i
+	fi
+}
+
+while true; do
+	CHARGE=$(cat "/sys/class/power_supply/$BATTERY/capacity")
+	STATUS=$(cat "/sys/class/power_supply/$BATTERY/status")
+	if [[ "$STATUS" != "Discharging" && $CHARGE -ge $FULL ]]; then
+		warn "Battery Full ($CHARGE%)"
+		sleep 10m
+	elif [[ "$STATUS" == "Discharging" && $CHARGE -le $LOW && $CHARGE -gt $CRITICAL ]]; then
+		warn "Battery Low ($CHARGE%)"
+		sleep 5m
+	elif [[ "$STATUS" == "Discharging" && $CHARGE -le $CRITICAL ]]; then
+		if [[ `warn "Battery Critical ($CHARGE%)" "Shut down now"` -eq 1 && \
+		      `warn "Are you sure you want to turn off your computer?" "Yes"` -eq 1 ]]; then
+			poweroff
+		fi
+		sleep 1m
+	else
+		sleep 1m
+	fi
+done
