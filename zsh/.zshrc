@@ -26,7 +26,7 @@ POWERLEVEL9K_SHORTEN_STRATEGY=truncate_folders
 POWERLEVEL9K_DIR_PATH_SEPARATOR="  "
 
 
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 
 # Set list of themes to pick from when loading at random
@@ -99,7 +99,7 @@ if ! [ -d ~/.oh-my-zsh ]; then
 	mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc
 	echo "*** Done!"
 	echo "*** Installing powerlevel9k theme:"
-	git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+	git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
 	echo "*** Done!"
 fi
 
