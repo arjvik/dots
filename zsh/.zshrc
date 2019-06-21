@@ -127,12 +127,23 @@ man() {
 	      man "$@"
 }
 
+# cd to named directories
+z() {
+    cd "$(find ~ -name "$1" -type d 2>/dev/null | awk "{print length(), \$0}" | sort -n | cut -d" " -f 2- | head -n1)"
+}
+
+declare -A zcd=(
+	["rr2"]="ftc_app_rr2" ["contests"]="Contests"
+	["irbot"]="ironreignbot" ["dots"]="dots"
+	["api"]="API" ["profilr"]="profilr"
+)
+
+for key value in ${(kv)zcd}; do
+	alias $key="z $value"
+done
+
 export MYSQL_PS1="MySQL \d>\_"
 
-alias rr2="cd ~/Programming/IronReign/ftc_app_rr2"
-alias contests="cd ~/Programming/java/contests/Contests"
-alias irbot="cd ~/Programming/java/robotics/ironreignbot"
-alias dots="cd ~/dots"
 alias gs="git status"
 alias keybind="xev -event keyboard  | egrep -o 'keycode.*\)'"
 alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"
