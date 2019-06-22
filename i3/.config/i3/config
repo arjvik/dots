@@ -44,7 +44,7 @@ bindsym $mod+c exec --no-startup-id calc
 
 # start qutebrowser (web browser)
 bindsym $mod+q exec qutebrowser
-bindsym $mod+Ctrl+q exec qutebrowser `rofi -dmenu -l 0 -p "qutebrowser"`
+bindsym $mod+Ctrl+q exec qutebrowser --target window "`rofi -dmenu -l 0 -p "qutebrowser"`"
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -207,8 +207,6 @@ exec --no-startup-id ~/.fehbg
 exec --no-startup-id compton
 
 # i3lock
-# bindsym $mod+l exec i3lock -i /usr/share/backgrounds/user/bsod.png && systemctl suspend 
-# bindsym $mod+Shift+l exec i3lock -i /usr/share/backgrounds/user/bsod.png
 bindsym $mod+l exec ~/bin/i3lock-fancy-multimonitor
 bindsym $mod+Shift+l exec ~/bin/i3lock-fancy-multimonitor && systemctl suspend
 
