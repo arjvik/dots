@@ -81,7 +81,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git zsh-syntax-highlighting)
 
 
 # Install oh-my-zsh if it is not already installed
@@ -129,7 +129,7 @@ man() {
 
 # cd to named directories
 z() {
-    cd "$(find ~ -name "$1" -type d 2>/dev/null | awk "{print length(), \$0}" | sort -n | cut -d" " -f 2- | head -n1)"
+    cd "$(find ~ -name "$1" -type d -not -path '*/\.*' 2>/dev/null | awk "{print length(), \$0}" | sort -n | cut -d" " -f 2- | head -n1)"
 }
 
 declare -A zcd=(
@@ -146,5 +146,6 @@ export MYSQL_PS1="MySQL \d>\_"
 
 alias gs="git status"
 alias keybind="xev -event keyboard  | egrep -o 'keycode.*\)'"
+alias mysql="mysql -h mydbinstance.cbg4coxfme7c.us-east-2.rds.amazonaws.com -u root -p$(cat `locate jdbc.properties -n1` | tail -n1 | cut -c12-)"
 alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"
 alias sudoedit="export SUDO_EDITOR=\"\$(echo =gedit)\"; sudo -e"
