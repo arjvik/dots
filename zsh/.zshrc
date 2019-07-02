@@ -143,6 +143,7 @@ for key value in ${(kv)zcd}; do
 done
 
 export MYSQL_PS1="MySQL \d>\_"
+export SUDO_ASKPASS=`echo =sudo-askpass-rofi`
 
 alias gs="git status"
 alias keybind="xev -event keyboard  | egrep -o 'keycode.*\)'"
