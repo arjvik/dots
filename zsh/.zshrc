@@ -129,7 +129,7 @@ man() {
 
 # cd to named directories
 z() {
-    cd "$(find ~ -name "$1" -type d -not -path '*/\.*' 2>/dev/null | awk "{print length(), \$0}" | sort -n | cut -d" " -f 2- | head -n1)"
+    cd "$(find ${2:-~} -name "$1" -type d -not -path '*/\.*' 2>/dev/null | awk "{print length(), \$0}" | sort -n | cut -d" " -f 2- | head -n1)"
 }
 
 declare -A zcd=(
