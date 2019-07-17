@@ -15,16 +15,28 @@ c.aliases = {'proxy-off': 'set content.proxy system', 'proxy-on': 'set content.p
 # Type: Bool
 c.auto_save.session = False
 
-# Background color of the completion widget for even rows.
-# Type: QssColor
-c.colors.completion.even.bg = '#333333'
-
 # List of URLs of lists which contain hosts to block.  The file can be
 # in one of the following formats:  - An `/etc/hosts`-like file - One
 # host per line - A zip-file of any of the above, with either only one
-# file, or a file   named `hosts` (with any extension).
+# file, or a file   named `hosts` (with any extension).  It's also
+# possible to add a local file or directory via a `file://` URL. In case
+# of a directory, all files in the directory are read as adblock lists.
+# The file `~/.config/qutebrowser/blocked-hosts` is always read if it
+# exists.
 # Type: List of Url
 c.content.host_blocking.lists = ['https://www.malwaredomainlist.com/hostslist/hosts.txt', 'http://someonewhocares.org/hosts/hosts', 'http://winhelp2002.mvps.org/hosts.zip', 'http://malwaredomains.lehigh.edu/files/justdomains.zip', 'https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&mimetype=plaintext']
+
+# Enable JavaScript.
+# Type: Bool
+config.set('content.javascript.enabled', True, 'file://*')
+
+# Enable JavaScript.
+# Type: Bool
+config.set('content.javascript.enabled', True, 'chrome://*/*')
+
+# Enable JavaScript.
+# Type: Bool
+config.set('content.javascript.enabled', True, 'qute://*/*')
 
 # Proxy to use. In addition to the listed values, you can use a
 # `socks://...` or `http://...` URL.
@@ -69,10 +81,26 @@ c.url.searchengines = {'DEFAULT': 'https://google.com/search?query={}'}
 c.url.start_pages = 'https://arjvik.github.io/tab'
 
 # Bindings for normal mode
-config.bind('<alt+left>', 'back')
-config.bind('<alt+right>', 'forward')
-config.bind('<ctrl+shift+e>', 'edit-url')
+config.bind('<Alt+0>', 'tab-focus -1')
+config.bind('<Alt+9>', 'tab-focus 9')
+config.bind('<Alt+Left>', 'back')
+config.bind('<Alt+Right>', 'forward')
+config.bind('<Ctrl+Shift+e>', 'edit-url')
 config.bind('q', None)
 
+# Bindings for insert mode
+config.bind('<Alt+Left>', 'back', mode='insert')
+config.bind('<Alt+Right>', 'forward', mode='insert')
+config.bind('<Alt+0>', 'tab-focus -1', mode='insert')
+config.bind('<Alt+1>', 'tab-focus 1', mode='insert')
+config.bind('<Alt+2>', 'tab-focus 2', mode='insert')
+config.bind('<Alt+3>', 'tab-focus 3', mode='insert')
+config.bind('<Alt+4>', 'tab-focus 4', mode='insert')
+config.bind('<Alt+5>', 'tab-focus 5', mode='insert')
+config.bind('<Alt+6>', 'tab-focus 6', mode='insert')
+config.bind('<Alt+7>', 'tab-focus 7', mode='insert')
+config.bind('<Alt+8>', 'tab-focus 8', mode='insert')
+config.bind('<Alt+9>', 'tab-focus 9', mode='insert')
 
+# Qutebrowser Nord Theme
 config.source('nord-qutebrowser.py')
