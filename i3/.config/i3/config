@@ -219,8 +219,9 @@ bindsym $mod+Shift+l exec ~/bin/i3lock-fancy-multimonitor && systemctl suspend
 # battery monitor
 exec --no-startup-id ~/bin/i3-battery-monitor
 
-# network manager applet
+# network manager and bluetooth applet
 exec --no-startup-id nm-applet
+exec --no-startup-id blueman-applet
 
 # launch GetPlan.co for project management
 exec --no-startup-id qutebrowser https://getplan.co/u/me/summer-64ca/list
