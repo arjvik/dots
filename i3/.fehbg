@@ -1,0 +1,2 @@
+#!/bin/sh
+feh --bg-scale '/home/arjvik/dots/walls/minimal-mountains.jpg' 
