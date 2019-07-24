@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=xinput-map-touchscreen
+Comment=Map touchscreen and pen input to touchscreen using xinput
+Icon=
+TryExec=xinput-map-touchscreen
+Exec=xinput-map-touchscreen
+Terminal=false
+Categories=Applications;Utilities
+StartupNotify=false
