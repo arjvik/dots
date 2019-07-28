@@ -104,6 +104,10 @@ for key value in ${(kv)zcd}; do
 	alias $key="z $value"
 done
 
+mkc() { mkdir -p "$1" && cd "$1" || return 1 }
+_mkc() { _files -W "$1" -/ }
+
+
 export MYSQL_PS1="MySQL \d>\_"
 export SUDO_ASKPASS=`echo =sudo-askpass-rofi`
 
