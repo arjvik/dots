@@ -135,7 +135,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec $(echo 'No|Yes: i3-msg exit' | rofi -dmenu -i -sep '|' -lines 2 -p 'Do you really want to exit i3?' | cut -c6-)
+bindsym $mod+Shift+e exec [ "$(echo 'No|Yes' | rofi -dmenu -i -sep '|' -lines 2 -p 'Do you really want to exit i3?' -a 0 -u 1 -no-custom)" = "Yes" ] && i3-msg exit
 
 
 # resize window (you can also use the mouse for that)
