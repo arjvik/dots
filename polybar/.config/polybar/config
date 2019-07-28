@@ -17,12 +17,10 @@
 ;==========================================================
 
 [colors]
-;background = ${xrdb:color0:#222}
-background = #222
-background-alt = #444
-;foreground = ${xrdb:color7:#222}
-foreground = #dfdfdf
-foreground-alt = #555
+background = #00000000
+background-alt = #00000000
+foreground = #FFF
+foreground-alt = #FFF
 primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
@@ -43,7 +41,7 @@ fixed-center = false
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 3
+line-size = 2
 line-color = #f00
 
 border-size = 4
