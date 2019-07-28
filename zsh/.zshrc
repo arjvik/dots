@@ -3,74 +3,36 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 
 # Powerlevel9k settings
 POWERLEVEL9K_MODE="nerdfont-complete"
 POWERLEVEL9K_OS_ICON_BACKGROUND="blue"
-
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir dir_writable vcs root_indicator background_jobs status)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-
 POWERLEVEL9K_CONTEXT_REMOTE_BACKGROUND="yellow"
 POWERLEVEL9K_CONTEXT_REMOTE_FOREGROUND="black"
-
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_SHORTEN_STRATEGY=truncate_folders
 POWERLEVEL9K_DIR_PATH_SEPARATOR="  "
 
+# Antigen plugin manager
 
-ZSH_THEME="powerlevel10k/powerlevel10k"
-
-
-
-
-# Which plugins would you like to load?
-plugins=(git zsh-syntax-highlighting zsh-completions zsh-autosuggestions)
-
-
-# Install oh-my-zsh if it is not already installed
-if ! [ -d ~/.oh-my-zsh ]; then
-	echo "*** Arjun's oh-my-zsh install script:"
-	echo "*** Installing oh-my-zsh:"
-	rm -rf ~/.oh-my-zsh
-	echo exit | sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-	echo "*** Done!"
-	echo "*** Removing wget log:"
-	rm wget-log*
-	echo "*** Done!"
-	echo "*** Removing oh-my-zsh's configuration and installing ours over it"
-	rm ~/.zshrc
-	mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc
-	echo "*** Done!"
-
-	echo "*** Installing powerlevel10k theme:"
-	git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
-
-	echo "*** Installing zsh-syntax-highlighting:"
-	git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-
-	echo "*** Installing zsh-completions:"
-	git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions
-
-	echo "*** Installing zsh-autosuggestions:"
-	git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-	echo "*** Done!"
-
+if ! [[ -e ~/.antigen/antigen.zsh ]]; then
+	echo "Installing antigen"
+	mkdir ~/.antigen
+	curl -L git.io/antigen > ~/.antigen/antigen.zsh
 fi
 
-# Set ZSH_DISABLE_COMPFIX=true if we are root
-if [[ $(whoami) == "root" ]]; then
-	export ZSH_DISABLE_COMPFIX="true"
-fi
+source ~/.antigen/antigen.zsh
 
-source $ZSH/oh-my-zsh.sh
+antigen use oh-my-zsh
+antigen theme romkatv/powerlevel10k
+antigen bundle git
+antigen bundle zsh-users/zsh-completions
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-autosuggestions
+antigen apply
 
 # User configuration
 
