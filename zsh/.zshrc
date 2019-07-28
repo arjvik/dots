@@ -32,7 +32,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 
 # Which plugins would you like to load?
-plugins=(git zsh-syntax-highlighting)
+plugins=(git zsh-syntax-highlighting zsh-completions zsh-autosuggestions)
 
 
 # Install oh-my-zsh if it is not already installed
@@ -49,9 +49,20 @@ if ! [ -d ~/.oh-my-zsh ]; then
 	rm ~/.zshrc
 	mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc
 	echo "*** Done!"
+
 	echo "*** Installing powerlevel10k theme:"
 	git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
+
+	echo "*** Installing zsh-syntax-highlighting:"
+	git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+
+	echo "*** Installing zsh-completions:"
+	git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions
+
+	echo "*** Installing zsh-autosuggestions:"
+	git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 	echo "*** Done!"
+
 fi
 
 # Set ZSH_DISABLE_COMPFIX=true if we are root
