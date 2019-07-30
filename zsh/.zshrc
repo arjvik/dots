@@ -31,7 +31,7 @@ antigen theme romkatv/powerlevel10k
 antigen bundle git
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-autosuggestions
+#antigen bundle zsh-users/zsh-autosuggestions
 antigen apply
 
 # User configuration
@@ -75,6 +75,6 @@ export SUDO_ASKPASS=`echo =sudo-askpass-rofi`
 
 alias gs="git status"
 alias keybind="xev -event keyboard  | egrep -o 'keycode.*\)'"
-alias mysql="mysql -h mydbinstance.cbg4coxfme7c.us-east-2.rds.amazonaws.com -u root -p$(cat `locate jdbc.properties -n1` | tail -n1 | cut -c12-)"
+alias mysql="mysql -h mydbinstance.cbg4coxfme7c.us-east-2.rds.amazonaws.com -u root -p\$(locate jdbc.properties -n1 | xargs cat | tail -n1 | cut -c12-)"
 alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"
 alias sudoedit="export SUDO_EDITOR=\"\$(echo =gedit)\"; sudo -e"
