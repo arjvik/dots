@@ -60,6 +60,7 @@ declare -A zcd=(
 	["rr2"]="ftc_app_rr2" ["contests"]="Contests"
 	["irbot"]="ironreignbot" ["dots"]="dots"
 	["api"]="API" ["profilr"]="profilr"
+	["automl"]="AutoML" ["vui"]="needletail-vui"
 )
 
 for key value in ${(kv)zcd}; do
@@ -69,6 +70,8 @@ done
 mkc() { mkdir -p "$1" && cd "$1" || return 1 }
 _mkc() { _files -W "$1" -/ }
 
+# Disable Ctrl-S and Ctrl-Q in terminal
+stty -ixon
 
 export MYSQL_PS1="MySQL \d>\_"
 export SUDO_ASKPASS=`echo =sudo-askpass-rofi`
