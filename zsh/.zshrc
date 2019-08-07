@@ -8,7 +8,8 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Powerlevel9k settings
 POWERLEVEL9K_MODE="nerdfont-complete"
 POWERLEVEL9K_OS_ICON_BACKGROUND="blue"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir dir_writable vcs root_indicator background_jobs status)
+POWERLEVEL9K_VIRTUALENV_BACKGROUND="darkorange"
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir dir_writable virtualenv vcs root_indicator background_jobs status)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 POWERLEVEL9K_CONTEXT_REMOTE_BACKGROUND="yellow"
 POWERLEVEL9K_CONTEXT_REMOTE_FOREGROUND="black"
