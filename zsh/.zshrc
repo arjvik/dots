@@ -54,18 +54,23 @@ man() {
 
 # cd to named directories
 z() {
+    echo "\e[31mPlease try to use the directory aliases instead of z\e[0m"
     cd "$(find ${2:-~} -name "$1" -type d -not -path '*/\.*' 2>/dev/null | awk "{print length(), \$0}" | sort -n | cut -d" " -f 2- | head -n1)"
 }
 
-declare -A zcd=(
-	["rr2"]="ftc_app_rr2" ["contests"]="Contests"
-	["irbot"]="ironreignbot" ["dots"]="dots"
-	["api"]="API" ["profilr"]="profilr"
-	["automl"]="AutoML" ["vui"]="needletail-vui"
+declare -A cdaliases=(
+	["rr2"]="~/Programming/IronReign/ftc_app_rr2"
+	["contests"]="~/Programming/java/contests/Contests"
+	["irbot"]="~/Programming/java/robotics/ironreignbot"
+	["dots"]="~/dots"
+	["api"]="~/Programming/java/ArjMart/API"
+	["profilr"]="~/Programming/java/web/profilr"
+	["automl"]="~/Programming/python/machine-learning/AutoML"
+	["vui"]="~/Programming/python/pSolv/needletail-vui"
 )
 
-for key value in ${(kv)zcd}; do
-	alias $key="z $value"
+for key value in ${(kv)cdaliases}; do
+	alias $key="cd $value"
 done
 
 mkc() { mkdir -p "$1" && cd "$1" || return 1 }
