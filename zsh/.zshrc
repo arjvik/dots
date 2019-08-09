@@ -66,7 +66,7 @@ declare -A cdaliases=(
 	["api"]="~/Programming/java/ArjMart/API"
 	["profilr"]="~/Programming/java/web/profilr"
 	["automl"]="~/Programming/python/machine-learning/AutoML"
-	["vui"]="~/Programming/python/pSolv/needletail-vui"
+	["cd-vui"]="~/Programming/python/pSolv/needletail-vui"
 )
 
 for key value in ${(kv)cdaliases}; do
@@ -83,6 +83,9 @@ export MYSQL_PS1="MySQL \d>\_"
 export SUDO_ASKPASS=`echo =sudo-askpass-rofi`
 
 alias gs="git status"
+alias gdc="git diff --cached"
+alias penv="exec pipenv shell"
+alias vui="cd-vui && penv"
 alias keybind="xev -event keyboard  | egrep -o 'keycode.*\)'"
 alias mysql="mysql -h mydbinstance.cbg4coxfme7c.us-east-2.rds.amazonaws.com -u root -p\$(locate jdbc.properties -n1 | xargs cat | tail -n1 | cut -c12-)"
 alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"
