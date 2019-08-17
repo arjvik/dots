@@ -202,6 +202,9 @@ bindsym XF86AudioPlay exec --no-startup-id mpc toggle
 bindsym XF86AudioPrev exec --no-startup-id mpc prev
 bindsym XF86AudioNext exec --no-startup-id mpc next
 
+# screenshots
+bindsym $mod+Shift+s exec --no-startup-id gnome-screenshot -ca
+
 # Gnome Settings Daemons
 exec --no-startup-id ~/bin/gnome-settings-daemon
 
