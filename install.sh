@@ -235,25 +235,19 @@ if [[ -z "${SKIP_LONG_INSTALLS}" ]]; then
 	cd ~
 	info_done
 
+	info "Selecting GTK, Icon Theme, and Font"
+	gsettings set org.gnome.desktop.interface gtk-theme "Adapta-Nokto"
+	gsettings set org.gnome.desktop.interface icon-theme "Paper"
+	gsettings set org.gnome.desktop.interface monospace-font-name "SauceCodePro Nerd Font 12"
+	info_done
+
+	info "Installing gnome-tweaks"
+	sudo apt install -y gnome-tweaks
+	info_done
+
 else
 	info_important "Skipping installation of Adapta GTK Theme, Paper Icon Theme, and Nerd Fonts"
 fi
-
-info "Installing gnome-tweaks"
-sudo apt install -y gnome-tweaks
-info_important "#############################################"
-info_important "#  PLEASE PERFORM THE FOLLOWING TASKS       #"
-info_important "#    [ ] Select Paper as icon theme         #"
-info_important "#    [ ] Select Adapta-Nokto as GTK theme   #"
-info_important "#    [ ] Select SauceCodePro Nerd Font      #"
-info_important "#         (12pt) as default monospace font  #"
-info_important "#                                           #"
-info_important "#     PRESS ENTER TO LAUNCH GNOME-TWEAKS    #"
-info_important "#############################################"
-
-read -n 1 -s
-gnome-tweaks > /dev/null
-info_done
 
 info "Installing qutebrowser"
 sudo apt install -y qutebrowser
@@ -313,10 +307,8 @@ info_done
 info_important "Installation complete! Thank you for using arjvik's dots!"
 info_important "Arjun's usual installation checklist after this:"
 info_important "[ ] Eclipse"
-info_important "[ ] Android Studio"
 info_important "[ ] Set wallpaper (\"feh --bg-scale path/to/img.png\" from home directory) "
 info_important "[ ] Fetch tab config"
 info_important "[ ] Configure Gnome Terminal"
-info_important "[ ] Choose themes/fonts in Gnome Tweaks again"
 
 info_ascii
