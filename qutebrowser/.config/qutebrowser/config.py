@@ -9,7 +9,14 @@
 # Aliases for commands. The keys of the given dictionary are the
 # aliases, while the values are the commands they map to.
 # Type: Dict
-c.aliases = {'proxy-off': 'set content.proxy system', 'proxy-on': 'set content.proxy http://192.168.49.1:8282/', 'q': 'quit', 'w': 'session-save', 'wq': 'quit --save'}
+c.aliases = {
+    'proxy-off': 'set content.proxy system',
+    'proxy-on': 'set content.proxy http://192.168.49.1:8282/',
+    'proxy-ssh': 'set content.proxy socks://localhost:9050/',
+    'q': 'quit',
+    'w': 'session-save',
+    'wq': 'quit --save'
+}
 
 # Always restore open sites when qutebrowser is reopened.
 # Type: Bool
@@ -105,6 +112,9 @@ config.bind('q', None)
 config.bind('qo', 'open https://outline.com/{url}')
 config.bind('qp', 'spawn --userscript qute-lastpass')
 config.bind('qu', 'open {url}?share')
+config.bind('qbo', 'proxy-on')
+config.bind('qbx', 'proxy-off')
+config.bind('qbs', 'proxy-ssh')
 
 # Bindings for insert mode
 config.bind('<Alt+Left>', 'back', mode='insert')
