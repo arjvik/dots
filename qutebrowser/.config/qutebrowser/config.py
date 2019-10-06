@@ -115,6 +115,8 @@ config.bind('qu', 'open {url}?share')
 config.bind('qbo', 'proxy-on')
 config.bind('qbx', 'proxy-off')
 config.bind('qbs', 'proxy-ssh')
+config.bind('qj', 'jseval window.location.replace(document.getElementById("root").childNodes[2].childNodes[0].data)')
+config.bind('qr', 'open -t https://api.qrserver.com/v1/create-qr-code/?size=300x300&qzone=1&data={url}')
 
 # Bindings for insert mode
 config.bind('<Alt+Left>', 'back', mode='insert')
