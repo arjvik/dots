@@ -196,6 +196,8 @@ bindsym Shift+XF86AudioMute exec --no-startup-id ~/bin/pactl-set-all-sink-volume
 # brightness keys
 bindsym XF86MonBrightnessUp exec --no-startup-id ~/bin/xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id ~/bin/xbacklight -dec 20 # decrease screen brightness
+bindsym Shift+XF86MonBrightnessUp exec --no-startup-id ~/bin/xbacklight -inc 2 # slightly increase screen brightness
+bindsym Shift+XF86MonBrightnessDown exec --no-startup-id ~/bin/xbacklight -dec 2 # slightly decrease screen brightness
 
 # media keys (mpd)
 bindsym XF86AudioPlay exec --no-startup-id mpc toggle
