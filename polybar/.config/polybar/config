@@ -58,7 +58,7 @@ font-1 = SauceCodePro Nerd Font:pixelsize=10;1
 
 modules-left = i3
 modules-center = 
-modules-right = filesystem xbacklight pulseaudio mpd xkeyboard memory cpu wlan battery temperature date powermenu
+modules-right = filesystem backlight-acpi pulseaudio mpd xkeyboard memory cpu wlan battery temperature date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -190,7 +190,7 @@ label-song-ellipsis = true
 type = internal/xbacklight
 
 format = <label> <bar>
-label = BL
+label =  BL
 
 bar-width = 10
 bar-indicator = |
