@@ -58,7 +58,7 @@ font-1 = SauceCodePro Nerd Font:pixelsize=10;1
 
 modules-left = i3
 modules-center = 
-modules-right = filesystem backlight-acpi pulseaudio mpd xkeyboard memory cpu wlan battery temperature date powermenu
+modules-right = filesystem backlight-acpi pulseaudio mpd xkeyboard memory cpu wlan bluetooth battery temperature date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -408,10 +408,19 @@ menu-0-3 = lock
 menu-0-3-exec = i3lock-fancy-multimonitor
 
 [module/gpmdp]
-type     = custom/script
-exec     = ~/bin/gpmdp-polybar
-exec-if  = pgrep "Google Play Mus"
+type = custom/script
+exec = ~/bin/gpmdp-polybar
+exec-if = pgrep "Google Play Mus"
 interval = 2
+
+[module/bluetooth]
+type = custom/script
+exec = ~/.config/polybar/polybar-bluetooth.sh
+exec-if = ~/.config/polybar/polybar-bluetooth.sh test-connected
+interval = 2
+click-right = exec blueman-manager
+format-prefix = " "
+format-underline = #2193ff
 
 [settings]
 screenchange-reload = true
