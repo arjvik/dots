@@ -206,6 +206,7 @@ bindsym XF86AudioNext exec --no-startup-id mpc next
 
 # screenshots
 bindsym $mod+Shift+s exec --no-startup-id gnome-screenshot -ca
+bindsym $mod+Shift+f exec --no-startup-id gnome-screenshot -af /tmp/screenshot.png
 
 # Gnome Settings Daemons
 exec --no-startup-id ~/bin/gnome-settings-daemon
