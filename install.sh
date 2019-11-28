@@ -249,6 +249,16 @@ else
 	info_important "Skipping installation of Adapta GTK Theme, Paper Icon Theme, and Nerd Fonts"
 fi
 
+info "Installing dunst"
+sudo apt install -y dunst
+info_done
+
+info "Configuring dunst"
+sudo mv /usr/share/dbus-1/services/org.freedesktop.Notifications.service{,.disabled}
+cd ~/dots
+stow dunst
+info_done
+
 info "Installing qutebrowser"
 sudo apt install -y qutebrowser
 info_done
