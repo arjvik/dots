@@ -1,0 +1,83 @@
+[global]
+    monitor = 0
+    follow = mouse
+    geometry = "250x50-20+20"
+    indicate_hidden = yes
+    shrink = no
+    transparency = 0
+    notification_height = 0
+    separator_height = 2
+    padding = 16
+    horizontal_padding = 16
+    frame_width = 0
+    frame_color = "#2E3440"
+    separator_color = frame
+    sort = yes
+    idle_threshold = 120
+    font = Misc Termsyn 10
+    line_height = 4
+    markup = full
+    format = "<b>%s</b>\n%b"
+    alignment = left
+    show_age_threshold = 60
+    word_wrap = yes
+    ignore_newline = no
+    stack_duplicates = false
+    hide_duplicate_count = false
+    show_indicators = yes
+    
+    # My installed dunst doesn't seem to support icons
+    # icon_position = left
+    # max_icon_size = 32
+    # icon_folders = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+    
+    sticky_history = yes
+    history_length = 20
+    dmenu = /usr/bin/rofi -dmenu -p dunst
+    browser = /usr/bin/qutebrowser --target window
+    always_run_script = true
+    title = Dunst
+    class = Dunst
+    startup_notification = false
+    force_xinerama = false
+
+s[experimental]
+    # Calculate the dpi to use on a per-monitor basis.
+    per_monitor_dpi = false
+
+[shortcuts]
+    # Shortcuts are specified as [modifier+][modifier+]...key
+    # Available modifiers are "ctrl", "mod1" (the alt-key), "mod2",
+    # "mod3" and "mod4" (windows-key).
+    # Xev might be helpful to find names for keys.
+
+    # Close notification.
+    close = ctrl+space
+
+    # Close all notifications.
+    close_all = ctrl+shift+space
+
+    # Redisplay last message(s).
+    history = ctrl+grave
+
+    # Context menu.
+    context = ctrl+shift+period
+
+[urgency_low]
+    # Colors have to be defined in quotation marks so the "#" is not a comment
+    background = "#272727"
+    foreground = "#CACACA"
+    timeout = 4
+    # icon = 
+
+[urgency_normal]
+    background = "#272727"
+    foreground = "#CACACA"
+    timeout = 4
+    # icon = 
+
+[urgency_critical]
+    background = "#272727"
+    foreground = "#BE302F"
+    timeout = 0
+    # icon = 
