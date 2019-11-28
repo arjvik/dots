@@ -41,7 +41,7 @@
     startup_notification = false
     force_xinerama = false
 
-s[experimental]
+[experimental]
     # Calculate the dpi to use on a per-monitor basis.
     per_monitor_dpi = false
 
