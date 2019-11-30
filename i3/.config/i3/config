@@ -16,13 +16,6 @@ font pango:monospace 8
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
 
-# Before i3 v4.8, we used to recommend this one as the default:
-# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-# The font above is very space-efficient, that is, it looks good, sharp and
-# clear in small sizes. However, its unicode glyph coverage is limited, the old
-# X core fonts rendering does not support right-to-left and this being a bitmap
-# font, it doesn’t scale on retina/hidpi displays.
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -32,23 +25,14 @@ bindsym $mod+Return exec i3-sensible-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-# bindsym $mod+d exec dmenu_run
-
 # start rofi (dmenu replacement)
-#bindsym $mod+Shift+d exec i3-dmenu-desktop --dmenu='rofi -dmenu -i'
 bindsym $mod+d exec rofi -show drun -modi drun#window#ssh -show-icons -drun-icon-theme Paper
 
 # rofi calculator
 bindsym $mod+c exec --no-startup-id calc
 
-# start qutebrowser (web browser)
+# start qutebrowser menu (web browser)
 bindsym $mod+q exec qutebrowser --target window "`rofi -dmenu -l 0 -p "qutebrowser"`"
-
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 bindsym $mod+Left focus left
@@ -86,7 +70,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+# bindsym $mod+d focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -139,12 +123,6 @@ bindsym $mod+Shift+e exec [ "$(echo 'No|Yes' | rofi -dmenu -i -sep '|' -lines 2 
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
@@ -163,12 +141,6 @@ mode "passthrough" {
 }
 
 bindsym $mod+Ctrl+Escape mode "passthrough"
-
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-# bar {
-#         status_command i3status
-# }
 
 # Launch polybar
 exec_always --no-startup-id launch-polybar
