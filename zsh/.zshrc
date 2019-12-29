@@ -85,6 +85,7 @@ export SUDO_ASKPASS=`echo =sudo-askpass-rofi`
 
 alias gs="git status"
 alias gdc="git diff --cached"
+alias gh="git hub"
 alias penv="exec pipenv shell"
 alias keybind="xev -event keyboard  | egrep -o 'keycode.*\)'"
 alias fehbg="feh --bg-scale --no-fehbg"
