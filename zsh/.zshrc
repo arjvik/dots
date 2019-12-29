@@ -68,6 +68,7 @@ declare -A cdaliases=(
 	["profilr"]="~/Programming/java/web/profilr"
 	["automl"]="~/Programming/python/machine-learning/AutoML"
 	["cd-vui"]="~/Programming/python/pSolv/needletail-vui"
+	["amc-club"]="~/Documents/Math/AMC-Club"
 )
 
 for key value in ${(kv)cdaliases}; do
