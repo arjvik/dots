@@ -125,7 +125,8 @@ info_important "Installed i3-gaps"
 info_done
 
 info "Installing i3lock-color"
-if ! type i3lock; then
+# Ensure that we have the forked version of i3lock (i3lock-color)
+if ! type i3lock || ! i3lock -v |& grep --color=none "Cassandra Fox"; then
 	sudo apt remove -y i3lock
 	sudo apt install -y libjpeg-turbo8-dev libpam0g-dev
 	cd /opt
