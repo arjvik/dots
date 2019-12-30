@@ -80,18 +80,14 @@ info "Installing zsh"
 sudo apt install -y zsh
 info_done
 
-info "Stowing zsh"
+info "Configuring zsh (antigen, powerlevel10k, etc)"
 rm -rf ~/.zsh*
-rm -rf ~/.oh-my-zsh
+rm -rf ~/.antigen
 cd ~/dots
 stow zsh
-info_done
-
-info "Installing zsh configuration (oh-my-zsh)"
-rm -rf ~/.oh-my-zsh
 zsh ~/.zshrc
 chsh -s $(grep /zsh$ /etc/shells | tail -1)
-info_important "Installed zsh and oh-my-zsh and powerlevel9k"
+info_important "Installed zsh and extras (antigen, powerlevel10k, etc)"
 info_done
 
 info "Installing git-proxy scripts"
@@ -140,6 +136,7 @@ if ! type i3lock || ! i3lock -v |& grep --color=none "Cassandra Fox"; then
 	../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
 	make
 	sudo make install
+info_important "Installed i3lock-color"
 info_done
 
 info "Installing scrot (needed for i3lock-fancy-multimonitor)"
