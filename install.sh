@@ -124,8 +124,25 @@ fi
 info_important "Installed i3-gaps"
 info_done
 
-info "Installing i3lock and scrot (needed for i3lock-fancy-multimonitor"
-sudo apt install -y i3lock scrot imagemagick
+info "Installing i3lock-color"
+if ! type i3lock; then
+	sudo apt remove -y i3lock
+	sudo apt install -y libjpeg-turbo8-dev libpam0g-dev
+	cd /opt
+	sudo git clone https://github.com/pandorasfox/i3lock-color
+	sudo chown -R $USER:$USER i3lock-color
+	cd i3lock-color
+	git tag -f "git-`git rev-parse --short HEAD`"
+	autoreconf --force --install
+	rm -rf build/
+	mkdir -p build && cd build/
+	../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
+	make
+	sudo make install
+info_done
+
+info "Installing scrot (needed for i3lock-fancy-multimonitor)"
+sudo apt install -y scrot imagemagick
 info_done
 
 info "Stowing i3"
