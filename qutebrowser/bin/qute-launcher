@@ -1,0 +1,11 @@
+#!/bin/bash
+
+sites=";voice.google.com;gmail.com;google.com;github.com"
+
+input="`echo "$sites"|rofi -dmenu -sep ';' -l 1 -columns 3 -p "qutebrowser"`"
+
+if [[ "$input" != "" ]]; then
+	qutebrowser --target window "$input"
+else
+	qutebrowser --target window
+fi

@@ -32,7 +32,7 @@ bindsym $mod+d exec rofi -show drun -modi drun#window#ssh -show-icons -drun-icon
 bindsym $mod+c exec --no-startup-id calc
 
 # start qutebrowser menu (web browser)
-bindsym $mod+q exec qutebrowser --target window "`rofi -dmenu -l 0 -p "qutebrowser"`"
+bindsym $mod+q exec qute-launcher
 
 # change focus
 bindsym $mod+Left focus left
