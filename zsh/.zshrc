@@ -94,3 +94,4 @@ alias thermalzone="grep --color=always \".\" /sys/class/thermal/thermal_zone*/ty
 alias mysql="mysql -h mydbinstance.cbg4coxfme7c.us-east-2.rds.amazonaws.com -u root -p\$(locate jdbc.properties -n1 | xargs cat | tail -n1 | cut -c12-)"
 alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"
 alias sudoedit="export SUDO_EDITOR=\"\$(echo =gedit)\"; sudo -e"
+alias eyeD3="echo 'Enabling eyeD3 virtualenv'; source ~/Software/eyeD3/bin/activate; unalias eyeD3; eyeD3"
