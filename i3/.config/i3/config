@@ -190,8 +190,8 @@ exec --no-startup-id ~/.fehbg
 exec --no-startup-id compton
 
 # i3lock
-bindsym $mod+l exec ~/bin/i3lock-fancy-multimonitor
-bindsym $mod+Shift+l exec ~/bin/i3lock-fancy-multimonitor && systemctl suspend
+bindsym $mod+l exec ~/bin/i3lock-fancy
+bindsym $mod+Shift+l exec ~/bin/i3lock-fancy && systemctl suspend
 
 # battery monitor
 exec --no-startup-id ~/bin/i3-battery-monitor

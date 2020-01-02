@@ -2,7 +2,16 @@
 
 # i3lock-fancy-multimonitor
 # Shamelessly stolen from guimeira/i3lock-fancy-multimonitor
+# Modified using inspiration from pavanjadhaw/betterlockscreen
 # Defaults
+
+# Customization
+RECTANGLE_COLOR="00000066"
+CLOCK_COLOR="ffffffff"
+RECTANGLES="rectangle 25,1050 325,970 rectangle 1945,1050 2245,970"
+I3LOCK_OPTIONS="-e --pass-media-keys --pass-screen-keys --force-clock --timepos=x+110:h-70 --time-font=sans-serif --veriftext= --wrongtext="
+I3LOCK_OPTIONS="$I3LOCK_OPTIONS --timecolor=#$CLOCK_COLOR --datecolor=#$CLOCK_COLOR --indpos=x+280:h-70 --radius=25 --ring-width=4"
+I3LOCK_OPTIONS="$I3LOCK_OPTIONS --insidevercolor=00000000 --insidewrongcolor=00000000 --ringwrongcolor=ff0000ff --line-uses-inside"
 
 
 DISPLAY_RE="([0-9]+)x([0-9]+)\\+([0-9]+)\\+([0-9]+)"
@@ -12,9 +21,10 @@ LOCK="$FOLDER/lock.png"
 TEXT="$FOLDER/text.png"
 PARAMS=""
 OUTPUT_IMAGE="/tmp/i3lock.png"
-DISPLAY_TEXT=true
+DISPLAY_TEXT=false
 PIXELATE=false
 BLURTYPE="3x3"
+
 
 # Read user input
 POSITIONAL=()
@@ -91,16 +101,12 @@ do
 done <<<"`xrandr`"
 
 #Execute ImageMagick:
-if $PIXELATE ; then
-  PARAMS="'$OUTPUT_IMAGE' '-scale' '10%' '-scale' '1000%' $PARAMS '$OUTPUT_IMAGE'"
-else
-  PARAMS="'$OUTPUT_IMAGE' '-level' '0%,100%,0.6' '-blur' '$BLURTYPE' $PARAMS '$OUTPUT_IMAGE'"
-fi
+PARAMS="'$OUTPUT_IMAGE' -level '0%,100%,0.6' -blur '$BLURTYPE' -draw 'fill #$RECTANGLE_COLOR $RECTANGLES' $PARAMS '$OUTPUT_IMAGE'" 
 
 eval convert $PARAMS
 
 #Lock the screen:
-i3lock -i $OUTPUT_IMAGE -t
+i3lock -i $OUTPUT_IMAGE -t $I3LOCK_OPTIONS
 
 #Remove the generated image:
 rm $OUTPUT_IMAGE
