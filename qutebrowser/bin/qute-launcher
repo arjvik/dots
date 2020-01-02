@@ -1,11 +1,13 @@
 #!/bin/bash
 
-sites=";voice.google.com;gmail.com;google.com;github.com"
+sites=" ;voice.google.com;gmail.com;google.com;github.com;usamts.org;:open -p"
 
-input="`echo "$sites"|rofi -dmenu -sep ';' -l 1 -columns 3 -p "qutebrowser"`"
+input="`echo "$sites"|rofi -dmenu -sep ';' -l 1 -columns 7 -p "qutebrowser"`"
 
 if [[ "$input" != "" ]]; then
-	qutebrowser --target window "$input"
-else
-	qutebrowser --target window
+	if [[ "$input" != " " ]]; then
+		qutebrowser --target window "$input"
+	else
+		qutebrowser --target window
+	fi
 fi
