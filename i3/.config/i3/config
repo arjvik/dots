@@ -142,6 +142,40 @@ mode "passthrough" {
 
 bindsym $mod+Ctrl+Escape mode "passthrough"
 
+mode "swap" {
+	# switch to workspace
+	bindsym $mod+1 workspace $ws1
+	bindsym $mod+2 workspace $ws2
+	bindsym $mod+3 workspace $ws3
+	bindsym $mod+4 workspace $ws4
+	bindsym $mod+5 workspace $ws5
+	bindsym $mod+6 workspace $ws6
+	bindsym $mod+7 workspace $ws7
+	bindsym $mod+8 workspace $ws8
+	bindsym $mod+9 workspace $ws9
+	bindsym $mod+0 workspace $ws10
+
+	# change focus
+	bindsym $mod+Left focus left
+	bindsym $mod+Down focus down
+	bindsym $mod+Up focus up
+	bindsym $mod+Right focus right
+
+	# change focus (without mod)
+	bindsym Left focus left
+	bindsym Down focus down
+	bindsym Up focus up
+	bindsym Right focus right
+
+	bindsym Return swap container with mark "swapee"; unmark "swapee"; mode "default";
+	bindsym Escape unmark "swapee"; mode "default";
+}
+
+bindsym $mod+Shift+i mark --add "swapee"; mode "swap"
+
+# swap workspaces
+bindsym $mod+Shift+o exec i3-swap-workspaces
+
 # Launch polybar
 exec_always --no-startup-id launch-polybar
 bindsym $mod+Shift+p exec --no-startup-id launch-polybar
@@ -157,7 +191,7 @@ gaps outer 10
 bindsym $mod+minus move scratchpad
 bindsym $mod+equal scratchpad show; floating disable
 
-# media keys (https://faq.i3wm.org/question/3747/enabling-multimedia-keys.1.html)
+# volume keys
 bindsym XF86AudioRaiseVolume exec --no-startup-id ~/bin/pactl-set-all-sink-volumes +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id ~/bin/pactl-set-all-sink-volumes -5%
 bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id ~/bin/pactl-set-all-sink-volumes +1%
