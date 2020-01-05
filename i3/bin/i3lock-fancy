@@ -5,7 +5,7 @@
 # Modified using inspiration from pavanjadhaw/betterlockscreen
 # Defaults
 
-# Customization
+# i3lock-color Customization
 RECTANGLE_COLOR="00000066"
 CLOCK_COLOR="ffffffff"
 RECTANGLES="rectangle 25,1050 325,970 rectangle 1945,1050 2245,970"
@@ -22,52 +22,20 @@ TEXT="$FOLDER/text.png"
 PARAMS=""
 OUTPUT_IMAGE="/tmp/i3lock.png"
 DISPLAY_TEXT=false
+DISPLAY_ICON=false
 PIXELATE=false
 BLURTYPE="3x3"
-
-
-# Read user input
-POSITIONAL=()
-for i in "$@"
-do
-  case $i in
-  -h|--help)
-    echo "lock: Syntax: lock [-n|--no-text] [-p|--pixelate] [-b=VAL|--blur=VAL]"
-    echo "for correct blur values, read: http://www.imagemagick.org/Usage/blur/#blur_args"
-    exit
-    shift
-    ;;
-  -b=*|--blur=*)
-    VAL="${i#*=}"
-    BLURTYPE=(${VAL//=/ }) 
-    shift
-    ;;
-  -n|--no-text)
-    DISPLAY_TEXT=false
-    shift # past argument
-    ;;
-  -p|--pixelate)
-    PIXELATE=true
-    shift # past argument
-    ;;
-  *)    # unknown option
-    echo "unknown option: $i"
-    exit
-    POSITIONAL+=("$1") # save it in an array for later
-    shift # past argument
-    ;;
-  esac
-done
-set -- "${POSITIONAL[@]}" # restore positional parameters
 
 #Take screenshot:
 scrot -z $OUTPUT_IMAGE
 
-#Get dimensions of the lock image:
-LOCK_IMAGE_INFO=`identify $LOCK`
-[[ $LOCK_IMAGE_INFO =~ $IMAGE_RE ]]
-IMAGE_WIDTH=${BASH_REMATCH[1]}
-IMAGE_HEIGHT=${BASH_REMATCH[2]}
+if $DISPLAY_ICON ; then
+  #Get dimensions of the lock image:
+  LOCK_IMAGE_INFO=`identify $LOCK`
+  [[ $LOCK_IMAGE_INFO =~ $IMAGE_RE ]]
+  IMAGE_WIDTH=${BASH_REMATCH[1]}
+  IMAGE_HEIGHT=${BASH_REMATCH[2]}
+fi
 
 if $DISPLAY_TEXT ; then
   #Get dimensions of the text image:
@@ -87,15 +55,17 @@ do
     HEIGHT=${BASH_REMATCH[2]}
     X=${BASH_REMATCH[3]}
     Y=${BASH_REMATCH[4]}
-    POS_X=$(($X+$WIDTH/2-$IMAGE_WIDTH/2))
-    POS_Y=$(($Y+$HEIGHT/2-$IMAGE_HEIGHT/2))
 
-    PARAMS="$PARAMS '$LOCK' '-geometry' '+$POS_X+$POS_Y' '-composite'"
+    if $DISPLAY_ICON ; then    
+      POS_X=$(($X+$WIDTH/2-$IMAGE_WIDTH/2))
+      POS_Y=$(($Y+$HEIGHT/2-$IMAGE_HEIGHT/2))
+      PARAMS="$PARAMS '$LOCK' '-geometry' '+$POS_X+$POS_Y' '-composite'"
+    fi
 
     if $DISPLAY_TEXT ; then
-        TEXT_X=$(($X+$WIDTH/2-$TEXT_WIDTH/2))
-        TEXT_Y=$(($Y+$HEIGHT/2-$TEXT_HEIGHT/2+200))
-        PARAMS="$PARAMS '$TEXT' '-geometry' '+$TEXT_X+$TEXT_Y' '-composite'"
+      TEXT_X=$(($X+$WIDTH/2-$TEXT_WIDTH/2))
+      TEXT_Y=$(($Y+$HEIGHT/2-$TEXT_HEIGHT/2+200))
+      PARAMS="$PARAMS '$TEXT' '-geometry' '+$TEXT_X+$TEXT_Y' '-composite'"
     fi
   fi
 done <<<"`xrandr`"
