@@ -120,6 +120,13 @@ fi
 info_important "Installed i3-gaps"
 info_done
 
+info "Removing unneeded xsessions"
+[ -e /usr/share/xsessions/i3-with-shmlog.desktop ] &&
+	sudo mv /usr/share/xsessions/i3-with-shmlog.desktop{,.disabled}
+[ -e /usr/share/wayland-sessions/ubuntu-wayland.desktop ] &&
+	sudo mv /usr/share/wayland-sessions/ubuntu-wayland.desktop{,.disabled}
+info_done
+
 info "Installing i3lock-color"
 # Ensure that we have the forked version of i3lock (i3lock-color)
 if ! type i3lock || ! i3lock -v |& grep --color=none "Cassandra Fox"; then
