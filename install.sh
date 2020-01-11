@@ -339,7 +339,6 @@ info_done
 info_important "Installation complete! Thank you for using arjvik's dots!"
 info_important "Arjun's usual installation checklist after this:"
 info_important "[ ] Eclipse"
-info_important "[ ] Set wallpaper (\"feh --bg-scale path/to/img.png\" from home directory) "
 info_important "[ ] Install lightdm, slick-greeter, lightdm-settings and configure lockscreen"
 info_important "[ ] Fetch tab config"
 info_important "[ ] Configure Gnome Terminal"
