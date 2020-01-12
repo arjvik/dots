@@ -1,0 +1,32 @@
+#!/bin/bash
+set -eo pipefail
+
+year="$1"
+test="${2^^}" # uppercase the A/B
+
+if ! [[ $year =~ 20[0-9][0-9] && $test =~ 1[02][AB] ]]; then
+	echo "Usage: $0 <year: 20__> <test: 10A/10B/12A/12B>"
+	exit 1
+fi
+
+url="https://artofproblemsolving.com/wiki/index.php?title=${year}_AMC_${test}_Problems&action=edit"
+
+# whªt?
+
+curl $url 2>/dev/null |
+	perl -MHTML::TreeBuilder -MHTML::Element -le '
+		$html = HTML::TreeBuilder->new_from_file("/dev/stdin") or die $!;
+		foreach ($html->look_down(_tag => "textarea")) {
+			print $_->as_text
+		}' | #modified from https://unix.stackexchange.com/a/64747/
+	sed -E -e 's/^\{\{.*\}\}$//' -e 's/^\[\[.*\]\]$//' |
+	sed -E -e 's/<\/?(c|)math>/$$/g' |
+	sed -E -e 's/== ?See also ?==//' |
+	sed -E -e 's/== ?(.*) ?==/## \1/' |
+	perl -00 -lpe' ' | #modified from https://stackoverflow.com/a/39734223/
+	cat <(echo "# $year AMC $test") - |
+	cat \
+	> "$HOME/Documents/Math/$year AMC $test.md"
+
+typora "$HOME/Documents/Math/$year AMC $test.md" & disown
+xdg-open "https://artofproblemsolving.com/wiki/index.php/${year}_AMC_${test}_Problems" & disown
