@@ -167,11 +167,36 @@ mode "swap" {
 	bindsym Up focus up
 	bindsym Right focus right
 
-	bindsym Return swap container with mark "swapee"; unmark "swapee"; mode "default";
-	bindsym Escape unmark "swapee"; mode "default";
+	bindsym Return swap container with mark "swapee"; unmark "swapee"; mode "default"
+	bindsym Escape unmark "swapee"; mode "default"
 }
 
 bindsym $mod+Shift+i mark --add "swapee"; mode "swap"
+
+set $side_gaps_on 300
+set $side_gaps_off 0
+
+mode "gaps" {
+	bindsym plus gaps inner all plus 10
+	bindsym Shift+plus gaps inner all plus 10
+	bindsym minus gaps inner all minus 10
+	bindsym Shift+minus gaps inner all minus 10
+
+	bindsym r gaps horizontal current set $side_gaps_on
+	bindsym s gaps horizontal current set $side_gaps_off
+	bindsym x gaps horizontal all set $side_gaps_on
+
+	# back to normal
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+
+bindsym $mod+Shift+g mode "gaps"
+
+# enable gaps
+gaps inner 10
+gaps horizontal $side_gaps_on
+smart_gaps inverse_outer
 
 # swap workspaces
 bindsym $mod+Shift+o exec i3-swap-workspaces
@@ -182,10 +207,6 @@ bindsym $mod+Shift+p exec --no-startup-id launch-polybar
 
 # disable window title bars for gaps to work correctly
 for_window [class="^.*"] border pixel 2 
-
-# enable gaps
-gaps inner 10
-gaps outer 10
 
 # scratchpad
 bindsym $mod+minus move scratchpad
