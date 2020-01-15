@@ -128,11 +128,11 @@ info "Removing unneeded xsessions"
 info_done
 
 info "Installing i3lock-color"
+cd /opt
 # Ensure that we have the forked version of i3lock (i3lock-color)
 if ! type i3lock || ! i3lock -v |& grep --color=none "Cassandra Fox"; then
 	sudo apt remove -y i3lock
 	sudo apt install -y libjpeg-turbo8-dev libpam0g-dev
-	cd /opt
 	sudo git clone https://github.com/pandorasfox/i3lock-color
 	sudo chown -R $USER:$USER i3lock-color
 	cd i3lock-color
@@ -143,6 +143,9 @@ if ! type i3lock || ! i3lock -v |& grep --color=none "Cassandra Fox"; then
 	../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
 	make
 	sudo make install
+else
+	info "i3lock-color found"
+fi
 info_important "Installed i3lock-color"
 info_done
 
