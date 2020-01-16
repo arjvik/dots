@@ -21,11 +21,15 @@ If you wish to skip the long installations (i.e. `apt upgrade`, large themes, an
 export SKIP_LONG_INSTALLS=1
 ```
 ## Contents
-- i3-gaps
-- polybar
-- rofi
-- qutebrowser
-- zsh (oh-my-zsh with powerlevel9k)
+- [Ubuntu 19.04](https://ubuntu.com/)
+- [i3-gaps](https://github.com/Airblader/i3)
+- [polybar](https://github.com/polybar/polybar)
+- [rofi](https://github.com/davatorium/rofi)
+- [qutebrowser](https://github.com/qutebrowser/qutebrowser)
+- [i3lock-color](https://github.com/PandorasFox/i3lock-color)
+- [zsh](http://zsh.sourceforge.net/) ([antigen](https://github.com/zsh-users/antigen) with [powerlevel10k](https://github.com/romkatv/powerlevel10k))
+- [dunst](https://github.com/dunst-project/dunst)
+- [compton](https://github.com/chjj/compton)
 
 ## Extras
 - Argos plugins for gnome-shell (not installed by default)
