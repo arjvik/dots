@@ -58,7 +58,7 @@ font-1 = SauceCodePro Nerd Font:pixelsize=10;1
 
 modules-left = i3
 modules-center = 
-modules-right = filesystem backlight-acpi pulseaudio mpd xkeyboard memory cpu wlan bluetooth battery temperature date powermenu
+modules-right = filesystem backlight-acpi pulseaudio mpd xkeyboard xkeyboardlayout memory cpu wlan bluetooth battery temperature date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -89,18 +89,22 @@ label = %title:0:30:...%
 [module/xkeyboard]
 type = internal/xkeyboard
 blacklist-0 = num lock
-
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = ${colors.secondary}
-
-label-layout = %layout%
-label-layout-underline = ${colors.secondary}
-
+label-layout = 
 label-indicator-padding = 2
 label-indicator-margin = 1
 label-indicator-background = ${colors.secondary}
 label-indicator-underline = ${colors.secondary}
+
+[module/xkeyboardlayout]
+type = custom/script
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-underline = ${colors.secondary}
+exec = "setxkbmap -query | tail -n+3 | sed -e 's/\S*\s*//' | xargs"
+interval = 1
+click-left = "setxkbmap -query | grep -q intl && setxkbmap us || setxkbmap us intl"
+format-underline = ${colors.secondary}
+
 
 [module/filesystem]
 type = internal/fs
