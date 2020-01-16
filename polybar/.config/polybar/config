@@ -60,6 +60,8 @@ modules-left = i3
 modules-center = 
 modules-right = filesystem backlight-acpi pulseaudio mpd xkeyboard xkeyboardlayout memory cpu wlan bluetooth battery temperature date powermenu
 
+enable-ipc = true
+
 tray-position = right
 tray-padding = 2
 ;tray-background = #0063ff
@@ -89,21 +91,22 @@ label = %title:0:30:...%
 [module/xkeyboard]
 type = internal/xkeyboard
 blacklist-0 = num lock
+;label-layout = %name:0:17:)%
 label-layout = 
 label-indicator-padding = 2
-label-indicator-margin = 1
+label-indicator-margin = 0
 label-indicator-background = ${colors.secondary}
 label-indicator-underline = ${colors.secondary}
 
 [module/xkeyboardlayout]
-type = custom/script
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = ${colors.secondary}
-exec = "setxkbmap -query | tail -n+3 | sed -e 's/\S*\s*//' | xargs"
-interval = 1
-click-left = "setxkbmap -query | grep -q intl && setxkbmap us || setxkbmap us intl"
+type = custom/ipc
+format =  <output>
+format-foreground = ${colors.foreground-alt}
 format-underline = ${colors.secondary}
+
+hook-0 = "setxkbmap -query | tail -n+3 | sed -e 's/\S*\s*//' | xargs"
+initial = 1
+click-left = "setxkbmap -query | grep -q intl && setxkbmap us || setxkbmap us intl; polybar-msg hook xkeyboardlayout 1"
 
 
 [module/filesystem]
@@ -215,7 +218,7 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
+format-prefix = ""
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #f90000
 label = %percentage:2%%
