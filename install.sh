@@ -95,6 +95,11 @@ cd ~/dots
 stow git-proxy
 info_done
 
+info "Installing gnome-calculator (apt, not snap)"
+sudo snap remove gnome-calculator
+sudo snap install -y gnome-calculator
+info_done
+
 info "Installing i3"
 cd /opt
 if ! type i3; then

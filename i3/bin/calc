@@ -5,6 +5,6 @@ LASTINPUT="DUMMY"
 while [[ "$INPUT" != "$LASTINPUT" ]]; do
 	LASTINPUT="$INPUT"
 	INPUT=$(rofi -dmenu -p "$INPUT=" -filter "$ANS" -lines 0)
-	ANS=$(echo "$INPUT" | bc -l)
+	ANS=$(gcalccmd "$INPUT")
 done
 
