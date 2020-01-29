@@ -25,15 +25,6 @@ bindsym $mod+Return exec i3-sensible-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start rofi (dmenu replacement)
-bindsym $mod+d exec rofi -show drun -modi drun#window#ssh -show-icons -drun-icon-theme Paper
-
-# rofi calculator
-bindsym $mod+c exec --no-startup-id calc
-
-# start qutebrowser menu (web browser)
-bindsym $mod+q exec qute-launcher
-
 # change focus
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
@@ -231,6 +222,19 @@ bindsym XF86AudioPlay exec --no-startup-id mpc toggle
 bindsym XF86AudioPrev exec --no-startup-id mpc prev
 bindsym XF86AudioNext exec --no-startup-id mpc next
 
+# i3lock
+bindsym $mod+l exec ~/bin/i3lock-color-fancy
+bindsym $mod+Shift+l exec ~/bin/i3lock-color-fancy && systemctl suspend
+
+# start rofi (dmenu replacement)
+bindsym $mod+d exec rofi -show drun -modi drun#window#ssh -show-icons -drun-icon-theme Paper
+
+# rofi calculator
+bindsym $mod+c exec --no-startup-id calc
+
+# start qutebrowser menu (web browser)
+bindsym $mod+q exec qute-launcher
+
 # screenshots
 bindsym $mod+Shift+s exec --no-startup-id gnome-screenshot -ca
 bindsym $mod+Shift+f exec --no-startup-id gnome-screenshot -af /tmp/screenshot.png
@@ -243,10 +247,6 @@ exec --no-startup-id ~/.fehbg
 
 # compton
 exec --no-startup-id compton
-
-# i3lock
-bindsym $mod+l exec ~/bin/i3lock-color-fancy
-bindsym $mod+Shift+l exec ~/bin/i3lock-color-fancy && systemctl suspend
 
 # battery monitor
 exec --no-startup-id ~/bin/i3-battery-monitor
