@@ -42,21 +42,21 @@ export PATH=$PATH:/opt/Android/Sdk/platform-tools
 
 # Coloured man pages using less as pager
 man() {
-    env \
-	      LESS_TERMCAP_mb=$(printf "\e[1;32m") \
-	      LESS_TERMCAP_md=$(printf "\e[1;32m") \
-	      LESS_TERMCAP_me=$(printf "\e[0m") \
-	      LESS_TERMCAP_se=$(printf "\e[0m") \
-	      LESS_TERMCAP_so=$(printf "\e[1;33m") \
-	      LESS_TERMCAP_ue=$(printf "\e[0m") \
-	      LESS_TERMCAP_us=$(printf "\e[1;4;31m") \
+	env \
+		LESS_TERMCAP_mb=$(printf "\e[1;32m") \
+		LESS_TERMCAP_md=$(printf "\e[1;32m") \
+		LESS_TERMCAP_me=$(printf "\e[0m") \
+		LESS_TERMCAP_se=$(printf "\e[0m") \
+		LESS_TERMCAP_so=$(printf "\e[1;33m") \
+		LESS_TERMCAP_ue=$(printf "\e[0m") \
+		LESS_TERMCAP_us=$(printf "\e[1;4;31m") \
 	      man "$@"
 }
 
 # cd to named directories
 z() {
-    echo "\e[31mPlease try to use the directory aliases instead of z\e[0m"
-    cd "$(find ${2:-~} -name "$1" -type d -not -path '*/\.*' 2>/dev/null | awk "{print length(), \$0}" | sort -n | cut -d" " -f 2- | head -n1)"
+	echo "\e[31mPlease try to use the directory aliases instead of z\e[0m"
+	cd "$(find ${2:-~} -name "$1" -type d -not -path '*/\.*' 2>/dev/null | awk "{print length(), \$0}" | sort -n | cut -d" " -f 2- | head -n1)"
 }
 
 declare -A cdaliases=(
