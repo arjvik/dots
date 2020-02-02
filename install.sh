@@ -352,6 +352,12 @@ _rofi_set_theme "$HOME/.local/share/rofi/themes/material.rasi"
 
 info_done
 
+info "Installing Mopidy and ncmpcpp"
+sudo apt install -y ncmpcpp
+cd ~/dots
+stow mopidy
+info_done
+
 info "Installing Java 8 and 11 JDK"
 [[ -z "${SKIP_LONG_INSTALLS}" ]] \
 	&& sudo apt install -y openjdk-11-jdk openjdk-11-source openjdk-8-jdk openjdk-8-source \
@@ -365,5 +371,5 @@ info_important "[ ] Install Eclipse"
 info_important "[ ] Select LightDM as the default login manager (sudo dpkg-reconfigure lightdm)"
 info_important "[ ] Fetch tab config"
 info_important "[ ] Configure Gnome Terminal"
-
+info_important "[ ] Configure Mopidy (login, add keys, etc)"
 info_ascii

@@ -1,0 +1,27 @@
+#!/bin/bash
+set -euo pipefail
+
+MOPIDY_LOCATION="$HOME/Software/mopidy"
+
+
+if ! [[ -f "$MOPIDY_LOCATION/bin/mopidy" ]]; then
+	RED="$(tput setaf 1)"
+	BOLD="$(tput bold)"
+	NORMAL="$(tput sgr0)"
+	printf "${RED}${BOLD} Downloading Mopidy from Pypi ${NORMAL}\n"
+	rm -rf "$MOPIDY_LOCATION"
+	mkdir -p "$MOPIDY_LOCATION"
+	printf "${RED}${BOLD} - Creating virtualenv ${NORMAL}\n"
+	cd "$MOPIDY_LOCATION"
+	virtualenv . --system-site-packages
+	source bin/activate
+	printf "${RED}${BOLD} - Installing Mopidy and packages via pip ${NORMAL}\n"
+	pip install Mopidy Mopidy-MPD Mopidy-Local Mopidy-GMusic Mopidy-MPRIS
+	pip install --pre Mopidy-YouTube
+	deactivate
+	printf "${RED}${BOLD} - Done! ${NORMAL}\n"
+fi
+
+source $MOPIDY_LOCATION/bin/activate
+mopidy "$@"
+deactivate
