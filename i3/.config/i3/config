@@ -235,6 +235,9 @@ bindsym $mod+c exec --no-startup-id calc
 # start qutebrowser menu (web browser)
 bindsym $mod+q exec qute-launcher
 
+# translate
+bindsym $mod+Shift+t exec --no-startup-id trans-menu
+
 # screenshots
 bindsym $mod+Shift+s exec --no-startup-id gnome-screenshot -ca
 bindsym $mod+Shift+f exec --no-startup-id gnome-screenshot -af /tmp/screenshot.png
