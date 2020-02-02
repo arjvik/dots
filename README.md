@@ -30,10 +30,11 @@ export SKIP_LONG_INSTALLS=1
 - [zsh](http://zsh.sourceforge.net/) ([antigen](https://github.com/zsh-users/antigen) with [powerlevel10k](https://github.com/romkatv/powerlevel10k))
 - [dunst](https://github.com/dunst-project/dunst)
 - [compton](https://github.com/chjj/compton)
+- [lightdm](https://github.com/canonical/lightdm) (with [slick-greeter](https://github.com/linuxmint/slick-greeter))
+- [mopidy](https://github.com/mopidy/mopidy) and [ncmpcpp](https://github.com/arybczak/ncmpcpp)
 
 ## Extras
 - Argos plugins for gnome-shell (not installed by default)
-- Git proxy scripts for use with NetShare (Android hotspot app)
 
 ## Screenshot
 ![](screenshot.png)
