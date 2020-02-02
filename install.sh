@@ -14,6 +14,7 @@ info () {
 
 info_done () {
 	printf "${RED}${BOLD}*** Done! ${NORMAL}\n\n"
+	sleep 1
 }
 
 info_error () {
@@ -152,6 +153,20 @@ else
 	info "i3lock-color found"
 fi
 info_important "Installed i3lock-color"
+info_done
+
+info "Installing and configuring lightdm"
+sudo apt install -y slick-greeter lightdm-settings
+# Save slick-greeter config
+sudo tee /etc/lightdm/slick-greeter.conf >/dev/null <<EOF
+[Greeter]
+theme-name=Adapta-Nokto
+icon-theme-name=Paper
+background-color=#000000
+background=$HOME/dots/walls/adapta-tealized.jpg
+show-a11y=true
+show-keyboard=false
+EOF
 info_done
 
 info "Installing scrot (needed for i3lock-fancy-multimonitor)"
@@ -346,8 +361,8 @@ info_done
 
 info_important "Installation complete! Thank you for using arjvik's dots!"
 info_important "Arjun's usual installation checklist after this:"
-info_important "[ ] Eclipse"
-info_important "[ ] Install lightdm, slick-greeter, lightdm-settings and configure lockscreen"
+info_important "[ ] Install Eclipse"
+info_important "[ ] Select LightDM as the default login manager (sudo dpkg-reconfigure lightdm)"
 info_important "[ ] Fetch tab config"
 info_important "[ ] Configure Gnome Terminal"
 
