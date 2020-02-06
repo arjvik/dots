@@ -325,31 +325,6 @@ stow rofi
 ## WEIRD WORKAROUND:
 git checkout -- rofi/.local/share/rofi/themes/material.rasi
 
-# ROFI THEME INSTALLER - stolen from rofi-theme-selector
-###
-# Create if not exists, then removes #include of .theme file (if present) and add the selected theme to the end.
-# Repeated calls should leave the config clean-ish
-###
-function _rofi_set_theme()
-{
-	CDIR="$HOME/.config/rofi"
-	if [ ! -d "${CDIR}" ]; then
-		mkdir -p ${CDIR}
-	fi
-
-	if [ -f "${CDIR}/config.rasi" ]; then
-	        sed -i "/@import.*/d" "${CDIR}/config.rasi"
-	        echo "@import \"${1}\"" >> "${CDIR}/config.rasi"
-	else 
-		if [ -f "${CDIR}/config" ]; then
-			sed -i "/rofi\.theme: .*\.rasi$/d" "${CDIR}/config"
-		fi
-		echo "rofi.theme: ${1}" >> "${CDIR}/config"
-	fi
-}
-
-_rofi_set_theme "$HOME/.local/share/rofi/themes/material.rasi"
-
 info_done
 
 info "Installing Mopidy and ncmpcpp"

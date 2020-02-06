@@ -227,7 +227,7 @@ bindsym $mod+l exec ~/bin/i3lock-color-fancy
 bindsym $mod+Shift+l exec ~/bin/i3lock-color-fancy && systemctl suspend
 
 # start rofi (dmenu replacement)
-bindsym $mod+d exec rofi -show drun -modi drun#window#ssh -show-icons -drun-icon-theme Paper
+bindsym $mod+d exec rofi -show drun
 
 # rofi calculator
 bindsym $mod+c exec --no-startup-id calc

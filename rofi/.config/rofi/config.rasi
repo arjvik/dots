@@ -1,0 +1,19 @@
+configuration {
+	theme: "~/.local/share/rofi/themes/material.rasi";
+	modi: "drun,window,ssh";
+	show-icons: true;
+	drun-icon-theme: "Paper";
+	kb-clear-line: "Control+u";
+	kb-move-front: "Home";
+	kb-move-end: "End";
+	kb-move-word-back: "Control+Left";
+	kb-move-word-forward: "Control+Right";
+	kb-move-char-back: "Left";
+	kb-move-char-forward: "Right";
+	kb-remove-word-back: "Control+BackSpace";
+	kb-remove-to-sol: "Control+Shift+u";
+	kb-row-first: "Shift+Home,Control+Home";
+	kb-row-last: "Shift+End,Control+End";
+}
+
+/* vim:ft=css */
