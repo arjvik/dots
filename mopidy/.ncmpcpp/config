@@ -2,3 +2,7 @@ visualizer_fifo_path = "/tmp/mpd.fifo"
 visualizer_type = "wave"
 visualizer_sync_interval = 30
 visualizer_in_stereo = "no"
+progressbar_look = ━━─
+;progressbar_look = ▰▰▱
+
+; vim:ft=ini
