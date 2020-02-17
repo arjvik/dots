@@ -1,7 +1,3 @@
-# Should you change your keyboard layout some time, delete
-# this file and re-run i3-config-wizard(1).
-#
-
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
@@ -237,6 +233,9 @@ bindsym $mod+q exec qute-launcher
 
 # translate
 bindsym $mod+Shift+t exec --no-startup-id trans-menu
+
+# rofimoji
+bindsym $mod+Shift+k exec --no-startup-id rofimoji
 
 # screenshots
 bindsym $mod+Shift+s exec --no-startup-id gnome-screenshot -ca
