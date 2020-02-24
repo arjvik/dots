@@ -47,7 +47,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+Ctrl+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -220,6 +220,7 @@ bindsym $mod+Shift+l exec ~/bin/i3lock-color-fancy && systemctl suspend
 
 # start rofi (dmenu replacement)
 bindsym $mod+d exec rofi -show drun
+bindsym $mod+space exec rofi -show drun
 
 # rofi calculator
 bindsym $mod+c exec --no-startup-id calc
@@ -231,7 +232,7 @@ bindsym $mod+q exec qute-launcher
 bindsym $mod+Shift+t exec --no-startup-id trans-menu
 
 # rofimoji
-bindsym $mod+Shift+k exec --no-startup-id rofimoji
+bindsym $mod+Shift+k exec --no-startup-id rofimoji -p
 
 # screenshots
 bindsym $mod+Shift+s exec --no-startup-id gnome-screenshot -ca
