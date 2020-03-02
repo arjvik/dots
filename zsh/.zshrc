@@ -3,8 +3,6 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-
-
 # Powerlevel9k settings
 POWERLEVEL9K_MODE="nerdfont-complete"
 POWERLEVEL9K_OS_ICON_BACKGROUND="blue"
@@ -87,8 +85,9 @@ export SUDO_ASKPASS=`echo =sudo-askpass-rofi`
 alias gs="git status"
 alias gdc="git diff --cached"
 alias gh="git hub"
+alias egrep='egrep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
 alias penv="exec pipenv shell"
-alias keybind="xev -event keyboard  | egrep -o 'keycode.*\)'"
+alias keybind="xev -event keyboard | sed -Ene 's/.*keycode\s*([0-9]*)\s*\(keysym\s*\w*,\s*(\w*)\).*/keycode \1 (\2)/' -e '/keycode/p'"
 alias fehbg="feh --bg-scale --no-fehbg"
 alias thermalzone="grep --color=always \".\" /sys/class/thermal/thermal_zone*/type | cut -c40,46-; echo '---'; cat ~/.config/polybar/thermal-zone"
 alias mysql="mysql -h mydbinstance.cbg4coxfme7c.us-east-2.rds.amazonaws.com -u root -p\$(locate jdbc.properties -n1 | xargs cat | tail -n1 | cut -c12-)"
