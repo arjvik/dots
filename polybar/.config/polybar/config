@@ -29,8 +29,7 @@ alert = #bd2c40
 laptop = eDP-1
 extern = DP-2
 
-[bar/laptop]
-monitor = ${monitors.laptop}
+[bar/parent]
 width = 100%
 height = 27
 ;offset-x = 1%
@@ -62,7 +61,7 @@ modules-right = filesystem backlight-acpi pulseaudio mpd xkeyboard xkeyboardlayo
 
 enable-ipc = true
 
-tray-position = right
+;tray-position = right
 tray-padding = 2
 ;tray-background = #0063ff
 
@@ -80,9 +79,19 @@ tray-padding = 2
 cursor-click = pointer
 cursor-scroll = ns-resize
 
-[bar/extern]
-inherit = bar/laptop
+[bar/laptop-dual]
+inherit = bar/parent
+monitor = ${monitors.laptop}
+
+[bar/extern-dual]
+inherit = bar/parent
 monitor = ${monitors.extern}
+tray-position = right
+
+[bar/laptop-single]
+inherit = bar/parent
+monitor = ${monitors.laptop}
+tray-position = right
 
 [module/xwindow]
 type = internal/xwindow
