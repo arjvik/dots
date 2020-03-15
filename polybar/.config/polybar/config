@@ -52,8 +52,8 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = NotoSansCJK-Regular:pixelsize=10;1
-font-1 = SauceCodePro Nerd Font:pixelsize=10;1
+font-0 = NotoSansCJK-Regular:pixelsize=10
+font-1 = SauceCodePro Nerd Font:pixelsize=10
 
 modules-left = i3
 modules-center = 
@@ -185,14 +185,14 @@ type = internal/xbacklight
 format = <label> <bar>
 label =  BL
 
-bar-width = 10
-bar-indicator = |
+bar-width = 11
+bar-indicator = ""
 bar-indicator-foreground = #fff
 bar-indicator-font = 2
-bar-fill = ─
+bar-fill = ▰
 bar-fill-font = 2
 bar-fill-foreground = #9f78e1
-bar-empty = ─
+bar-empty = ▱
 bar-empty-font = 2
 bar-empty-foreground = ${colors.foreground-alt}
 
@@ -287,7 +287,7 @@ ramp-volume-foreground = ${colors.foreground-alt}
 label-muted = 婢 muted
 label-muted-foreground = #666
 
-bar-volume-width = 10
+bar-volume-width = 11
 bar-volume-foreground-0 = #55aa55
 bar-volume-foreground-1 = #55aa55
 bar-volume-foreground-2 = #55aa55
@@ -296,11 +296,11 @@ bar-volume-foreground-4 = #55aa55
 bar-volume-foreground-5 = #f5a70a
 bar-volume-foreground-6 = #ff5555
 bar-volume-gradient = false
-bar-volume-indicator = |
+bar-volume-indicator = ""
 bar-volume-indicator-font = 2
-bar-volume-fill = ─
+bar-volume-fill = ▰
 bar-volume-fill-font = 2
-bar-volume-empty = ─
+bar-volume-empty = ▱
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
@@ -324,11 +324,13 @@ ramp-capacity-0 = 
 ramp-capacity-1 = 
 ramp-capacity-2 = 
 ramp-capacity-3 = 
+ramp-capacity-4 = 
 ramp-capacity-foreground = ${colors.foreground-alt}
 
 animation-charging-0 = 
 animation-charging-1 = 
 animation-charging-2 = 
+animation-charging-3 = 
 animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-framerate = 750
 
@@ -362,7 +364,7 @@ label-open = 
 label-open-foreground = ${colors.secondary}
 label-close =  cancel
 label-close-foreground = ${colors.secondary}
-label-separator = |
+label-separator = " "
 label-separator-foreground = ${colors.foreground-alt}
 
 menu-0-0 = reboot
@@ -372,7 +374,7 @@ menu-0-1-exec = systemctl poweroff
 menu-0-2 = exit
 menu-0-2-exec = i3-msg exit
 menu-0-3 = lock
-menu-0-3-exec = i3lock-fancy-multimonitor
+menu-0-3-exec = i3lock-color-fancy
 
 [module/gpmdp]
 type = custom/script
