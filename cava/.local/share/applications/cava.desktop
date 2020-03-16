@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Cava
+GenericName=Audio Visualizer
+Icon=audio-x-generic
+TryExec=bin/launch-cava
+Exec=bin/launch-cava
+Terminal=false
+Categories=AudioVideo;Audio;Player;ConsoleOnly;
+StartupNotify=true

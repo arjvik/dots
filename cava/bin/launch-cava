@@ -1,0 +1,7 @@
+#!/bin/bash
+
+i3-msg '[class="cava"]' kill
+gnome-terminal --profile=Transparent --class=cava --zoom=.5 -- /usr/local/bin/cava &
+sleep 0.5
+i3-msg '[class="cava"]' floating enable, sticky enable, border none
+i3-msg '[class="cava"]' resize set width 1920, resize set height 50, move to absolute position $(xrandr | grep -q "DP-2 connected" && echo "1920px" || echo "0px") 1025px
