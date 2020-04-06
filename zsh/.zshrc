@@ -81,6 +81,7 @@ stty -ixon
 
 export MYSQL_PS1="MySQL \d>\_"
 export SUDO_ASKPASS=`echo =sudo-askpass-rofi`
+export PIP_REQUIRE_VIRTUALENV=true
 
 alias gs="git status"
 alias gdc="git diff --cached"
