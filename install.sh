@@ -339,6 +339,18 @@ info "Installing Java 8 and 11 JDK"
 	|| info_important "Skipping installing java" 
 info_done
 
+info "Installing and configuring ptpython shell"
+if type pip3; then
+	unset PIP_REQUIRE_VIRTUALENV
+	[[ -z "${SKIP_LONG_INSTALLS}" ]] \
+	&& pip3 install ptpython
+	|| info_important "Skipping installing ptpython"
+else
+	info_important "pip3 not found, skipping ptpython installation!"
+fi
+cd ~/dots
+stow python
+info_done
 
 info_important "Installation complete! Thank you for using arjvik's dots!"
 info_important "Arjun's usual installation checklist after this:"

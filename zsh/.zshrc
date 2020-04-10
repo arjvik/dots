@@ -82,6 +82,7 @@ stty -ixon
 export MYSQL_PS1="MySQL \d>\_"
 export SUDO_ASKPASS=`echo =sudo-askpass-rofi`
 export PIP_REQUIRE_VIRTUALENV=true
+export PYTHONSTARTUP="$HOME/.pystartup"
 
 alias gs="git status"
 alias gdc="git diff --cached"
@@ -95,6 +96,8 @@ alias mysql="mysql -h mydbinstance.cbg4coxfme7c.us-east-2.rds.amazonaws.com -u r
 alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"
 alias sudoedit="export SUDO_EDITOR=\"\$(echo =gedit)\"; sudo -e"
 alias eyeD3="echo 'Enabling eyeD3 virtualenv'; source ~/Software/eyeD3/bin/activate; unalias eyeD3; eyeD3"
+alias python="python3"
+alias pip="pip3"
 
 alias -g H="| head"
 alias -g T="| tail"
