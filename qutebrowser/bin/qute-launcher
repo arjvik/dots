@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sites=" ;voice.google.com;gmail.com;google.com;docs.google.com;github.com;usamts.org;:open -p"
+sites=" ;-T;:open -p"
 
 input="`echo "$sites"|rofi -dmenu -sep ';' -l 1 -columns 8 -p "qutebrowser"`"
 
