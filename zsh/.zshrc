@@ -96,6 +96,7 @@ alias mysql="mysql -h mydbinstance.cbg4coxfme7c.us-east-2.rds.amazonaws.com -u r
 alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"
 alias sudoedit="export SUDO_EDITOR=\"\$(echo =gedit)\"; sudo -e"
 alias eyeD3="echo 'Enabling eyeD3 virtualenv'; source ~/Software/eyeD3/bin/activate; unalias eyeD3; eyeD3"
+alias animated_wallpaper="xwinwrap -g 3840x1080 -ov -- mpv -wid WID -loop dots/walls/sky-double.mp4"
 alias python="python3"
 alias pip="pip3"
 
