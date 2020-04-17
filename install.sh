@@ -91,14 +91,9 @@ chsh -s $(grep /zsh$ /etc/shells | tail -1)
 info_important "Installed zsh and extras (antigen, powerlevel10k, etc)"
 info_done
 
-info "Installing git-proxy scripts"
-cd ~/dots
-stow git-proxy
-info_done
-
 info "Installing gnome-calculator (apt, not snap)"
 sudo snap remove gnome-calculator
-sudo snap install -y gnome-calculator
+sudo apt install -y gnome-calculator
 info_done
 
 info "Installing i3"
@@ -299,9 +294,25 @@ sudo apt install -y dunst
 info_done
 
 info "Configuring dunst"
-sudo mv /usr/share/dbus-1/services/org.freedesktop.Notifications.service{,.disabled}
+[ -e /usr/share/dbus-1/services/org.freedesktop.Notifications.service ] \
+	&& sudo mv /usr/share/dbus-1/services/org.freedesktop.Notifications.service{,.disabled}
 cd ~/dots
 stow dunst
+info_done
+
+info "Installing xwinwrap"
+cd /opt
+if ! type xwinwrap; then
+	sudo apt install -y xorg-dev build-essential libx11-dev x11proto-xext-dev libxrender-dev libxext-dev
+	sudo git clone https://github.com/ujjwal96/xwinwrap
+	sudo chown -R $USER:$USER xwinwrap
+	cd xwinwrap
+	make
+	sudo make install
+else
+	info "xwinwrap found"
+fi
+info_important "Installed xwinwrap"
 info_done
 
 info "Installing qutebrowser"
@@ -333,6 +344,25 @@ cd ~/dots
 stow mopidy
 info_done
 
+info "Installing cava"
+cd /opt
+if ! type cava; then
+	sudo apt install -y libfftw3-dev libasound2-dev libncursesw5-dev libpulse-dev libtool automake libiniparser-dev
+	sudo git clone https://github.com/karlstav/cava
+	sudo chown -R $USER:$USER cava
+	cd cava
+	export CPPFLAGS=-I/usr/include/iniparser
+	./autogen.sh
+	./configure
+	make
+	sudo make install
+	unset CPPFLAGS
+else
+	info "cava found"
+fi
+info_important "Installed cava"
+info_done
+
 info "Installing Java 8 and 11 JDK"
 [[ -z "${SKIP_LONG_INSTALLS}" ]] \
 	&& sudo apt install -y openjdk-11-jdk openjdk-11-source openjdk-8-jdk openjdk-8-source \
@@ -343,8 +373,8 @@ info "Installing and configuring ptpython shell"
 if type pip3; then
 	unset PIP_REQUIRE_VIRTUALENV
 	[[ -z "${SKIP_LONG_INSTALLS}" ]] \
-	&& pip3 install ptpython
-	|| info_important "Skipping installing ptpython"
+		&& pip3 install ptpython \
+		|| info_important "Skipping installing ptpython"
 else
 	info_important "pip3 not found, skipping ptpython installation!"
 fi
@@ -354,9 +384,17 @@ info_done
 
 info_important "Installation complete! Thank you for using arjvik's dots!"
 info_important "Arjun's usual installation checklist after this:"
-info_important "[ ] Install Eclipse"
 info_important "[ ] Select LightDM as the default login manager (sudo dpkg-reconfigure lightdm)"
 info_important "[ ] Fetch tab config"
 info_important "[ ] Configure Gnome Terminal"
 info_important "[ ] Configure Mopidy (login, add keys, etc)"
+info_important "[ ] Install Software including:"
+info_important "    - Eclipse"
+info_important "    - Discord"
+info_important "    - Typora"
+info_important "    - Xournal"
+info_important "    - Zoom"
+info_important "    - Skype"
+info_important "    - cmatrix, neofetch"
+info_important "    - gotop (binary)"
 info_ascii
