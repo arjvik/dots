@@ -21,7 +21,7 @@ POWERLEVEL9K_VISUAL_IDENTIFIER_EXPANSION='${P9K_VISUAL_IDENTIFIER// }'
 if ! [[ -e ~/.antigen/antigen.zsh ]]; then
 	echo "Installing antigen"
 	mkdir ~/.antigen
-	curl -L git.io/antigen > ~/.antigen/antigen.zsh
+	wget git.io/antigen -O ~/.antigen/antigen.zsh
 fi
 
 source ~/.antigen/antigen.zsh
