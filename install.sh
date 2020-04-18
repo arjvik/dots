@@ -340,6 +340,8 @@ info_done
 
 info "Installing Mopidy and ncmpcpp"
 sudo apt install -y ncmpcpp
+cd ~
+rm -rf .ncmpcpp
 cd ~/dots
 stow mopidy
 info_done
@@ -378,6 +380,8 @@ if type pip3; then
 else
 	info_important "pip3 not found, skipping ptpython installation!"
 fi
+cd ~
+rm .pystartup
 cd ~/dots
 stow python
 info_done
