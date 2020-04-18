@@ -84,6 +84,7 @@ info_done
 info "Configuring zsh (antigen, powerlevel10k, etc)"
 rm -rf ~/.zsh*
 rm -rf ~/.antigen
+rm -rf ~/.bash_history
 cd ~/dots
 stow zsh
 zsh ~/.zshrc
