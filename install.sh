@@ -398,14 +398,14 @@ info "Installing Java 8 and 11 JDK"
 info_done
 
 info "Installing and configuring ptpython shell"
-if type pip3; then
-	unset PIP_REQUIRE_VIRTUALENV
-	[[ -z "${SKIP_LONG_INSTALLS}" ]] \
-		&& pip3 install ptpython \
-		|| info_important "Skipping installing ptpython"
+if ! type pip3; then
+	info "Installing pip3 (python package manager)"
+	sudo apt install -y python3-pip
 else
-	info_important "pip3 not found, skipping ptpython installation!"
+	info "pip3 found"
 fi
+unset PIP_REQUIRE_VIRTUALENV
+pip3 install ptpython
 cd ~
 rm -f .pystartup
 cd ~/dots
