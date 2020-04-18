@@ -134,8 +134,8 @@ cd /opt
 # Ensure that we have the forked version of i3lock (i3lock-color)
 if ! type i3lock || ! i3lock -v |& grep --color=none "Cassandra Fox"; then
 	sudo apt remove -y i3lock
-	sudo apt install -y libjpeg-turbo8-dev libpam0g-dev
-	sudo git clone https://github.com/pandorasfox/i3lock-color
+	sudo apt install -y libjpeg-turbo8-dev libpam0g-dev libxcb-composite0-dev
+	sudo git clone https://github.com/Raymo111/i3lock-color
 	sudo chown -R $USER:$USER i3lock-color
 	cd i3lock-color
 	git tag -f "git-`git rev-parse --short HEAD`"
