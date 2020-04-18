@@ -218,54 +218,78 @@ stow polybar
 info_done
 
 if [[ -z "${SKIP_LONG_INSTALLS}" ]]; then
-	case "$(lsb_release -c)" in
-		*bionic)
-		info "Installing Adapta GTK Theme"
-		if ! [[ -e /etc/apt/sources.list.d/tista-ubuntu-adapta-bionic.list ]]; then
-			sudo add-apt-repository -yu ppa:tista/adapta
-			sudo apt update
-		else
-			info "PPA Already added"
-		fi
-		sudo apt install -y adapta-gtk-theme adapta-backgrounds
-		info_done
+	CODENAME="$(lsb_release -c | cut -f2)"
+	case "$CODENAME" in
+		bionic)
+			info "Installing Adapta GTK Theme"
+			if ! [[ -e /etc/apt/sources.list.d/tista-ubuntu-adapta-$CODENAME.list ]]; then
+				sudo add-apt-repository -yu ppa:tista/adapta
+				sudo apt update
+			else
+				info "PPA Already added"
+			fi
+			sudo apt install -y adapta-gtk-theme adapta-backgrounds
+			info_done
 
-		info "Installing Paper Icon Theme"
-		if ! [[ -e /etc/apt/sources.list.d/snwh-ubuntu-ppa-bionic.list ]]; then
-			sudo add-apt-repository -yu ppa:snwh/ppa
-			sudo apt update
-		else
-			info "PPA Already added"
-		fi
-		sudo apt install -y paper-icon-theme
-		info_done
-		;;
-	*disco)
-		if ! [[ -e /etc/apt/sources.list.d/tista-ubuntu-adapta-disco.list ]]; then
-			info_important "Please install Adapta GTK Theme manually."
-			info_important "You will likely have to use the Bionic repos for it to work."
-			info_important ""
-			info_important "Try performing 'sudo add-apt-repository ppa:tista/adapta',"
-			info_important "then changing /etc/apt/sources.list.d/tista-ubuntu-adapta-disco.list'"
-			info_important "to the following line: 'deb http://ppa.launchpad.net/tista/adapta/ubuntu bionic main'"
-			info_important ""
-			info_important "This doesn't have to be done now, you can do it later."
-			info_important "Press enter to continue"
-			read -n 1 -s
-		else
-			info "Adapta GTK Theme (Bionic 18.04 repos) installed"
-		fi
+			info "Installing Paper Icon Theme"
+			if ! [[ -e /etc/apt/sources.list.d/snwh-ubuntu-ppa-$CODENAME.list ]]; then
+				sudo add-apt-repository -yu ppa:snwh/ppa
+				sudo apt update
+			else
+				info "PPA Already added"
+			fi
+			sudo apt install -y paper-icon-theme
+			info_done
+			;;
+		disco)
+			if ! [[ -e /etc/apt/sources.list.d/tista-ubuntu-adapta-$CODENAME.list ]]; then
+				info_important "Please install Adapta GTK Theme manually."
+				info_important "You will likely have to use the Bionic repos for it to work."
+				info_important ""
+				info_important "This doesn't have to be done now, you can do it later."
+				info_important "Press enter to continue"
+				read -n 1 -s
+			else
+				info "Adapta GTK Theme (Bionic 18.04 repos) installed"
+			fi
 
-		info "Installing Paper Icon Theme"
-		if ! [[ -e /etc/apt/sources.list.d/snwh-ubuntu-ppa-disco.list ]]; then
-			sudo add-apt-repository -yu ppa:snwh/ppa
-			sudo apt update
-		else
-			info "PPA Already added"
-		fi
-		sudo apt install -y paper-icon-theme
-		info_done
-		;;
+			info "Installing Paper Icon Theme"
+			if ! [[ -e /etc/apt/sources.list.d/snwh-ubuntu-ppa-$CODENAME.list ]]; then
+				sudo add-apt-repository -yu ppa:snwh/ppa
+				sudo apt update
+			else
+				info "PPA Already added"
+			fi
+			sudo apt install -y paper-icon-theme
+			info_done
+			;;
+		*)
+			info "Installing Adapta GTK Theme"
+			if ! [[ -e /etc/apt/sources.list.d/tista-ubuntu-adapta-$CODENAME.list ]]; then
+				info_important "Please install Adapta GTK Theme manually."
+				info_important "You will likely have to use the Bionic repos for it to work."
+				info_important ""
+				info_important "This doesn't have to be done now, you can do it later."
+				info_important "Press enter to continue"
+				read -n 1 -s
+			else
+				info "Adapta GTK Theme (Bionic 18.04 repos) installed"
+			fi
+			info_done
+
+			info "Installing Paper Icon Theme"
+			if ! [[ -e /etc/apt/sources.list.d/tista-ubuntu-adapta-$CODENAME.list ]]; then
+				info_important "Please install Paper Icon Theme manually."
+				info_important "You will likely have to use the Bionic repos for it to work."
+				info_important ""
+				info_important "This doesn't have to be done now, you can do it later."
+				info_important "Press enter to continue"
+				read -n 1 -s
+			else
+				info "Adapta GTK Theme (Bionic 18.04 repos) installed"
+			fi
+			info_done
+			;;
 	esac
 
 	info "Installing Nerd Fonts (Source Code Pro and Ubuntu Mono)"
