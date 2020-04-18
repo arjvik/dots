@@ -104,7 +104,7 @@ if ! type i3; then
 	sudo chown -R $USER:$USER i3-gaps
 	cd i3-gaps
 	info "First, installing dependencies"
-	sudo apt install -y libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \
+	sudo apt install -y build-essential libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \
 		libxcb-util0-dev libxcb-icccm4-dev libyajl-dev \
 		libstartup-notification0-dev libxcb-randr0-dev \
 		libev-dev libxcb-cursor-dev libxcb-xinerama0-dev \
