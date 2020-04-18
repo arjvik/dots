@@ -20,6 +20,10 @@ If you wish to skip the long installations (i.e. `apt upgrade`, large themes, an
 ```shell
 export SKIP_LONG_INSTALLS=1
 ```
+You can also execute the following to skip only the `apt upgrade`
+```shell
+export SKIP_APT_UPGRADE=1
+```
 ## Contents
 - [Ubuntu 19.04](https://ubuntu.com/)
 - [i3-gaps](https://github.com/Airblader/i3)
