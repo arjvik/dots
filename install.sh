@@ -407,7 +407,7 @@ else
 	info_important "pip3 not found, skipping ptpython installation!"
 fi
 cd ~
-rm .pystartup
+rm -f .pystartup
 cd ~/dots
 stow python
 info_done
