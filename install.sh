@@ -391,6 +391,14 @@ fi
 info_important "Installed cava"
 info_done
 
+info "Stowing cava"
+rm -f ~/bin/launch-cava
+rm -rf ~/.config/cava
+rm -f ~/.local/share/applications/cava.desktop
+cd ~/dots
+stow cava
+info_done
+
 info "Installing Java 8 and 11 JDK"
 [[ -z "${SKIP_LONG_INSTALLS}" ]] \
 	&& sudo apt install -y openjdk-11-jdk openjdk-11-source openjdk-8-jdk openjdk-8-source \
