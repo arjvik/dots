@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Mopidy
+Comment=Music server with support for MPD and HTTP clients
+Icon=audio-x-generic
+TryExec=bin/mopidy
+Exec=bin/mopidy
+Terminal=false
+Categories=AudioVideo;Audio;Player;ConsoleOnly;
+StartupNotify=true
