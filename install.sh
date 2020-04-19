@@ -425,12 +425,18 @@ info "Installing Java 8 and 11 JDK"
 	|| info_important "Skipping installing java" 
 info_done
 
-info "Installing and configuring ptpython shell"
+info "Installing and configuring python"
 if ! type pip3; then
 	info "Installing pip3 (python package manager)"
 	sudo apt install -y python3-pip
 else
 	info "pip3 found"
+fi
+if ! type virtualenv; then
+	info "Installing virtualenv (python sandbox manager)"
+	sudo apt install -y virtualenv
+else
+	info "virtualenv found"
 fi
 unset PIP_REQUIRE_VIRTUALENV
 pip3 install ptpython
