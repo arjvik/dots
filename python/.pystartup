@@ -6,4 +6,17 @@ try:
 except ImportError:
     print("ptpython is not available: falling back to standard prompt")
 else:
-    sys.exit(embed(globals(), locals()))
+    def configure(repl):
+        from prompt_toolkit.formatted_text import HTML
+        from ptpython.prompt_style import PromptStyle
+        prompt_color = '#3465A4'
+        class CustomPrompt(PromptStyle):
+            def in_prompt(self):
+                return HTML(f"<style bg='{prompt_color}'>  ptpython </style><style fg='{prompt_color}'></style> ")
+            def in2_prompt(self, width):
+                return "...: ".rjust(width)
+            def out_prompt(self):
+                return []
+        repl.all_prompt_styles["custom"] = CustomPrompt()
+        repl.prompt_style = "custom"
+    sys.exit(embed(globals(), locals(), configure=configure))
