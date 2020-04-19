@@ -162,6 +162,7 @@ background-color=#000000
 background=$HOME/dots/walls/adapta-tealized.jpg
 show-a11y=true
 show-keyboard=false
+draw-grid=true
 EOF
 info_done
 
@@ -263,6 +264,25 @@ if [[ -z "${SKIP_LONG_INSTALLS}" ]]; then
 				info "PPA Already added"
 			fi
 			sudo apt install -y paper-icon-theme
+			info_done
+			;;
+		focal)
+			info "Installing Adapta GTK Theme"
+			sudo apt install -y adapta-gtk-theme
+			info_done
+			;;
+			
+			info "Installing Paper Icon Theme"
+			if ! [[ -e /etc/apt/sources.list.d/tista-ubuntu-adapta-$CODENAME.list ]]; then
+				info_important "Please install Paper Icon Theme manually."
+				info_important "You will likely have to use the Disco repos for it to work."
+				info_important ""
+				info_important "This doesn't have to be done now, you can do it later."
+				info_important "Press enter to continue"
+				read -n 1 -s
+			else
+				info "Adapta GTK Theme (Bionic 18.04 repos) installed"
+			fi
 			info_done
 			;;
 		*)
@@ -423,6 +443,8 @@ info_done
 info_important "Installation complete! Thank you for using arjvik's dots!"
 info_important "Arjun's usual installation checklist after this:"
 info_important "[ ] Select LightDM as the default login manager (sudo dpkg-reconfigure lightdm)"
+info_important "[ ] Install Adapta and Paper if not already installed"
+info_important "[ ] Set up Canonical Livepatch"
 info_important "[ ] Fetch tab config"
 info_important "[ ] Configure Gnome Terminal"
 info_important "[ ] Configure Mopidy (login, add keys, etc)"
