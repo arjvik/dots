@@ -2,7 +2,7 @@ configuration {
 	theme: "~/.local/share/rofi/themes/material.rasi";
 	modi: "drun,window,ssh";
 	show-icons: true;
-	drun-icon-theme: "Paper";
+	icon-theme: "Paper";
 	kb-clear-line: "Control+u";
 	kb-move-front: "Home";
 	kb-move-end: "End";
