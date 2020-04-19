@@ -106,10 +106,7 @@ config.bind('[[', 'navigate decrement')
 config.bind(']]', 'navigate increment')
 config.bind('{{', 'navigate prev')
 config.bind('}}', 'navigate next')
-config.bind('<Ctrl+a>', None)
-config.bind('<Ctrl+x>', None)
 config.bind('yf', 'hint all yank')
-config.bind('q', None)
 config.bind('qp', 'spawn --userscript qute-lastpass')
 config.bind('qP', 'spawn --userscript qute-lastpass -w')
 config.bind('qo', 'open https://outline.com/{url}')
@@ -119,6 +116,16 @@ config.bind('qbx', 'proxy-off')
 config.bind('qbs', 'proxy-ssh')
 config.bind('qj', 'jseval window.location.replace(document.getElementById("root").childNodes[2].childNodes[0].data)')
 config.bind('qr', 'open -t https://api.qrserver.com/v1/create-qr-code/?size=300x300&qzone=1&data={url}')
+
+# config.unbind(x) replaces depricated config.bind(x, None)
+if 'unbind' in dir(config):
+    config.unbind('<Ctrl+a>')
+    config.unbind('<Ctrl+x>')
+    config.unbind('q')
+else:
+    config.bind('<Ctrl+a>', None)
+    config.bind('<Ctrl+x>', None)
+    config.bind('q', None)
 
 # Bindings for insert mode
 config.bind('<Alt+Left>', 'back', mode='insert')
