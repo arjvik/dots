@@ -362,7 +362,7 @@ info_important "Installed xwinwrap"
 info_done
 
 info "Installing qutebrowser"
-sudo apt install -y qutebrowser
+sudo apt install -y qutebrowser libjs-pdf
 info_done
 
 info "Stowing qutebrowser"
