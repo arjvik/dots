@@ -7,16 +7,21 @@ except ImportError:
     print("ptpython is not available: falling back to standard prompt")
 else:
     def configure(repl):
-        from prompt_toolkit.formatted_text import HTML
+        from prompt_toolkit.formatted_text import HTML, ANSI
         from ptpython.prompt_style import PromptStyle
-        prompt_color = '#3465A4'
-        class CustomPrompt(PromptStyle):
+        prompt_color = '5'
+        class PowerlinePrompt(PromptStyle):
             def in_prompt(self):
-                return HTML(f"<style bg='{prompt_color}'>  ptpython </style><style fg='{prompt_color}'></style> ")
+                self.state = 0
+                return ANSI(f"\033[4{prompt_color}m  {repl.current_statement_index} \033[0m\033[3{prompt_color}m▓▒░\033[0m ")
             def in2_prompt(self, width):
-                return "...: ".rjust(width)
+                if self.state == 0:
+                    self.state = 1
+                    return ANSI(f"\033[3{prompt_color}m \033[0m\033[4{prompt_color}m \033[0m\033[3{prompt_color}m▓▒░\033[0m ".rjust(width+27))
+                else:
+                    return ANSI(f"\033[4{prompt_color}m \033[0m\033[3{prompt_color}m▓▒░\033[0m ".rjust(width+18))
             def out_prompt(self):
                 return []
-        repl.all_prompt_styles["custom"] = CustomPrompt()
-        repl.prompt_style = "custom"
+        repl.all_prompt_styles["powerline"] = PowerlinePrompt()
+        repl.prompt_style = "powerline"
     sys.exit(embed(globals(), locals(), configure=configure))
