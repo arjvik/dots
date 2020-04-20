@@ -54,7 +54,7 @@ cd ~
 
 info "Updating packages"
 sudo apt update
-[[ -z "${SKIP_LONG_INSTALLS}" && -z "${SKIP_APT_UPGRADE}" ]] && sudo apt upgrade -y || info_important "Skipping apt upgrade"
+[[ -z "${SKIP_LONG_INSTALLS}" ]] && sudo apt upgrade -y || info_important "Skipping apt upgrade"
 info_done
 
 info "Installing git"
