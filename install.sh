@@ -166,10 +166,6 @@ draw-grid=true
 EOF
 info_done
 
-info "Installing scrot (needed for i3lock-fancy-multimonitor)"
-sudo apt install -y scrot imagemagick
-info_done
-
 info "Stowing i3"
 rm -rf ~/.config/i3
 rm -rf ~/bin/gnome-settings-daemon
