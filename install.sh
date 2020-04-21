@@ -390,7 +390,7 @@ cd ~
 rm -rf .ncmpcpp
 cd ~/dots
 stow mopidy
-sudo apt install -y gir1.2-gst-plugins-base-1.0 gir1.2-gstreamer-1.0 gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly
+sudo apt install -y gir1.2-gst-plugins-base-1.0 gir1.2-gstreamer-1.0 gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly mpc playerctl
 info_done
 
 info "Installing cava"
