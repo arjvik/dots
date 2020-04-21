@@ -381,7 +381,10 @@ stow rofi
 
 ## WEIRD WORKAROUND:
 git checkout -- rofi/.local/share/rofi/themes/material.rasi
+info_done
 
+info "Installing Xorg tools"
+sudo apt install -y xclip xsel xdotool
 info_done
 
 info "Installing Mopidy and ncmpcpp"
