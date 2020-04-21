@@ -104,7 +104,7 @@ if ! type i3; then
 	sudo chown -R $USER:$USER i3-gaps
 	cd i3-gaps
 	info "First, installing dependencies"
-	sudo apt install -y build-essential libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \
+	sudo apt install -y jq build-essential libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \
 		libxcb-util0-dev libxcb-icccm4-dev libyajl-dev \
 		libstartup-notification0-dev libxcb-randr0-dev \
 		libev-dev libxcb-cursor-dev libxcb-xinerama0-dev \
@@ -390,6 +390,7 @@ cd ~
 rm -rf .ncmpcpp
 cd ~/dots
 stow mopidy
+sudo apt install -y gir1.2-gst-plugins-base-1.0 gir1.2-gstreamer-1.0 gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly
 info_done
 
 info "Installing cava"
