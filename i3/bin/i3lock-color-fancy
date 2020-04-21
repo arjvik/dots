@@ -10,6 +10,6 @@ FOLDER="$HOME/.config/i3"
 RECTANGLES="$FOLDER/lock.png"
 I3LOCK_OPTIONS="-i $RECTANGLES -B3 -e --pass-media-keys --pass-screen-keys --force-clock --timepos=x+110:h-70 --time-font=sans-serif --veriftext= --wrongtext="
 I3LOCK_OPTIONS="$I3LOCK_OPTIONS --timecolor=$CLOCK_COLOR --datecolor=$CLOCK_COLOR --indpos=x+280:h-70 --radius=25 --ring-width=4"
-I3LOCK_OPTIONS="$I3LOCK_OPTIONS --insidevercolor=$RINGTEXT_COLOR --insidewrongcolor=$RINGTEXT_COLOR --ringwrongcolor=ff0000ff --line-uses-inside -c000000"
+I3LOCK_OPTIONS="$I3LOCK_OPTIONS --insidevercolor=$RINGTEXT_COLOR --insidewrongcolor=$RINGTEXT_COLOR --ringwrongcolor=ff0000ff --line-uses-inside -c00000000"
 
 i3lock $I3LOCK_OPTIONS
