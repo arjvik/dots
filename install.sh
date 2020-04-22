@@ -367,6 +367,7 @@ cd ~/.local/share
 rm -f applications/qutebrowser.desktop applications/qutebrowser-incognito.desktop
 cd ~/dots
 stow qutebrowser
+xdg-settings set default-web-browser org.qutebrowser.qutebrowser.desktop
 info_done
 
 info "Installing rofi"
