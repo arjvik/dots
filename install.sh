@@ -370,6 +370,10 @@ stow qutebrowser
 xdg-settings set default-web-browser org.qutebrowser.qutebrowser.desktop
 info_done
 
+info "Installing lastpass-cli"
+sudo apt install -y lastpass-cli
+info_done
+
 info "Installing rofi"
 sudo apt install -y rofi
 rm -rf ~/.local/share/rofi/
@@ -455,6 +459,7 @@ info_important "[ ] Set up Canonical Livepatch"
 info_important "[ ] Fetch tab config"
 info_important "[ ] Configure Gnome Terminal"
 info_important "[ ] Configure Mopidy (login, add keys, etc)"
+info_important "[ ] Log into lastpass (lpass-cli login <email>)
 info_important "[ ] Install Software including:"
 info_important "    - Eclipse"
 info_important "    - Discord"
