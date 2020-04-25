@@ -1,5 +1,13 @@
 #!/bin/zsh
 
+# Disable Ctrl-S and Ctrl-Q in terminal
+stty -ixon
+
+# Powerlevel10k Instant Prompt
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -76,8 +84,6 @@ done
 mkc() { mkdir -p "$1" && cd "$1" || return 1 }
 _mkc() { _files -W "$1" -/ }
 
-# Disable Ctrl-S and Ctrl-Q in terminal
-stty -ixon
 
 export MYSQL_PS1="MySQL \d>\_"
 export SUDO_ASKPASS=`echo =sudo-askpass-rofi`
