@@ -57,7 +57,7 @@ font-1 = SauceCodePro Nerd Font:pixelsize=10
 
 modules-left = i3
 modules-center = 
-modules-right = filesystem backlight-acpi pulseaudio mpd xkeyboard xkeyboardlayout memory cpu wlan bluetooth battery temperature date powermenu
+modules-right = filesystem backlight-acpi pulseaudio mpd xkeyboard xkeyboardlayout memory cpu updates wlan bluetooth battery temperature date powermenu
 
 enable-ipc = true
 
@@ -387,6 +387,15 @@ interval = 2
 click-right = exec blueman-manager
 format-prefix = " "
 format-underline = #2193ff
+
+[module/updates]
+type = custom/script
+exec = apt list --upgradable 2>/dev/null | tail +2 | wc -l
+exec-if = apt list --upgradable 2>/dev/null | tail +2 | grep .
+interval = 3600
+click-left = gnome-terminal -- sh -c "echo '$ sudo apt upgrade' && sudo apt upgrade"
+format-prefix = "  "
+format-underline = #e95420
 
 [settings]
 screenchange-reload = true
