@@ -266,7 +266,6 @@ if [[ -z "${SKIP_LONG_INSTALLS}" ]]; then
 			info "Installing Adapta GTK Theme"
 			sudo apt install -y adapta-gtk-theme
 			info_done
-			;;
 			
 			info "Installing Paper Icon Theme"
 			if ! [[ -e /etc/apt/sources.list.d/tista-ubuntu-adapta-$CODENAME.list ]]; then
