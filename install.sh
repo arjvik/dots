@@ -450,6 +450,11 @@ cd ~/dots
 stow python
 info_done
 
+info "Stowing Octave configuration"
+cd ~/dots
+stow octave
+info_done
+
 info_important "Installation complete! Thank you for using arjvik's dots!"
 info_important "Arjun's usual installation checklist after this:"
 info_important "[ ] Select LightDM as the default login manager (sudo dpkg-reconfigure lightdm)"
