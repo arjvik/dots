@@ -1,6 +1,6 @@
 #!/bin/bash
 
-i3-msg '[class="cava"]' kill
+[[ "$1" == "--no-kill" ]] || i3-msg '[class="cava"]' kill
 gnome-terminal --profile=Transparent --class=cava --zoom=.5 -- /usr/local/bin/cava &
 sleep 1
 i3-msg '[class="cava"]' floating enable, sticky enable, border none
