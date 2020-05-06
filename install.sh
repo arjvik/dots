@@ -88,7 +88,7 @@ rm -rf ~/.bash_history
 cd ~/dots
 stow zsh
 zsh ~/.zshrc
-chsh -s $(grep /zsh$ /etc/shells | tail -1)
+sudo usermod --shell /usr/bin/zsh $USER
 info_important "Installed zsh and extras (antigen, powerlevel10k, etc)"
 info_done
 
