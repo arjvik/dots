@@ -85,6 +85,7 @@ info "Configuring zsh (antigen, powerlevel10k, etc)"
 rm -rf ~/.zsh*
 rm -rf ~/.antigen
 rm -rf ~/.bash_history
+rm -rf ~/.cache/p10k*
 cd ~/dots
 stow zsh
 zsh ~/.zshrc
