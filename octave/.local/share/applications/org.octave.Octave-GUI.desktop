@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=GNU Octave (GUI)
+Comment=Interactive programming environment for numerical computations
+TryExec=/usr/bin/octave
+Exec=/usr/bin/octave --gui %f
+Icon=octave
+Terminal=false
+Type=Application
+Categories=Education;Science;Math;
+StartupNotify=false
+StartupWMClass=GNU Octave
+MimeType=text/x-octave;text/x-matlab;
+Keywords=science;math;matrix;numerical computation;plotting;
