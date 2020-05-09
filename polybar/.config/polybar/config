@@ -47,12 +47,12 @@ border-size = 4
 border-color = #00000000
 
 padding-left = 0
-padding-right = 2
+padding-right = 0
 
 module-margin-left = 1
-module-margin-right = 2
+module-margin-right = 1
 
-font-0 = NotoSansCJK-Regular:pixelsize=10
+font-0 = RobotoMono Nerd Font:pixelsize=10
 font-1 = SauceCodePro Nerd Font:pixelsize=10
 
 modules-left = i3
@@ -100,16 +100,16 @@ label = %title:0:30:...%
 [module/xkeyboard]
 type = internal/xkeyboard
 blacklist-0 = num lock
-;label-layout = %name:0:17:)%
+#label-layout = %name:0:17:)%
 label-layout = 
-label-indicator-padding = 2
+label-indicator-padding = 1
 label-indicator-margin = 0
 label-indicator-background = ${colors.secondary}
 label-indicator-underline = ${colors.secondary}
 
 [module/xkeyboardlayout]
 type = custom/ipc
-format =    <output>
+format =   <output>
 format-foreground = ${colors.foreground-alt}
 format-underline = ${colors.secondary}
 
@@ -125,7 +125,7 @@ interval = 25
 mount-0 = /
 mount-1 = /home
 
-label-mounted =   %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+label-mounted =  %{F#0a81f5}%mountpoint%%{F-}:%percentage_used%%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
 
@@ -138,7 +138,7 @@ wrapping-scroll = false
 ; Only show workspaces on the same output as the bar
 pin-workspaces = true
 
-label-mode-padding = 2
+label-mode-padding = 1
 label-mode-foreground = #000
 label-mode-background = ${colors.primary}
 
@@ -146,11 +146,11 @@ label-mode-background = ${colors.primary}
 label-focused = %index%
 label-focused-background = ${colors.background-alt}
 label-focused-underline = ${colors.primary}
-label-focused-padding = 2
+label-focused-padding = 1
 
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = %index%
-label-unfocused-padding = 2
+label-unfocused-padding = 1
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %index%
@@ -168,7 +168,7 @@ label-urgent-padding = 2
 
 [module/mpd]
 type = internal/mpd
-format-online = <label-song>  <icon-prev>  <toggle>  <icon-next>
+format-online = <label-song> <icon-prev> <toggle> <icon-next>
 
 icon-prev = 
 icon-stop = 
@@ -183,16 +183,18 @@ label-song-ellipsis = true
 type = internal/xbacklight
 
 format = <label> <bar>
-label =   BL
+label =  BL
 
 bar-width = 11
 bar-indicator = ""
 bar-indicator-foreground = #fff
 bar-indicator-font = 2
-bar-fill = ▰
+bar-fill = ━
+#▰
 bar-fill-font = 2
 bar-fill-foreground = #9f78e1
-bar-empty = ▱
+bar-empty = ━
+#▱
 bar-empty-font = 2
 bar-empty-foreground = ${colors.foreground-alt}
 
@@ -204,7 +206,7 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = "  "
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #f90000
 label = %percentage%%
@@ -212,7 +214,7 @@ label = %percentage%%
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = "  "
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #4bffdc
 label = %percentage_used%%
@@ -261,7 +263,7 @@ date-alt = " %A, %b %d %Y"
 time = %l:%M %p
 time-alt = %l:%M:%S %p
 
-format-prefix = " "
+format-prefix = ""
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #0a6cf5
 
@@ -281,7 +283,7 @@ ramp-volume-3 = 墳
 ramp-volume-4 = 
 ramp-volume-foreground = ${colors.foreground-alt}
 
-label-muted = 婢  muted
+label-muted = 婢 muted
 label-muted-foreground = #666
 
 bar-volume-width = 11
@@ -295,9 +297,11 @@ bar-volume-foreground-6 = #ff5555
 bar-volume-gradient = false
 bar-volume-indicator = ""
 bar-volume-indicator-font = 2
-bar-volume-fill = ▰
+bar-volume-fill = ━
+#▰
 bar-volume-fill-font = 2
-bar-volume-empty = ▱
+bar-volume-empty = ━
+#▱
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
@@ -307,10 +311,10 @@ battery = BAT0
 adapter = AC
 full-at = 100
 
-format-charging = <animation-charging>   <label-charging>
+format-charging = <animation-charging>  <label-charging>
 format-charging-underline = #ffb52a
 
-format-discharging = <ramp-capacity>   <label-discharging>
+format-discharging = <ramp-capacity>  <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
 format-full-prefix = 
@@ -355,9 +359,9 @@ type = custom/menu
 
 expand-right = true
 
-format-spacing = 1
+format-spacing = 0
 
-label-open = 
+label-open = " "
 label-open-foreground = ${colors.secondary}
 label-close =  cancel
 label-close-foreground = ${colors.secondary}
@@ -394,7 +398,7 @@ exec = apt list --upgradable 2>/dev/null | tail +2 | wc -l
 exec-if = apt list --upgradable 2>/dev/null | tail +2 | grep .
 interval = 3600
 click-left = gnome-terminal -- sh -c "echo '$ sudo apt upgrade --autoremove' && sudo apt upgrade --autoremove"
-format-prefix = "  "
+format-prefix = " "
 format-underline = #e95420
 
 [settings]
