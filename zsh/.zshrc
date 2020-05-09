@@ -65,6 +65,9 @@ z() {
 	cd "$(find ${2:-~} -name "$1" -type d -not -path '*/\.*' 2>/dev/null | awk "{print length(), \$0}" | sort -n | cut -d" " -f 2- | head -n1)"
 }
 
+unalias gss
+gss() { if [[ -t 1 ]]; then  git status -s; else git status -s | cut -c4-; fi }
+
 declare -A cdaliases=(
 	["rr2"]="~/Programming/IronReign/ftc_app_rr2"
 	["contests"]="~/Programming/java/contests/Contests"
