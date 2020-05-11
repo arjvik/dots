@@ -156,6 +156,7 @@ mode "swap" {
 	bindsym Right focus right
 
 	bindsym Return swap container with mark "swapee"; unmark "swapee"; mode "default"
+	bindsym KP_Enter swap container with mark "swapee"; unmark "swapee"; mode "default"
 	bindsym Escape unmark "swapee"; mode "default"
 }
 
