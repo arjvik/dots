@@ -1,0 +1,14 @@
+#!/bin/bash
+
+while [[ $# -gt 0 ]]; do
+	filepath="$1"
+	filename="${filepath##*/}"
+	type="image/${filepath##*.}"
+
+	curl -ss -X POST https://imgur.com/upload -H "Referer: https://imgur.com/upload" \
+			 -F "Filedata=@\"$filepath\";filename=$filename;type=$type" \
+		| jq -r '.data.hashes | map("https://imgur.com/"+.+".png") | .[]'
+
+	[[ $filepath == $HOME/.config/Typora/typora-user-images* ]] && rm $filepath
+	shift
+done
