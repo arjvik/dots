@@ -216,9 +216,9 @@ bindsym Shift+XF86MonBrightnessUp exec --no-startup-id ~/bin/xbacklight -inc 2 #
 bindsym Shift+XF86MonBrightnessDown exec --no-startup-id ~/bin/xbacklight -dec 2 # slightly decrease screen brightness
 
 # media keys (mpd)
-bindsym XF86AudioPlay exec --no-startup-id mpc toggle
-bindsym XF86AudioPrev exec --no-startup-id mpc prev
-bindsym XF86AudioNext exec --no-startup-id mpc next
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym XF86AudioNext exec --no-startup-id playerctl next
 
 # i3lock
 bindsym $mod+l exec ~/bin/i3lock-color-fancy
