@@ -112,7 +112,9 @@ alias animated_wallpaper="xwinwrap -fs -ov -ni -- mpv -wid WID -loop dots/walls/
 alias python="python3"
 alias pip="pip3"
 
-alias -g H="| head"
-alias -g T="| tail"
-alias -g G="| grep"
-alias -g L="| less"
+alias -g @H="| head"
+alias -g @T="| tail"
+alias -g @G="| grep"
+alias -g @L="| less"
+alias -g @E="2>/dev/null"
+alias -g @Q=">/dev/null"
