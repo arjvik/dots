@@ -242,8 +242,9 @@ type = internal/network
 interface = enx00e04c6804e0
 interval = 3.0
 
-format-connected-underline = #55aa55
-label-connected = " Ethernet"
+format-connected-underline = #9f78e1
+label-connected = "  "
+format-connected-offset = -16
 format-disconnected =
 
 [module/date]
