@@ -57,7 +57,7 @@ font-1 = SauceCodePro Nerd Font:pixelsize=10
 
 modules-left = i3
 modules-center = 
-modules-right = filesystem backlight-acpi pulseaudio mpd xkeyboard xkeyboardlayout memory cpu updates wlan bluetooth battery temperature date powermenu
+modules-right = filesystem backlight-acpi pulseaudio mpd xkeyboard xkeyboardlayout memory cpu updates wlan eth bluetooth battery temperature date powermenu
 
 enable-ipc = true
 
@@ -239,19 +239,12 @@ ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/eth]
 type = internal/network
-interface = net0
+interface = enx00e04c6804e0
 interval = 3.0
 
 format-connected-underline = #55aa55
-format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.foreground-alt}
-label-connected = %local_ip%
-
+label-connected = " Ethernet"
 format-disconnected =
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
 
 [module/date]
 type = internal/date
