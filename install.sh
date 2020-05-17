@@ -105,8 +105,8 @@ if ! type i3; then
 	sudo chown -R $USER:$USER i3-gaps
 	cd i3-gaps
 	info "First, installing dependencies"
-	sudo apt install -y jq build-essential libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \
-		libxcb-util0-dev libxcb-icccm4-dev libyajl-dev \
+	sudo apt install -y build-essential libxcb1-dev libxcb-keysyms1-dev \
+		libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev \
 		libstartup-notification0-dev libxcb-randr0-dev \
 		libev-dev libxcb-cursor-dev libxcb-xinerama0-dev \
 		libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev \
@@ -167,10 +167,9 @@ draw-grid=true
 EOF
 info_done
 
-info "Stowing i3"
+info "Configuring i3"
+sudo apt install -y jq xsettingsd
 rm -rf ~/.config/i3
-rm -rf ~/bin/gnome-settings-daemon
-rm -rf ~/bin/i3lock-fancy-multimonitor
 cd ~/dots
 stow i3
 info_done

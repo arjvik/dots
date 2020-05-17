@@ -245,8 +245,8 @@ bindsym $mod+Shift+k exec --no-startup-id rofimoji -p
 bindsym $mod+Shift+s exec --no-startup-id gnome-screenshot -af /tmp/screenshot_clipboard.png && xclip -selection clipboard -t image/png -i /tmp/screenshot_clipboard.png && rm /tmp/screenshot_clipboard.png
 bindsym $mod+Shift+f exec --no-startup-id gnome-screenshot -af /tmp/screenshot.png
 
-# Gnome Settings Daemons
-exec --no-startup-id ~/bin/gnome-settings-daemon
+# XSettings Daemon
+exec --no-startup-id xsettingsd &
 
 # wallpaper
 exec --no-startup-id ~/.fehbg
