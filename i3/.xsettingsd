@@ -1,2 +1,7 @@
 Net/ThemeName "Adapta-Nokto"
 Net/IconThemeName "Paper"
+Gtk/MenuImages 1
+Gtk/ButtonImages 1
+
+# Main settings: https://www.freedesktop.org/wiki/Specifications/XSettingsRegistry/
+# Full list: https://gitlab.gnome.org/GNOME/gtk/blob/master/gdk/x11/gdksettings.c
