@@ -115,6 +115,7 @@ config.bind('qbo', 'proxy-on')
 config.bind('qbx', 'proxy-off')
 config.bind('qbs', 'proxy-ssh')
 config.bind('qj', 'jseval window.location.replace(document.getElementById("root").childNodes[2].childNodes[0].data)')
+config.bind('qe', 'jseval for (d of document.getElementsByTagName("div")) if (d.style["z-index"]>=9999) d.style["display"]="none";')
 config.bind('qr', 'open -t https://api.qrserver.com/v1/create-qr-code/?size=300x300&qzone=1&data={url}')
 
 # config.unbind(x) replaces depricated config.bind(x, None)
