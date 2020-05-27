@@ -43,7 +43,6 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen apply
 
 # User configuration
-
 export PATH=$PATH:/opt/Android/Sdk/platform-tools
 
 # Coloured man pages using less as pager
@@ -77,6 +76,7 @@ declare -A cdaliases=(
 	["profilr"]="~/Programming/java/web/profilr"
 	["automl"]="~/Programming/python/machine-learning/AutoML"
 	["cd-vui"]="~/Programming/python/pSolv/needletail-vui"
+	["cd-ng"]="~/Programming/data-science/UTSW/nuclear-grading"
 	["amc-club"]="~/Documents/Math/AMC-Club"
 )
 
@@ -98,20 +98,22 @@ alias gdc="git diff --cached"
 alias gh="git hub"
 alias ls="lsd"
 alias lst="lsd --tree"
+alias python="python3"
+alias pip="pip3"
 alias egrep='egrep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
 alias penv="exec pipenv shell"
+alias ng="cd-ng && penv"
 alias keybind="xev -event keyboard | sed -Ene 's/.*keycode\s*([0-9]*)\s*\(keysym\s*\w*,\s*(\w*)\).*/keycode \1 (\2)/' -e '/keycode/p'"
 alias fehbg="feh --bg-scale --no-fehbg"
 alias thermalzone="grep --color=always \".\" /sys/class/thermal/thermal_zone*/type | cut -c40,46-; echo '---'; cat ~/.config/polybar/thermal-zone"
 alias mysql="mysql -h mydbinstance.cbg4coxfme7c.us-east-2.rds.amazonaws.com -u root -p\$(find ~ -name jdbc.properties | head -n1 | xargs cat | tail -n1 | cut -c12-)"
 alias mysqldump="mysqldump -h mydbinstance.cbg4coxfme7c.us-east-2.rds.amazonaws.com -u root -p\$(find ~ -name jdbc.properties | head -n1 | xargs cat | tail -n1 | cut -c12-) profilr > ~/Documents/MySQLDumps/\$(date +'profilr-dump-%m-%d-%Y.sql')"
 alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"
-alias btbattery="curl https://raw.githubusercontent.com/TheWeirdDev/Bluetooth_Headset_Battery_Level/master/bl_battery.py @Q | python - FC:58:FA:78:3A:CD"
+alias btbattery="curl https://raw.githubusercontent.com/TheWeirdDev/Bluetooth_Headset_Battery_Level/master/bluetooth_battery.py @Q | python - FC:58:FA:78:3A:CD"
 alias sudoedit="export SUDO_EDITOR=\"\$(echo =gedit)\"; sudo -e"
 alias eyeD3="echo 'Enabling eyeD3 virtualenv'; source ~/Software/eyeD3/bin/activate; unalias eyeD3; eyeD3"
 alias animated_wallpaper="xwinwrap -fs -ov -ni -- mpv -wid WID -loop dots/walls/sky\$(xrandr | grep -q 'DP-2 connected' && echo '-double').mp4 & sleep 1"
-alias python="python3"
-alias pip="pip3"
+
 
 alias -g @H="| head"
 alias -g @T="| tail"
