@@ -67,6 +67,8 @@ z() {
 unalias gss
 gss() { if [[ -t 1 ]]; then  git status -s; else git status -s | cut -c4-; fi }
 
+highlight() { grep -Ei "$(printf -- '%s|' "$@")^" }
+
 declare -A cdaliases=(
 	["rr2"]="~/Programming/IronReign/ftc_app_rr2"
 	["contests"]="~/Programming/java/contests/Contests"
