@@ -6,6 +6,8 @@ try:
 except ImportError:
     print("ptpython is not available: falling back to standard prompt")
 else:
+    # Custom Functions
+    doc = lambda x: print(x.__doc__)
     def configure(repl):
         from prompt_toolkit.formatted_text import HTML, ANSI
         from ptpython.prompt_style import PromptStyle
