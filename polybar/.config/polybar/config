@@ -57,7 +57,7 @@ font-1 = SauceCodePro Nerd Font:pixelsize=10
 
 modules-left = i3
 modules-center = 
-modules-right = filesystem backlight-acpi pulseaudio mpd xkeyboard xkeyboardlayout memory cpu updates wlan eth bluetooth battery temperature date powermenu
+modules-right = filesystem backlight-acpi pulseaudio mpd xkeyboard xkeyboardlayout memory cpu updates wlan eth vpn bluetooth battery temperature date powermenu
 
 enable-ipc = true
 
@@ -246,6 +246,17 @@ format-connected-underline = #9f78e1
 label-connected = "  "
 format-connected-offset = -16
 format-disconnected =
+
+[module/vpn]
+type = internal/network
+interface = vpn0
+unknown-as-up = true
+interval = 3.0
+
+format-connected-underline = #9f78e1
+label-connected = "  "
+format-connected-offset = -18
+format-disconnected = 
 
 [module/date]
 type = internal/date
