@@ -69,6 +69,8 @@ gss() { if [[ -t 1 ]]; then  git status -s; else git status -s | cut -c4-; fi }
 
 highlight() { grep -Ei "$(printf -- '%s|' "$@")^" }
 
+swvpn() { local id="$(<.vpn-lpass-id)"; cat <(lpass show $id --username) <(lpass show $id --password) <(echo push) | sudo openconnect --juniper -v https://utswra.swmed.edu -i vpn0 }
+
 declare -A cdaliases=(
 	["rr2"]="~/Programming/IronReign/ftc_app_rr2"
 	["contests"]="~/Programming/java/contests/Contests"
@@ -106,6 +108,7 @@ alias egrep='egrep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
 alias diff="diff --color=auto" 
 alias penv="exec pipenv shell"
 alias ng="cd-ng && penv"
+alias ngpy="cd-ng && exec pipenv shell python3"
 alias keybind="xev -event keyboard | sed -Ene 's/.*keycode\s*([0-9]*)\s*\(keysym\s*\w*,\s*(\w*)\).*/keycode \1 (\2)/' -e '/keycode/p'"
 alias fehbg="feh --bg-scale --no-fehbg"
 alias thermalzone="grep --color=always \".\" /sys/class/thermal/thermal_zone*/type | cut -c40,46-; echo '---'; cat ~/.config/polybar/thermal-zone"
