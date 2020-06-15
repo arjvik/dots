@@ -116,7 +116,7 @@ config.bind('qbx', 'proxy-off')
 config.bind('qbs', 'proxy-ssh')
 config.bind('qj', 'jseval window.location.replace(document.getElementById("root").childNodes[2].childNodes[0].data)')
 config.bind('qe', 'jseval for (d of document.getElementsByTagName("div")) if (d.style["z-index"]>=9999) d.style["display"]="none";')
-config.bind('qyt', 'jseval document.getElementsByTagName("video")[0].playbackRate = parseInt(prompt("Enter playback speed"))')
+config.bind('qy', 'jseval document.getElementsByTagName("video")[0].playbackRate = parseFloat(prompt("Enter playback speed"))')
 config.bind('qr', 'open -t https://api.qrserver.com/v1/create-qr-code/?size=300x300&qzone=1&data={url}')
 
 # config.unbind(x) replaces depricated config.bind(x, None)
