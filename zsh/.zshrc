@@ -127,4 +127,4 @@ alias -g @L="| less"
 alias -g @Q="2>/dev/null"
 alias -g @S=">/dev/null"
 
-[[ -f ~/.zshrc_custom ]] && source ~/.zshrc_custom
+if [[ -f ~/.zshrc_custom ]]; then source ~/.zshrc_custom; fi
