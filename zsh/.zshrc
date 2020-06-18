@@ -17,8 +17,6 @@ POWERLEVEL9K_OS_ICON_BACKGROUND="blue"
 POWERLEVEL9K_VIRTUALENV_BACKGROUND="darkorange"
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir dir_writable virtualenv vcs root_indicator background_jobs status)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-POWERLEVEL9K_CONTEXT_REMOTE_BACKGROUND="yellow"
-POWERLEVEL9K_CONTEXT_REMOTE_FOREGROUND="black"
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_SHORTEN_STRATEGY=truncate_folders
 POWERLEVEL9K_DIR_PATH_SEPARATOR="  "
@@ -26,7 +24,7 @@ POWERLEVEL9K_VISUAL_IDENTIFIER_EXPANSION='${P9K_VISUAL_IDENTIFIER// }'
 
 # Antigen plugin manager
 
-if ! [[ -e ~/.antigen/antigen.zsh ]]; then
+if ! [[ -f ~/.antigen/antigen.zsh ]]; then
 	echo "Installing antigen"
 	mkdir ~/.antigen
 	wget git.io/antigen -O ~/.antigen/antigen.zsh
@@ -128,3 +126,5 @@ alias -g @G="| grep"
 alias -g @L="| less"
 alias -g @Q="2>/dev/null"
 alias -g @S=">/dev/null"
+
+[[ -f ~/.zshrc_custom ]] && source ~/.zshrc_custom
