@@ -76,6 +76,7 @@ declare -A cdaliases=(
 	["dots"]="~/dots"
 	["api"]="~/Programming/java/ArjMart/API"
 	["profilr"]="~/Programming/java/web/profilr"
+	["password-portal"]="~/Programming/java/web/password-portal"
 	["automl"]="~/Programming/python/machine-learning/AutoML"
 	["cd-vui"]="~/Programming/python/pSolv/needletail-vui"
 	["cd-ng"]="~/Programming/data-science/UTSW/nuclear-grading"
