@@ -138,9 +138,10 @@ _mkc() { _files -W "$1" -/ }
 
 
 export MYSQL_PS1="MySQL \d>\_"
-export SUDO_ASKPASS=`echo =sudo-askpass-rofi`
 export PIP_REQUIRE_VIRTUALENV=true
 export PYTHONSTARTUP="$HOME/.pystartup"
+
+command -v sudo-askpass-rofi >/dev/null && export SUDO_ASKPASS=`echo =sudo-askpass-rofi`
 
 alias gs="git status"
 alias gdc="git diff --cached"
@@ -165,7 +166,6 @@ alias sudoedit="export SUDO_EDITOR=\"\$(echo =gedit)\"; sudo -e"
 alias eyeD3="echo 'Enabling eyeD3 virtualenv'; source ~/Software/eyeD3/bin/activate; unalias eyeD3; eyeD3"
 alias temp_venv='temp_venv=$(mktemp -d);virtualenv $temp_venv;source $temp_venv/bin/activate;_unset_venv(){deactivate;rm -rf $1};trap "_unset_venv $temp_venv" EXIT;unset temp_venv'
 alias animated_wallpaper="xwinwrap -fs -ov -ni -- mpv -wid WID -loop dots/walls/sky\$(xrandr | grep -q 'DP-2 connected' && echo '-double').mp4 & sleep 1"
-
 
 alias -g @H="| head"
 alias -g @T="| tail"
