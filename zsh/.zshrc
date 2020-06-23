@@ -173,5 +173,6 @@ alias -g @G="| grep"
 alias -g @L="| less"
 alias -g @Q="2>/dev/null"
 alias -g @S=">/dev/null"
+alias -g @\?='; if [[ $? -eq 0 ]]; then echo "$? (true)"; else echo "$? (false)"; fi'
 
 if [[ -f ~/.zshrc_custom ]]; then source ~/.zshrc_custom; fi
