@@ -16,7 +16,7 @@ p10k-set() { for ((i=1; i < $#; i++)); { typeset -g POWERLEVEL9K_${@[$i]:u}=$@[-
 p10k-prompt() { if [[ $1 == "right" ]]; then typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(${=2}); else typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(${=2}); fi }
 
 p10k-set mode nerdfont-complete
-p10k-prompt left "os_icon dir vcs virtualenv background_jobs status newline prompt_char"
+p10k-prompt left "os_icon context dir vcs virtualenv background_jobs status newline prompt_char"
 p10k-prompt right ""
 p10k-set icon_before_content true
 p10k-set icon_padding moderate
