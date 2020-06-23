@@ -11,16 +11,62 @@ fi
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Powerlevel9k settings
-POWERLEVEL9K_MODE="nerdfont-complete"
-POWERLEVEL9K_OS_ICON_BACKGROUND="blue"
-POWERLEVEL9K_VIRTUALENV_BACKGROUND="darkorange"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir dir_writable virtualenv vcs root_indicator background_jobs status)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
-POWERLEVEL9K_SHORTEN_STRATEGY=truncate_folders
-POWERLEVEL9K_DIR_PATH_SEPARATOR="  "
-POWERLEVEL9K_VISUAL_IDENTIFIER_EXPANSION='${P9K_VISUAL_IDENTIFIER// }'
+# Powerlevel10k settings
+p10k-set() { for ((i=1; i < $#; i++)); { typeset -g POWERLEVEL9K_${@[$i]:u}=$@[-1] } }
+p10k-prompt() { if [[ $1 == "right" ]]; then typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(${=2}); else typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(${=2}); fi }
+
+p10k-set mode nerdfont-complete
+p10k-prompt left "os_icon dir vcs virtualenv background_jobs status newline prompt_char"
+p10k-prompt right ""
+p10k-set icon_before_content true
+p10k-set icon_padding moderate
+p10k-set prompt_add_newline true
+p10k-set multiline_{first,newline,last}_prompt_{prefix,suffix} ''
+p10k-set multiline_first_prompt_gap_char ' '
+p10k-set multiline_first_prompt_gap_background ''
+p10k-set background 238
+p10k-set foreground 255
+p10k-set {left,right}_{left,right}_whitespace ''
+p10k-set {left,right}_{sub,}segment_separator "%k%F{$POWERLEVEL9K_BACKGROUND}%k "
+p10k-set {left,right}_prompt_last_segment_end_symbol ''
+p10k-set {left,right}_prompt_first_segment_start_symbol ''
+p10k-set os_icon_foreground 202
+p10k-set prompt_char_background ''
+p10k-set prompt_char_ok_{viins,vicmd,vivis,viowr}_foreground 76
+p10k-set prompt_char_error_{viins,vicmd,vivis,viowr}_foreground 196
+p10k-set prompt_char_{ok,error}_viins_content_expansion '❯'
+p10k-set prompt_char_{ok,error}_vicmd_content_expansion '❮'
+p10k-set prompt_char_{ok,error}_vivis_content_expansion '❮'
+p10k-set prompt_char_{ok,error}_viowr_content_expansion 'Ⅴ'
+p10k-set prompt_char_overwrite_state true
+p10k-set prompt_char_left_prompt_{last_segment_end,first_segment_start}_symbol ''
+p10k-set prompt_char_left_{left,right}_whitespace ''
+p10k-set dir_foreground 31
+p10k-set shorten_strategy truncate_to_unique
+p10k-set shorten_delimiter ''
+p10k-set dir_shortened_foreground 103
+p10k-set dir_anchor_foreground 39
+p10k-set dir_anchor_bold true
+p10k-set shorten_folder_marker '(.git|pyvenv.cfg)'
+p10k-set dir_max_length 0
+p10k-set dir_show_writable true
+p10k-set vcs_branch_icon ' '
+p10k-set vcs_{staged,unstaged,untracked,conflicted,commits_ahead,commits_behind}_max_num -1
+p10k-set vcs_{clean,untracked}_foreground 76
+p10k-set vcs_modified_foreground 178
+p10k-set virtualenv_foreground 37
+p10k-set virtualenv_show_python_version false
+p10k-set virtualenv_{left,right}_delimiter ''
+p10k-set virtualenv_visual_identifier_expansion ''
+p10k-set background_jobs_verbose{,_always} true
+p10k-set background_jobs_foreground 48
+p10k-set background_jobs_visual_identifier_expansion ''
+p10k-set status_extended_states true
+p10k-set status_{ok,ok_pipe,error,error_signal} true
+p10k-set status_ok_foreground 70
+p10k-set status_{ok_pipe,error,error_signal}_foreground 160
+p10k-set status_ok_visual_identifier_expansion ' '
+p10k-set status_{ok_pipe,error,error_signal}_visual_identifier_expansion '↵ '
 
 # Antigen plugin manager
 
