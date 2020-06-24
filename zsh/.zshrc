@@ -30,7 +30,6 @@ p10k-set {left,right}_{left,right}_whitespace ''
 p10k-set {left,right}_{sub,}segment_separator "%k%F{$POWERLEVEL9K_BACKGROUND}%k "
 p10k-set {left,right}_prompt_last_segment_end_symbol ''
 p10k-set {left,right}_prompt_first_segment_start_symbol ''
-p10k-set os_icon_foreground 202
 p10k-set prompt_char_background ''
 p10k-set prompt_char_ok_{viins,vicmd,vivis,viowr}_foreground 76
 p10k-set prompt_char_error_{viins,vicmd,vivis,viowr}_foreground 196
@@ -41,6 +40,10 @@ p10k-set prompt_char_{ok,error}_viowr_content_expansion 'Ⅴ'
 p10k-set prompt_char_overwrite_state true
 p10k-set prompt_char_left_prompt_{last_segment_end,first_segment_start}_symbol ''
 p10k-set prompt_char_left_{left,right}_whitespace ''
+p10k-set os_icon_foreground 202
+p10k-set context_foreground 220
+p10k-set always_show_context false
+p10k-set always_show_user false
 p10k-set dir_foreground 31
 p10k-set shorten_strategy truncate_to_unique
 p10k-set shorten_delimiter ''
