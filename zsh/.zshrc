@@ -16,7 +16,7 @@ p10k-set() { for ((i=1; i < $#; i++)); { typeset -g POWERLEVEL9K_${@[$i]:u}=$@[-
 p10k-prompt() { if [[ $1 == "right" ]]; then typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(${=2}); else typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(${=2}); fi }
 
 p10k-set mode nerdfont-complete
-p10k-prompt left "os_icon context dir vcs virtualenv background_jobs status newline prompt_char"
+p10k-prompt left "os_icon context dir vcs virtualenv singularity background_jobs status newline prompt_char"
 p10k-prompt right ""
 p10k-set icon_before_content true
 p10k-set icon_padding moderate
@@ -70,6 +70,9 @@ p10k-set status_ok_foreground 70
 p10k-set status_{ok_pipe,error,error_signal}_foreground 160
 p10k-set status_ok_visual_identifier_expansion ' '
 p10k-set status_{ok_pipe,error,error_signal}_visual_identifier_expansion '↵ '
+# Custom Singularity segment
+prompt_singularity() { p10k segment -c "$SINGULARITY_CONTAINER" -i '' -t "${${SINGULARITY_CONTAINER##*LabImage?}%%.img}" }
+p10k-set singularity_foreground 1
 
 # Antigen plugin manager
 
