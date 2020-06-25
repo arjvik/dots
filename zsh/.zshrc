@@ -118,6 +118,23 @@ highlight() { grep -Ei --color=always "$(printf -- '%s|' "$@")^" }
 
 swvpn() { local id="$(<~/.vpn-lpass-id)"; cat <(lpass show $id --username) <(lpass show $id --password) <(echo push) | sudo openconnect --juniper -v https://utswra.swmed.edu -i vpn0 }
 
+addswap() {
+	if ! [[ $1 == /swapfile* && $2 =~ [0-9]+[KMG]? ]]; then
+		echo "Usage example: addswap /swapfile2 5G"
+		return 1
+	elif [[ -e $1 ]]; then
+		echo "$1 already exists, aborting"
+		return 2
+	else
+		sudo fallocate -l $2 $1 &&
+			sudo chmod 600 $1 &&
+			sudo mkswap $1 &&
+			sudo swapon $1 &&
+			sudo swapon ||
+			echo "Something went wrong"
+	fi
+}
+
 declare -A cdaliases=(
 	["rr2"]="~/Programming/IronReign/ftc_app_rr2"
 	["contests"]="~/Programming/java/contests/Contests"
