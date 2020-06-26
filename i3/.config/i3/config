@@ -202,11 +202,11 @@ bindsym $mod+minus move scratchpad
 bindsym $mod+plus scratchpad show; floating disable
 
 # volume keys
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $(pactl list short sinks | grep -E RUNNING$ | cut -f1) +5%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $(pactl list short sinks | grep -E RUNNING$ | cut -f1) -5%
-bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $(pactl list short sinks | grep -E RUNNING$ | cut -f1) +1%
-bindsym Shift+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $(pactl list short sinks | grep -E RUNNING$ | cut -f1) -1%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $(pactl list short sinks | grep -E RUNNING$ | cut -f1) toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1%
+bindsym Shift+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym Shift+XF86AudioMute exec --no-startup-id pactl list short sinks | cut -f1 | xargs -n1 -I {} -- pactl set-sink-volume {} 0%
 
 # brightness keys
