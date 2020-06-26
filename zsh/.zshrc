@@ -125,9 +125,6 @@ addswap() {
 	if ! [[ $1 == /swapfile* && $2 =~ [0-9]+[KMG]? ]]; then
 		echo "Usage example: addswap /swapfile2 5G"
 		return 1
-	elif [[ -e $1 ]]; then
-		echo "$1 already exists, aborting"
-		return 2
 	else
 		sudo fallocate -l $2 $1 &&
 			sudo chmod 600 $1 &&
