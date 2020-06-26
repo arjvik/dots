@@ -67,9 +67,9 @@ p10k-set background_jobs_visual_identifier_expansion ''
 p10k-set status_extended_states true
 p10k-set status_{ok,ok_pipe,error,error_signal} true
 p10k-set status_ok_foreground 70
-p10k-set status_{ok_pipe,error,error_signal}_foreground 160
+p10k-set status_{ok_pipe,error,error_signal,error_pipe}_foreground 160
 p10k-set status_ok_visual_identifier_expansion ' '
-p10k-set status_{ok_pipe,error,error_signal}_visual_identifier_expansion '↵ '
+p10k-set status_{ok_pipe,error,error_signal,error_pipe}_visual_identifier_expansion '↵ '
 # Custom Singularity segment
 prompt_singularity() { p10k segment -c "$SINGULARITY_CONTAINER" -i '' -t "${${SINGULARITY_CONTAINER##*LabImage?}%%.img}" }
 p10k-set singularity_foreground 1
