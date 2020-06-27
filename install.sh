@@ -101,7 +101,7 @@ info_done
 info "Installing i3"
 cd /opt
 if ! type i3; then
-	sudo git clone https://github.com/Airblader/i3 i3-gaps
+	sudo git clone --origin i3-gaps https://github.com/Airblader/i3 i3-gaps
 	sudo chown -R $USER:$USER i3-gaps
 	cd i3-gaps
 	info "First, installing dependencies"
