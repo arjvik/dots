@@ -108,12 +108,6 @@ man() {
 			man "$@"
 }
 
-# cd to named directories
-z() {
-	echo "\e[31mPlease try to use the directory aliases instead of z\e[0m"
-	cd "$(find ${2:-~} -name "$1" -type d -not -path '*/\.*' 2>/dev/null | awk "{print length(), \$0}" | sort -n | cut -d" " -f 2- | head -n1)"
-}
-
 unalias gss
 gss() { if [[ -t 1 ]]; then  git status -s; else git status -s | cut -c4-; fi }
 
