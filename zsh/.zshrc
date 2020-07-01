@@ -127,6 +127,41 @@ addswap() {
 	fi
 }
 
+swssh() {
+	if [[ ! -v 1 ]]; then
+		echo "Usage: swssh <vnc port> [-L] [<ssh args>]"
+		return 1
+	fi
+	local port=$1
+	shift
+	if [[ $1 == "-L" ]]; then
+		local args="-L 8888:localhost:8888 "
+		shift
+		args="$args$@"
+	else
+		local args="$@"
+	fi
+	local -A portpartitions=(
+		[20000]="Nucleus%03d"
+		[23000]="NucleusA%03d"
+		[26000]="NucleusB%03d"
+		[30000]="NucleusC%03d"
+		[33000]="NucleusD%03d"
+		[36000]="NucleusE%03d"
+	)
+	for min_port in "${(@Ok)portpartitions}"; do
+		if [[ $port -gt $min_port ]]; then
+			local hostname=$(printf $portpartitions[$min_port] $(( ($port-$min_port)/10 )) )
+			break
+		fi
+	done
+	if ! [[ -v hostname ]]; then
+		echo "No valid hostname found for port #$port"
+		return 1
+	fi
+	ssh -J s199758@nucleus.biohpc.swmed.edu s199758@$hostname $args
+}
+
 declare -A cdaliases=(
 	["rr2"]="~/Programming/IronReign/ftc_app_rr2"
 	["contests"]="~/Programming/java/contests/Contests"
@@ -141,7 +176,7 @@ declare -A cdaliases=(
 	["amc-club"]="~/Documents/Math/AMC-Club"
 )
 
-for key value in ${(kv)cdaliases}; do
+for key value in "${(@kv)cdaliases}"; do
 	alias $key="cd $value"
 done
 
