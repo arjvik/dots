@@ -113,8 +113,6 @@ gss() { if [[ -t 1 ]]; then  git status -s; else git status -s | cut -c4-; fi }
 
 highlight() { grep -Ei --color=always "$(printf -- '%s|' "$@")^" }
 
-swvpn() { local id="$(<~/.vpn-lpass-id)"; cat <(lpass show $id --username) <(lpass show $id --password) <(echo push) | sudo openconnect --juniper -v https://utswra.swmed.edu -i vpn0 }
-
 addswap() {
 	if ! [[ $1 == /swapfile* && $2 =~ [0-9]+[KMG]? ]]; then
 		echo "Usage example: addswap /swapfile2 5G"
@@ -181,6 +179,7 @@ alias eyeD3="echo 'Enabling eyeD3 virtualenv'; source ~/Software/eyeD3/bin/activ
 alias temp_venv='temp_venv=$(mktemp -d);virtualenv $temp_venv;source $temp_venv/bin/activate;_unset_venv(){deactivate;rm -rf $1};trap "_unset_venv $temp_venv" EXIT;unset temp_venv'
 alias animated_wallpaper="xwinwrap -fs -ov -ni -- mpv -wid WID -loop dots/walls/sky\$(xrandr | grep -q 'DP-2 connected' && echo '-double').mp4 & sleep 1"
 alias savediff="ls /etc/apt/sources.list.d/ | grep -v save | xargs -I {} bash -c 'diff /etc/apt/sources.list.d/{}{,.save} && echo {} == {}.save'"
+alias swvpn="cat <(lpass show \$(<~/.vpn-lpass-id) | sed -Ene '/Username|Password/s/.*: //p') <(echo push) | sudo openconnect --juniper -v https://utswra.swmed.edu -i vpn0"
 
 alias -g @H="| head"
 alias -g @T="| tail"
