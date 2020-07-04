@@ -134,13 +134,6 @@ swssh() {
 	fi
 	local port=$1
 	shift
-	if [[ $1 == "-L" ]]; then
-		local args="-L 8888:localhost:8888 "
-		shift
-		args="$args$@"
-	else
-		local args="$@"
-	fi
 	local -A portpartitions=(
 		[20000]="Nucleus%03d"
 		[23000]="NucleusA%03d"
@@ -159,7 +152,14 @@ swssh() {
 		echo "No valid hostname found for port #$port"
 		return 1
 	fi
-	ssh -J s199758@nucleus.biohpc.swmed.edu s199758@$hostname $args
+	if [[ $1 == "+L" ]]; then
+		echo "+L"
+		local extra_args='-L 8888:localhost:8888'
+		shift
+	else
+		local extra_args=
+	fi
+	ssh -J s199758@nucleus.biohpc.swmed.edu s199758@$hostname $extra_args "$@"
 }
 
 declare -A cdaliases=(
