@@ -187,6 +187,9 @@ gaps inner 10
 gaps horizontal $side_gaps_on
 smart_gaps inverse_outer
 
+# Fullscreen popups
+popup_during_fullscreen leave_fullscreen
+
 # swap workspaces
 bindsym $mod+Shift+o exec i3-swap-workspaces
 
