@@ -129,7 +129,7 @@ addswap() {
 
 swssh() {
 	if [[ ! -v 1 ]]; then
-		echo "Usage: swssh <vnc port> [-L] [<ssh args>]"
+		echo "Usage: swssh <vnc port> [+L] [<ssh args>]"
 		return 1
 	fi
 	local port=$1
@@ -153,7 +153,6 @@ swssh() {
 		return 1
 	fi
 	if [[ $1 == "+L" ]]; then
-		echo "+L"
 		local extra_args='-L 8888:localhost:8888'
 		shift
 	else
