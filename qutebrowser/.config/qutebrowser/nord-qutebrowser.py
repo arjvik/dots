@@ -338,3 +338,26 @@ c.colors.tabs.selected.odd.fg = nord['nord5']
 ## color)
 ## Type: QtColor
 # c.colors.webpage.bg = 'white'
+
+"""
+Extra theming (not part of the original nord-qutebrowser)
+"""
+## Background color of the context menu.
+## Type: QssColor
+
+c.colors.contextmenu.menu.bg = nord['nord0']
+c.colors.contextmenu.selected.bg = nord['nord2']
+
+## Foreground color of the context menu.
+## Type: QssColor
+
+c.colors.contextmenu.menu.fg = nord['nord5']
+c.colors.contextmenu.selected.fg = nord['nord6']
+
+## Background color of disabled items in the context menu.
+## Type: QssColor
+c.colors.contextmenu.disabled.bg = nord['nord0']
+
+## Foreground color of disabled items in the context menu.
+## Type: QssColor
+c.colors.contextmenu.disabled.fg = '#76777a'
