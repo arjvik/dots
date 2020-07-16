@@ -208,11 +208,12 @@ alias mysql="mysql -h mydbinstance.cbg4coxfme7c.us-east-2.rds.amazonaws.com -u r
 alias mysqldump="mysqldump -h mydbinstance.cbg4coxfme7c.us-east-2.rds.amazonaws.com -u root -p\$(find ~ -name jdbc.properties | head -n1 | xargs cat | tail -n1 | cut -c12-) profilr > ~/Documents/MySQLDumps/\$(date +'profilr-dump-%m-%d-%Y.sql')"
 alias speedtest-cli="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"
 alias btbattery="curl https://raw.githubusercontent.com/TheWeirdDev/Bluetooth_Headset_Battery_Level/master/bluetooth_battery.py @Q | python - FC:58:FA:78:3A:CD"
-alias sudoedit="export SUDO_EDITOR=\"\$(echo =gedit)\"; sudo -e"
+alias sudoedit="SUDO_EDITOR=\"\$(echo =gedit)\" sudo -e"
 alias eyeD3="echo 'Enabling eyeD3 virtualenv'; source ~/Software/eyeD3/bin/activate; unalias eyeD3; eyeD3"
 alias temp_venv='temp_venv=$(mktemp -d);virtualenv $temp_venv;source $temp_venv/bin/activate;_unset_venv(){deactivate;rm -rf $1};trap "_unset_venv $temp_venv" EXIT;unset temp_venv'
 alias animated_wallpaper="xwinwrap -fs -ov -ni -- mpv -wid WID -loop dots/walls/sky\$(xrandr | grep -q 'DP-2 connected' && echo '-double').mp4 & sleep 1"
 alias savediff="ls /etc/apt/sources.list.d/ | grep -v save | xargs -I {} bash -c 'diff /etc/apt/sources.list.d/{}{,.save} && echo {} == {}.save'"
+alias adb-ip="adb shell ip address show wlan0 | grep 'wlan0$' | cut -d' ' -f 6 | cut -d/ -f 1"
 alias swvpn="cat <(lpass show \$(<~/.vpn-lpass-id) | sed -Ene '/Username|Password/s/.*: //p') <(echo push) | sudo openconnect --juniper -vvv https://utswra.swmed.edu -i vpn0"
 
 alias -g @H="| head"
