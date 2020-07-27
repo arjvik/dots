@@ -161,7 +161,7 @@ swssh() {
 	ssh -J s199758@nucleus.biohpc.swmed.edu s199758@$hostname $extra_args "$@"
 }
 
-declare -A cdaliases=(
+declare -A diraliases=(
 	["rr2"]="~/Programming/IronReign/ftc_app_rr2"
 	["contests"]="~/Programming/java/contests/Contests"
 	["irbot"]="~/Programming/java/robotics/ironreignbot"
@@ -172,10 +172,11 @@ declare -A cdaliases=(
 	["automl"]="~/Programming/python/machine-learning/AutoML"
 	["cd-vui"]="~/Programming/python/pSolv/needletail-vui"
 	["cd-ng"]="~/Programming/data-science/UTSW/nuclear-grading"
+	["qpsc"]="~/Programming/groovy/scripts/QuPath-Scripts"
 	["amc-club"]="~/Documents/Math/AMC-Club"
 )
 
-for key value in "${(@kv)cdaliases}"; do
+for key value in "${(@kv)diraliases}"; do
 	alias $key="cd $value"
 done
 
