@@ -162,22 +162,22 @@ swssh() {
 }
 
 declare -A diraliases=(
-	["rr2"]="~/Programming/IronReign/ftc_app_rr2"
-	["contests"]="~/Programming/java/contests/Contests"
-	["irbot"]="~/Programming/java/robotics/ironreignbot"
-	["dots"]="~/dots"
-	["api"]="~/Programming/java/ArjMart/API"
-	["profilr"]="~/Programming/java/web/profilr"
-	["password-portal"]="~/Programming/java/web/password-portal"
-	["automl"]="~/Programming/python/machine-learning/AutoML"
-	["cd-vui"]="~/Programming/python/pSolv/needletail-vui"
-	["cd-ng"]="~/Programming/data-science/UTSW/nuclear-grading"
-	["qpsc"]="~/Programming/groovy/scripts/QuPath-Scripts"
-	["amc-club"]="~/Documents/Math/AMC-Club"
+	["rr2"]="$HOME/Programming/IronReign/ftc_app_rr2"
+	["contests"]="$HOME/Programming/java/contests/Contests"
+	["irbot"]="$HOME/Programming/java/robotics/ironreignbot"
+	["dots"]="$HOME/dots"
+	["api"]="$HOME/Programming/java/ArjMart/API"
+	["profilr"]="$HOME/Programming/java/web/profilr"
+	["password-portal"]="$HOME/Programming/java/web/password-portal"
+	["automl"]="$HOME/Programming/python/machine-learning/AutoML"
+	["cd-vui"]="$HOME/Programming/python/pSolv/needletail-vui"
+	["cd-ng"]="$HOME/Programming/data-science/UTSW/nuclear-grading"
+	["qpsc"]="$HOME/Programming/groovy/scripts/QuPath-Scripts"
+	["amc-club"]="$HOME/Documents/Math/AMC-Club"
 )
 
 for key value in "${(@kv)diraliases}"; do
-	alias $key="cd $value"
+	alias $key="cd \"$value\""
 done
 
 mkc() { mkdir -p "$1" && cd "$1" || return 1 }
