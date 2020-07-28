@@ -145,3 +145,26 @@ config.bind('<Alt+9>', 'tab-focus 9', mode='insert')
 
 # Qutebrowser Nord Theme
 config.source('nord-qutebrowser.py')
+
+# Context menu theming
+
+## Background color of the context menu.
+## Type: QssColor
+
+c.colors.contextmenu.menu.bg = '#2e3440'
+c.colors.contextmenu.selected.bg = '#434c5e'
+
+## Foreground color of the context menu.
+## Type: QssColor
+
+c.colors.contextmenu.menu.fg = '#e5e9f0'
+c.colors.contextmenu.selected.fg = '#eceff4'
+
+if 'disabled' in dir(c.colors.contextmenu):
+	## Background color of disabled items in the context menu.
+	## Type: QssColor
+	c.colors.contextmenu.disabled.bg = '#2e3440'
+
+	## Foreground color of disabled items in the context menu.
+	## Type: QssColor
+	c.colors.contextmenu.disabled.fg = '#76777a'
