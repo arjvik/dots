@@ -249,7 +249,7 @@ bindsym $mod+Shift+s exec --no-startup-id gnome-screenshot -af /tmp/screenshot_c
 bindsym $mod+Shift+f exec --no-startup-id gnome-screenshot -af /tmp/screenshot.png
 
 # XSettings Daemon
-exec --no-startup-id xsettingsd &
+exec --no-startup-id xsettingsd
 
 # wallpaper
 exec --no-startup-id ~/.fehbg
@@ -258,8 +258,11 @@ exec --no-startup-id ~/.fehbg
 exec --no-startup-id compton
 
 # battery monitor
-exec --no-startup-id ~/bin/i3-battery-monitor &
+exec --no-startup-id ~/bin/i3-battery-monitor
 
 # network manager and bluetooth applet
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
+
+# KDE Connect
+exec --no-startup-id QT_QPA_PLATFORMTHEME=gtk2 kdeconnect-indicator

@@ -423,6 +423,10 @@ cd ~/dots
 stow cava
 info_done
 
+info "Installing KDE Connect"
+sudo apt install -y kdeconnect qt5-style-plugins
+info_done
+
 info "Installing Java 8 and 11 JDK"
 [[ -z "${SKIP_LONG_INSTALLS}" ]] \
 	&& sudo apt install -y openjdk-11-jdk openjdk-11-source openjdk-8-jdk openjdk-8-source \
@@ -464,6 +468,7 @@ info_important "[ ] Fetch tab config"
 info_important "[ ] Configure Gnome Terminal"
 info_important "[ ] Configure Mopidy (login, add keys, etc)"
 info_important "[ ] Log into lastpass (lpass-cli login <email>)"
+info_important "[ ] Pair KDE Connect to phone"
 info_important "[ ] Install Software including:"
 info_important "    - Eclipse"
 info_important "    - Discord"
