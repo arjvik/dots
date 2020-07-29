@@ -153,8 +153,9 @@ swssh() {
 		return 1
 	fi
 	if [[ $1 == "+L" ]]; then
-		local extra_args='-L 8888:localhost:8888'
-		shift
+		: ${2:=8888} # 8888 is Jupyter port
+		local extra_args="-L ${2}:localhost:${2}"
+		shift 2
 	else
 		local extra_args=
 	fi
