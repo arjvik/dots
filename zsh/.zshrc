@@ -3,6 +3,9 @@
 # Disable Ctrl-S and Ctrl-Q in terminal
 stty -ixon
 
+# Set tabstops to 4 spaces
+tabs -4
+
 # Powerlevel10k Instant Prompt
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
 	source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
