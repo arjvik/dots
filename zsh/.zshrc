@@ -96,7 +96,6 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen apply
 
 # User configuration
-export PATH=$PATH:/opt/Android/Sdk/platform-tools
 
 # Coloured man pages using less as pager
 man() {
