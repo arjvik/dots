@@ -60,6 +60,7 @@ p10k-set vcs_branch_icon ' '
 p10k-set vcs_{staged,unstaged,untracked,conflicted,commits_ahead,commits_behind}_max_num -1
 p10k-set vcs_{clean,untracked}_foreground 76
 p10k-set vcs_modified_foreground 178
+p10k-set vcs_git_github_icon ' '
 p10k-set virtualenv_foreground 37
 p10k-set virtualenv_show_python_version false
 p10k-set virtualenv_{left,right}_delimiter ''
