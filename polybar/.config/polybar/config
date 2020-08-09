@@ -182,7 +182,7 @@ label-song-ellipsis = true
 [module/playerctl]
 type = custom/script
 interval = 2
-exec = echo "$(playerctl metadata -f '{{artist}} - {{title}}' 2>/dev/null | sed -E 's/(.{40}).+/\1.../')" "%{A1:playerctl previous:}%{A} %{A1:playerctl play-pause:}$(playerctl status 2>/dev/null | grep Playing >/dev/null && echo '' || echo '')%{A} %{A1:playerctl next:}%{A}"
+exec = echo $(playerctl metadata -f '{{title}} ({{artist}})' 2>/dev/null | sed -E 's/(.{30}).+/\1.../') %{A1:playerctl previous:}%{A} %{A1:playerctl play-pause:}$(playerctl status 2>/dev/null | grep Playing >/dev/null && echo '' || echo '')%{A} %{A1:playerctl next:}%{A}
 exec-if = playerctl metadata -f {{playerName}} 2>/dev/null | grep -v mopidy >/dev/null
 
 [module/xbacklight]
