@@ -75,7 +75,7 @@ p10k-set status_{ok_pipe,error,error_signal,error_pipe}_foreground 160
 p10k-set status_ok_visual_identifier_expansion ' '
 p10k-set status_{ok_pipe,error,error_signal,error_pipe}_visual_identifier_expansion '↵ '
 # Custom Singularity segment
-prompt_singularity() { p10k segment -c "$SINGULARITY_CONTAINER" -i '' -t "${${SINGULARITY_CONTAINER##*LabImage?}%%.img}" }
+prompt_singularity() { p10k segment -c "$SINGULARITY_CONTAINER" -i '' -t "${${${SINGULARITY_CONTAINER##*/}#*LabImage?}%.*}" }
 p10k-set singularity_foreground 1
 
 # Antigen plugin manager
