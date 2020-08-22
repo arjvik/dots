@@ -330,6 +330,11 @@ else
 	info_important "Skipping installation of Adapta GTK Theme, Paper Icon Theme, and Nerd Fonts"
 fi
 
+info "Configuring Nautilus"
+cd ~/dots
+stow nautilus
+info_done
+
 info "Installing dunst"
 sudo apt install -y dunst
 info_done
