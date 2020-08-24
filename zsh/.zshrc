@@ -157,6 +157,7 @@ swssh() {
 	fi
 	if [[ $1 == "+L" ]]; then
 		: ${2:=8888} # 8888 is Jupyter port
+		echo "Forwarding port ${2}"
 		local extra_args="-L ${2}:localhost:${2}"
 		shift 2
 	else
@@ -186,7 +187,6 @@ done
 
 mkc() { mkdir -p "$1" && cd "$1" || return 1 }
 _mkc() { _files -W "$1" -/ }
-
 
 export MYSQL_PS1="MySQL \d>\_"
 export PIP_REQUIRE_VIRTUALENV=true
