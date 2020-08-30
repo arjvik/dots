@@ -1,16 +1,12 @@
 #!/bin/bash
 
-killall -q polybar
+polybar-msg cmd quit
 
 # Set thermal zone
 echo "thermal-zone = `grep "." /sys/class/thermal/thermal_zone*/type | cut -c32,38- | grep "x86_pkg_temp" | cut -d":" -f1`" > ~/.config/polybar/thermal-zone
 
-
-if xrandr | grep "DP-2 connected"; then
-	polybar laptop-dual &
-	polybar extern-dual &
-else
-	polybar laptop-single &
-fi
-
-
+first=true
+polybar -m | grep -vF "(XRandR monitor)" | sort | while read -r monitor _; do
+	MONITOR=${monitor::-1} PRIMARY=$first TRAY=$([[ $first == "true" ]] && echo "right" ) polybar top &!
+	first=false
+done

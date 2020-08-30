@@ -25,15 +25,14 @@ primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 
-[monitors]
-laptop = eDP-1
-extern = DP-2
-
-[bar/parent]
+[bar/top]
 width = 100%
 height = 27
 radius = 0
 fixed-center = false
+
+monitor = ${env:MONITOR:eDP-1}
+tray-position = ${env:TRAY:}
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -59,37 +58,10 @@ modules-right = filesystem backlight-acpi pulseaudio mpd playerctl xkeyboard xke
 
 enable-ipc = true
 
-;tray-position = right
 tray-padding = 2
-;tray-background = #0063ff
-
-;wm-restack = bspwm
-;wm-restack = i3
-
-;override-redirect = true
-
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
-
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
 
 cursor-click = pointer
 cursor-scroll = ns-resize
-
-[bar/laptop-dual]
-inherit = bar/parent
-monitor = ${monitors.laptop}
-
-[bar/extern-dual]
-inherit = bar/parent
-monitor = ${monitors.extern}
-tray-position = right
-
-[bar/laptop-single]
-inherit = bar/parent
-monitor = ${monitors.laptop}
-tray-position = right
 
 [module/xwindow]
 type = internal/xwindow
