@@ -18,17 +18,13 @@ while true; do
 	STATUS=$(cat "/sys/class/power_supply/$BATTERY/status")
 	if [[ "$STATUS" != "Discharging" && $CHARGE -ge $FULL ]]; then
 		warn "Battery Full ($CHARGE%)"
-		sleep 10m
 	elif [[ "$STATUS" == "Discharging" && $CHARGE -le $LOW && $CHARGE -gt $CRITICAL ]]; then
 		warn "Battery Low ($CHARGE%)"
-		sleep 5m
 	elif [[ "$STATUS" == "Discharging" && $CHARGE -le $CRITICAL ]]; then
 		if [[ `warn "Battery Critical ($CHARGE%)" "Shut down now"` -eq 1 && \
 		      `warn "Are you sure you want to turn off your computer?" "Yes"` -eq 1 ]]; then
 			poweroff
 		fi
-		sleep 1m
-	else
-		sleep 1m
 	fi
+	sleep 1m
 done
