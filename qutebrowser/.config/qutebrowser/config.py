@@ -10,9 +10,18 @@
 # aliases, while the values are the commands they map to.
 # Type: Dict
 c.aliases = {
-    'proxy-off': 'set content.proxy system',
-    'proxy-on': 'set content.proxy http://192.168.49.1:8282/',
+    'proxy-netshare': 'set content.proxy http://192.168.49.1:8282/',
     'proxy-ssh': 'set content.proxy socks://localhost:9050/',
+    'proxy-utsw': 'set content.proxy http://proxy.swmed.edu:3128/',
+    'proxy-off': 'set content.proxy system',
+    'qute-lastpass': 'spawn --userscript qute-lastpass',
+    'qute-lastpass-pw-only': 'spawn --userscript qute-lastpass -w',
+    'outline-unblock': 'open https://outline.com/{url}',
+    'quora-unblock': 'open {url}?share',
+    'jinkens-download': 'jseval window.location.replace(document.getElementById("root").childNodes[2].childNodes[0].data)',
+    'easybib-unblock': 'jseval for (d of document.getElementsByTagName("div")) if (d.style["z-index"]>=9999) d.style["display"]="none";',
+    'youtube-speed': 'jseval document.getElementsByTagName("video")[0].playbackRate = parseFloat(prompt("Enter playback speed"))',
+    'create-qr-code': 'open -t https://api.qrserver.com/v1/create-qr-code/?size=300x300&qzone=1&data={url}',
     'q': 'quit',
     'w': 'session-save',
     'wq': 'quit --save'
@@ -107,27 +116,22 @@ config.bind(']]', 'navigate increment')
 config.bind('{{', 'navigate prev')
 config.bind('}}', 'navigate next')
 config.bind('yf', 'hint all yank')
-config.bind('qp', 'spawn --userscript qute-lastpass')
-config.bind('qP', 'spawn --userscript qute-lastpass -w')
-config.bind('qo', 'open https://outline.com/{url}')
-config.bind('qu', 'open {url}?share')
-config.bind('qbo', 'proxy-on')
-config.bind('qbx', 'proxy-off')
+config.bind('qp', 'qute-lastpass')
+config.bind('qP', 'qute-lastpass-pw-only')
+config.bind('qo', 'outline-unblock')
+config.bind('qu', 'quora-unblock')
+config.bind('qbo', 'proxy-netshare')
 config.bind('qbs', 'proxy-ssh')
-config.bind('qj', 'jseval window.location.replace(document.getElementById("root").childNodes[2].childNodes[0].data)')
-config.bind('qe', 'jseval for (d of document.getElementsByTagName("div")) if (d.style["z-index"]>=9999) d.style["display"]="none";')
-config.bind('qy', 'jseval document.getElementsByTagName("video")[0].playbackRate = parseFloat(prompt("Enter playback speed"))')
-config.bind('qr', 'open -t https://api.qrserver.com/v1/create-qr-code/?size=300x300&qzone=1&data={url}')
+config.bind('qbu', 'proxy-utsw')
+config.bind('qbx', 'proxy-off')
+config.bind('qj', 'jinkens-download')
+config.bind('qe', 'easybib-unblock')
+config.bind('qy', 'youtube-speed')
+config.bind('qr', 'create-qr-code')
 
-# config.unbind(x) replaces depricated config.bind(x, None)
-if 'unbind' in dir(config):
-    config.unbind('<Ctrl+a>')
-    config.unbind('<Ctrl+x>')
-    config.unbind('q')
-else:
-    config.bind('<Ctrl+a>', None)
-    config.bind('<Ctrl+x>', None)
-    config.bind('q', None)
+config.unbind('<Ctrl+a>')
+config.unbind('<Ctrl+x>')
+config.unbind('q')
 
 # Bindings for insert mode
 config.bind('<Alt+Left>', 'back', mode='insert')
