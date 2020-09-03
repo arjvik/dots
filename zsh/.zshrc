@@ -167,18 +167,18 @@ swssh() {
 }
 
 declare -A diraliases=(
-	["rr2"]="$HOME/Programming/IronReign/ftc_app_rr2"
+	["dots"]="$HOME/dots"
+	["amc-club"]="$HOME/Documents/Math/AMC-Club"
 	["contests"]="$HOME/Programming/java/contests/Contests"
 	["irbot"]="$HOME/Programming/java/robotics/ironreignbot"
-	["dots"]="$HOME/dots"
 	["api"]="$HOME/Programming/java/ArjMart/API"
 	["profilr"]="$HOME/Programming/java/web/profilr"
-	["password-portal"]="$HOME/Programming/java/web/password-portal"
-	["automl"]="$HOME/Programming/python/machine-learning/AutoML"
-	["cd-vui"]="$HOME/Programming/python/pSolv/needletail-vui"
-	["cd-ng"]="$HOME/Programming/data-science/UTSW/nuclear-grading"
-	["qpsc"]="$HOME/Programming/groovy/scripts/QuPath-Scripts"
-	["amc-club"]="$HOME/Documents/Math/AMC-Club"
+	["pwportal"]="$HOME/Programming/java/web/password-portal"
+	["automl"]="$HOME/Programming/python/AutoML"
+	["vui"]="$HOME/Programming/python/needletail-vui"
+	["zoomer"]="$HOME/Programming/python/Zoom-er"
+	["cd-ng"]="$HOME/Programming/UTSW/nuclear-grading"
+	["qpsc"]="$HOME/Programming/UTSW/QuPath/groovy/QuPath-Scripts"
 )
 
 for key value in "${(@kv)diraliases}"; do
