@@ -366,9 +366,9 @@ interval = 2
 
 [module/bluetooth]
 type = custom/script
-exec = ~/.config/polybar/polybar-bluetooth.sh
-exec-if = ~/.config/polybar/polybar-bluetooth.sh test-connected
-interval = 2
+exec = "bluetoothctl paired-devices | cut -d' ' -f2 | xargs -i -n1 bash -c "bluetoothctl info {} | grep -q 'Connected: yes' && bluetoothctl info {} | grep -o 'Alias: .*'" | awk -vORS=', ' '{sub($1 OFS,"")}1' | sed -e 's/, $//'"
+exec-if = bash -c '[[ `bluetoothctl show | grep "Powered: yes" | wc -l` -gt 0 && `bluetoothctl info | grep "Connected: yes" | wc -l` -gt 0 ]] && exit 0 || exit 1'
+interval = 5
 click-right = exec blueman-manager
 format-prefix = " "
 format-underline = #2193ff
