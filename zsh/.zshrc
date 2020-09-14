@@ -169,6 +169,7 @@ swssh() {
 declare -A diraliases=(
 	["dots"]="$HOME/dots"
 	["amc-club"]="$HOME/Documents/Math/AMC-Club"
+	["aops"]="$HOME/Documents/Math/AoPS-Notes"
 	["contests"]="$HOME/Programming/java/contests/Contests"
 	["irbot"]="$HOME/Programming/java/robotics/ironreignbot"
 	["api"]="$HOME/Programming/java/ArjMart/API"
@@ -176,7 +177,7 @@ declare -A diraliases=(
 	["pwportal"]="$HOME/Programming/java/web/password-portal"
 	["automl"]="$HOME/Programming/python/AutoML"
 	["vui"]="$HOME/Programming/python/needletail-vui"
-	["zoomer"]="$HOME/Programming/python/Zoom-er"
+	["cd-zoomer"]="$HOME/Programming/python/Zoomer"
 	["cd-ng"]="$HOME/Programming/UTSW/nuclear-grading"
 	["qpsc"]="$HOME/Programming/UTSW/QuPath/groovy/QuPath-Scripts"
 )
@@ -209,6 +210,7 @@ alias penv="exec pipenv shell"
 alias ng="cd-ng && penv"
 alias ngpy="cd-ng && exec pipenv shell python3"
 alias ng-jpurl='jq ".\"python.dataScience.jupyterServerURI\" |= \"$(head -n1 ~/jupyter.txt)\"" $diraliases[cd-ng]/.vscode/settings.json | {sleep 1 && tee $diraliases[cd-ng]/.vscode/settings.json >/dev/null}'
+alias zoomer="cd-zoomer && source venv/bin/activate"
 alias keybind="xev -event keyboard | sed -Ene 's/.*keycode\s*([0-9]*)\s*\(keysym\s*\w*,\s*(\w*)\).*/keycode \1 (\2)/' -e '/keycode/p'"
 alias fehbg="feh --bg-scale --no-fehbg"
 alias thermalzone="grep --color=always \".\" /sys/class/thermal/thermal_zone*/type | cut -c40,46-; echo '---'; cat ~/.config/polybar/thermal-zone"
