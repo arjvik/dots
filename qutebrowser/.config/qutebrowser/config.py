@@ -14,6 +14,7 @@ c.aliases = {
     'proxy-ssh': 'set content.proxy socks://localhost:9050/',
     'proxy-utsw': 'set content.proxy http://proxy.swmed.edu:3128/',
     'proxy-off': 'set content.proxy system',
+    'medium-unblock': 'open javascript:fetch(window.location.href,{credentials:"omit",redirect:"follow",mode:"no-cors"}).then(b=>b.text()).then(b=>document.querySelector("html").innerHTML=b.replace(/<\/?noscript>/g,""))',
     'qute-lastpass': 'spawn --userscript qute-lastpass',
     'qute-lastpass-pw-only': 'spawn --userscript qute-lastpass -w',
     'outline-unblock': 'open https://outline.com/{url}',
@@ -116,6 +117,7 @@ config.bind(']]', 'navigate increment')
 config.bind('{{', 'navigate prev')
 config.bind('}}', 'navigate next')
 config.bind('yf', 'hint all yank')
+config.bind('qm', 'medium-unblock')
 config.bind('qp', 'qute-lastpass')
 config.bind('qP', 'qute-lastpass-pw-only')
 config.bind('qo', 'outline-unblock')
