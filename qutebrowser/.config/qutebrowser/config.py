@@ -14,12 +14,12 @@ c.aliases = {
     'proxy-ssh': 'set content.proxy socks://localhost:9050/',
     'proxy-utsw': 'set content.proxy http://proxy.swmed.edu:3128/',
     'proxy-off': 'set content.proxy system',
+    'classroom-switch-account': 'jseval window.location.href=window.location.href.replace("/u/0","/u/1")',
     'medium-unblock': 'open javascript:fetch(window.location.href,{credentials:"omit",redirect:"follow",mode:"no-cors"}).then(b=>b.text()).then(b=>document.querySelector("html").innerHTML=b.replace(/<\/?noscript>/g,""))',
     'qute-lastpass': 'spawn --userscript qute-lastpass',
     'qute-lastpass-pw-only': 'spawn --userscript qute-lastpass -w',
     'outline-unblock': 'open https://outline.com/{url}',
     'quora-unblock': 'open {url}?share',
-    'jinkens-download': 'jseval window.location.replace(document.getElementById("root").childNodes[2].childNodes[0].data)',
     'easybib-unblock': 'jseval for (d of document.getElementsByTagName("div")) if (d.style["z-index"]>=9999) d.style["display"]="none";',
     'youtube-speed': 'jseval document.getElementsByTagName("video")[0].playbackRate = parseFloat(prompt("Enter playback speed"))',
     'create-qr-code': 'open -t https://api.qrserver.com/v1/create-qr-code/?size=300x300&qzone=1&data={url}',
@@ -126,7 +126,7 @@ config.bind('qbo', 'proxy-netshare')
 config.bind('qbs', 'proxy-ssh')
 config.bind('qbu', 'proxy-utsw')
 config.bind('qbx', 'proxy-off')
-config.bind('qj', 'jinkens-download')
+config.bind('qc', 'classroom-switch-account')
 config.bind('qe', 'easybib-unblock')
 config.bind('qy', 'youtube-speed')
 config.bind('qr', 'create-qr-code')
