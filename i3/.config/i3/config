@@ -226,7 +226,7 @@ bindsym XF86AudioNext exec --no-startup-id playerctl next
 
 # i3lock
 bindsym $mod+l exec ~/bin/i3lock-color-fancy
-bindsym $mod+Shift+l exec ~/bin/i3lock-color-fancy && systemctl suspend
+bindsym $mod+Shift+l exec ~/bin/i3lock-color-fancy suspend
 
 # start rofi (dmenu replacement)
 bindsym $mod+d exec rofi -show drun

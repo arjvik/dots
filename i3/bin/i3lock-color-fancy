@@ -13,3 +13,5 @@ I3LOCK_OPTIONS="$I3LOCK_OPTIONS --timecolor=$CLOCK_COLOR --datecolor=$CLOCK_COLO
 I3LOCK_OPTIONS="$I3LOCK_OPTIONS --insidevercolor=$RINGTEXT_COLOR --insidewrongcolor=$RINGTEXT_COLOR --ringwrongcolor=ff0000ff --line-uses-inside -c00000000"
 
 i3lock $I3LOCK_OPTIONS
+
+[[ "$1" == "suspend" ]] && systemctl suspend
