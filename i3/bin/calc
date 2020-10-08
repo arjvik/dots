@@ -7,4 +7,4 @@ while [[ "$INPUT" != "$LASTINPUT" ]]; do
 	INPUT=$(rofi -dmenu -p "$INPUT=" -filter "$ANS" -lines 0)
 	ANS=$(gcalccmd "$INPUT")
 done
-
+xsel -bi <<<"$INPUT"
