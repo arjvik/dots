@@ -3,7 +3,7 @@
 BATTERY="BAT0"
 FULL=100
 LOW=20
-CRITICAL=8
+CRITICAL=10
 
 warn() {
 	if [[ -z "$2" ]]; then
