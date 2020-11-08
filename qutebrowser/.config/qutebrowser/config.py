@@ -23,6 +23,7 @@ c.aliases = {
     'easybib-unblock': 'jseval for (d of document.getElementsByTagName("div")) if (d.style["z-index"]>=9999) d.style["display"]="none";',
     'youtube-speed': 'jseval document.getElementsByTagName("video")[0].playbackRate = parseFloat(prompt("Enter playback speed"))',
     'create-qr-code': 'open -t https://api.qrserver.com/v1/create-qr-code/?size=300x300&qzone=1&data={url}',
+    'autofill-name': 'fake-key Vikram<tab>Arjun<tab>',
     'q': 'quit',
     'w': 'session-save',
     'wq': 'quit --save'
@@ -128,6 +129,7 @@ config.bind('qbu', 'proxy-utsw')
 config.bind('qbx', 'proxy-off')
 config.bind('qc', 'classroom-switch-account')
 config.bind('qe', 'easybib-unblock')
+config.bind('qf', 'autofill-name')
 config.bind('qy', 'youtube-speed')
 config.bind('qr', 'create-qr-code')
 
