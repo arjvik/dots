@@ -379,7 +379,7 @@ type = custom/script
 exec = apt list --upgradable 2>/dev/null | tail +2 | wc -l
 exec-if = apt list --upgradable 2>/dev/null | tail +2 | grep .
 interval = 3600
-click-left = gnome-terminal -- sh -c "echo '$ sudo apt upgrade --autoremove' && sudo apt upgrade --autoremove"
+click-left = gnome-terminal -- sh -c "echo '$ sudo apt update && sudo apt upgrade --autoremove' && sudo apt update && sudo apt upgrade --autoremove"
 format-prefix = " "
 format-underline = #e95420
 
