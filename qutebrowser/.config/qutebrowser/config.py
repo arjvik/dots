@@ -42,18 +42,12 @@ c.auto_save.session = False
 # The file `~/.config/qutebrowser/blocked-hosts` is always read if it
 # exists.
 # Type: List of Url
-c.content.host_blocking.lists = ['https://www.malwaredomainlist.com/hostslist/hosts.txt', 'http://someonewhocares.org/hosts/hosts', 'http://winhelp2002.mvps.org/hosts.zip', 'http://malwaredomains.lehigh.edu/files/justdomains.zip', 'https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&mimetype=plaintext']
+c.content.host_blocking.lists = ['https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts']
 
 # Enable JavaScript.
 # Type: Bool
 config.set('content.javascript.enabled', True, 'file://*')
-
-# Enable JavaScript.
-# Type: Bool
 config.set('content.javascript.enabled', True, 'chrome://*/*')
-
-# Enable JavaScript.
-# Type: Bool
 config.set('content.javascript.enabled', True, 'qute://*/*')
 
 # Proxy to use. In addition to the listed values, you can use a
@@ -106,6 +100,11 @@ c.url.searchengines = {'DEFAULT': 'https://google.com/search?query={}'}
 # Page(s) to open at the start.
 # Type: List of FuzzyUrl, or FuzzyUrl
 c.url.start_pages = 'https://arjvik.github.io/tab'
+
+## Directory to save downloads to. If unset, a sensible OS-specific
+## default is used.
+## Type: Directory
+c.downloads.location.directory = '/tmp'
 
 # Bindings for normal mode
 config.bind('<Alt+0>', 'tab-focus -1')
