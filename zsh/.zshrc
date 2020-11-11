@@ -190,6 +190,8 @@ done
 mkc() { mkdir -p "$1" && cd "$1" || return 1 }
 _mkc() { _files -W "$1" -/ }
 
+pdfmerge() { if [[ $# -ge 2 ]]; then command gs -sDEVICE=pdfwrite -DNOPAUSE -dBATCH -dSAFER -sOutputFile="$1" "${@:2}"; else echo "Usage: pdfmerge destination.pdf source1.pdf source2.pdf ... sourceN.pdf"; fi }
+
 export MYSQL_PS1="MySQL \d>\_"
 export PIP_REQUIRE_VIRTUALENV=true
 export PYTHONSTARTUP="$HOME/.pystartup"
