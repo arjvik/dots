@@ -222,7 +222,6 @@ alias mysqldump-aws="mysqldump -h mydbinstance.cbg4coxfme7c.us-east-2.rds.amazon
 alias speedtest-cli="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"
 alias btbattery="curl https://raw.githubusercontent.com/TheWeirdDev/Bluetooth_Headset_Battery_Level/master/bluetooth_battery.py @Q | python - FC:58:FA:78:3A:CD"
 alias sudoedit="SUDO_EDITOR=\"\$(echo =gedit)\" sudo -e"
-alias eyeD3="echo 'Enabling eyeD3 virtualenv'; source ~/Software/eyeD3/bin/activate; unalias eyeD3; eyeD3"
 alias temp_venv='temp_venv=$(mktemp -d);virtualenv $temp_venv;source $temp_venv/bin/activate;_unset_venv(){deactivate;rm -rf $1};trap "_unset_venv $temp_venv" EXIT;unset temp_venv'
 alias animated_wallpaper="xwinwrap -fs -ov -ni -- mpv -wid WID -loop dots/walls/sky\$(xrandr | grep -q 'DP-2 connected' && echo '-double').mp4 & sleep 1"
 alias savediff="ls /etc/apt/sources.list.d/ | grep -v save | xargs -I {} bash -c 'diff /etc/apt/sources.list.d/{}{,.save} && echo {} == {}.save'"

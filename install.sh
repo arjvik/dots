@@ -452,7 +452,7 @@ else
 	info "virtualenv found"
 fi
 unset PIP_REQUIRE_VIRTUALENV
-pip3 install ptpython
+pip3 install ptpython pipx
 cd ~
 rm -f .pystartup
 cd ~/dots
