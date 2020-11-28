@@ -7,9 +7,9 @@ CRITICAL=10
 
 warn() {
 	if [[ -z "$2" ]]; then
-		echo "$1" | rofi -dmenu -p "Warning" -lines 1
+		rofi -dmenu -p "Warning" -lines 1 <<<"$1"
 	else
-		echo -e "$1\n$2" | timeout 1m rofi -dmenu -p "Warning" -lines 2 -format i
+		timeout 30s rofi -dmenu -p "Warning" -lines 2 -format i <<<"$1"$'\n'"$2"
 	fi
 }
 
@@ -30,5 +30,5 @@ while true; do
 			warn "Battery Full ($CHARGE%)"
 		fi # else: Charging normally
 	fi
-	sleep 1m
+	sleep 30s
 done
