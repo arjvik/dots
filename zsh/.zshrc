@@ -145,12 +145,16 @@ swssh() {
 		[33000]="NucleusD%03d"
 		[36000]="NucleusE%03d"
 	)
-	for min_port in "${(@Ok)portpartitions}"; do
-		if [[ $port -gt $min_port ]]; then
-			local hostname=$(printf $portpartitions[$min_port] $(( ($port-$min_port)/10 )) )
-			break
-		fi
-	done
+	if [[ $port -eq 005 ]]; then
+		local hostname=localhost
+	else
+		for min_port in "${(@Ok)portpartitions}"; do
+			if [[ $port -gt $min_port ]]; then
+				local hostname=$(printf $portpartitions[$min_port] $(( ($port-$min_port)/10 )) )
+				break
+			fi
+		done
+	fi
 	if ! [[ -v hostname ]]; then
 		echo "No valid hostname found for port #$port"
 		return 1
@@ -163,7 +167,7 @@ swssh() {
 	else
 		local extra_args=
 	fi
-	ssh -J s199758@nucleus.biohpc.swmed.edu s199758@$hostname $extra_args "$@"
+	ssh -J root@localhost:8222,s199758@nucleus.biohpc.swmed.edu s199758@$hostname $extra_args "$@"
 }
 
 declare -A diraliases=(
@@ -227,7 +231,7 @@ alias temp_venv='temp_venv=$(mktemp -d);virtualenv $temp_venv;source $temp_venv/
 alias animated_wallpaper="xwinwrap -fs -ov -ni -- mpv -wid WID -loop dots/walls/sky\$(xrandr | grep -q 'DP-2 connected' && echo '-double').mp4 & sleep 1"
 alias savediff="ls /etc/apt/sources.list.d/ | grep -v save | xargs -I {} bash -c 'diff /etc/apt/sources.list.d/{}{,.save} && echo {} == {}.save'"
 alias adb-ip="adb shell ip address show wlan0 | grep 'wlan0$' | cut -d' ' -f 6 | cut -d/ -f 1"
-alias swvpn="lpass show -F 'swmed.edu' | sed -Ene '/^(Username|Password|VPNPassword2): /s/.*: //p' | sudo openconnect --juniper -vvv https://utswra.swmed.edu -i vpn0"
+alias swvpn="systemctl is-active --quiet docker || sudo systemctl start docker && docker run --cap-add=NET_ADMIN --device=/dev/net/tun -p 8222:22 -it dockervpn"
 
 alias -g @H="| head"
 alias -g @T="| tail"
