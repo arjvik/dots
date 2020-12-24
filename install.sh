@@ -105,18 +105,17 @@ if ! type i3; then
 	sudo chown -R $USER:$USER i3-gaps
 	cd i3-gaps
 	info "First, installing dependencies"
-	sudo apt install -y build-essential libxcb1-dev libxcb-keysyms1-dev \
+	sudo apt install -y build-essential meson libxcb1-dev libxcb-keysyms1-dev \
 		libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev \
 		libstartup-notification0-dev libxcb-randr0-dev \
 		libev-dev libxcb-cursor-dev libxcb-xinerama0-dev \
 		libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev \
 		autoconf libxcb-xrm0 libxcb-xrm-dev automake libxcb-shape0-dev
-	autoreconf --force --install
 	rm -rf build/
 	mkdir -p build && cd build/
-	../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
-	make
-	sudo make install
+	meson --prefix /usr --sysconfdir /etc --buildtype release --optimization 3
+	ninja
+	sudo ninja install
 else
 	info "i3 found, assuming its i3-gaps"
 fi
