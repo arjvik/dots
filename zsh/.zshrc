@@ -173,7 +173,7 @@ swssh() {
 declare -A diraliases=(
 	["dots"]="$HOME/dots"
 	["amc-club"]="$HOME/Documents/Math/AMC-Club"
-	["aops"]="$HOME/Documents/Math/AoPS-Notes"
+	["aops"]="$HOME/Documents/Math/AoPS-Notes/WOOT 2020/Notes"
 	["contests"]="$HOME/Programming/java/contests/Contests"
 	["irbot"]="$HOME/Programming/java/robotics/ironreignbot"
 	["api"]="$HOME/Programming/java/ArjMart/API"
@@ -185,6 +185,7 @@ declare -A diraliases=(
 	["cd-zoomer"]="$HOME/Programming/python/Zoomer"
 	["cd-ng"]="$HOME/Programming/UTSW/nuclear-grading"
 	["qpsc"]="$HOME/Programming/UTSW/QuPath/groovy/QuPath-Scripts"
+	["cd-dvcdemo"]="$HOME/Programming/python/dvc-demo"
 )
 
 for key value in "${(@kv)diraliases}"; do
@@ -213,11 +214,11 @@ alias python="python3"
 alias pip="pip3"
 alias egrep='egrep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
 alias diff="diff --color=auto" 
-alias penv="exec pipenv shell"
-alias ng="cd-ng && penv"
+alias ng="cd-ng && exec pipenv shell"
 alias ngpy="cd-ng && exec pipenv shell python3"
 alias ng-jpurl='jq ".\"python.dataScience.jupyterServerURI\" |= \"$(head -n1 ~/jupyter.txt)\"" $diraliases[cd-ng]/.vscode/settings.json | {sleep 1 && tee $diraliases[cd-ng]/.vscode/settings.json >/dev/null}'
 alias zoomer="cd-zoomer && source venv/bin/activate"
+alias dvcdemo="cd-dvcdemo && exec pipenv shell"
 alias ip="ip -c"
 alias keybind="xev -event keyboard | sed -Ene 's/.*keycode\s*([0-9]*)\s*\(keysym\s*\w*,\s*(\w*)\).*/keycode \1 (\2)/' -e '/keycode/p'"
 alias fehbg="feh --bg-scale --no-fehbg"
