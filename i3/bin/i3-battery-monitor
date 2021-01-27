@@ -1,9 +1,9 @@
 #!/bin/bash
 
 BATTERY="BAT0"
-FULL=100
-LOW=20
-CRITICAL=10
+FULL=70
+LOW=30
+CRITICAL=20
 
 warn() {
 	if [[ -z "$2" ]]; then
