@@ -159,15 +159,16 @@ swssh() {
 		echo "No valid hostname found for port #$port"
 		return 1
 	fi
-	if [[ $1 == "+L" ]]; then
-		: ${2:=8888} # 8888 is Jupyter port
-		echo "Forwarding port ${2}"
-		local extra_args="-L ${2}:localhost:${2}"
-		shift 2
+	if [[ $1 == +L=* ]]; then
+		typeset -a fwports=("${(@s/,/)${1##+L}#=}")
+		echo "Forwarding ports ${(@j/, /)fwports}"
+		local extra_args="$(printf '-L %1$s:localhost:%1$s ' "${(@)fwports}")"
+		extra_args="${extra_args%,}"
+		shift
 	else
 		local extra_args=
 	fi
-	ssh -J root@localhost:8222,s199758@nucleus.biohpc.swmed.edu s199758@$hostname $extra_args "$@"
+	ssh -J root@localhost:8222,s199758@nucleus.biohpc.swmed.edu s199758@$hostname "${(z)extra_args}" "$@"
 }
 
 declare -A diraliases=(
