@@ -15,7 +15,7 @@ c.aliases = {
     'proxy-utsw': 'set content.proxy http://proxy.swmed.edu:3128/',
     'proxy-off': 'set content.proxy system',
     'classroom-switch-account': 'jseval window.location.href=window.location.href.replace("/u/0","/u/1")',
-    'medium-unblock': 'open javascript:fetch(window.location.href,{credentials:"omit",redirect:"follow",mode:"no-cors"}).then(b=>b.text()).then(b=>document.querySelector("html").innerHTML=b.replace(/<\/?noscript>/g,""))',
+    'medium-unblock': 'open javascript:fetch(window.location.href,{credentials:"omit",redirect:"follow",mode:"no-cors"}).then(b=>b.text()).then(b=>document.querySelector("html").innerHTML=b.replace(/<\\/?noscript>/g,""))',
     'qute-lastpass': 'spawn --userscript qute-lastpass',
     'qute-lastpass-pw-only': 'spawn --userscript qute-lastpass -w',
     'outline-unblock': 'open https://outline.com/{url}',
