@@ -237,10 +237,6 @@ alias swvpn="systemctl is-active --quiet docker || sudo systemctl start docker &
 alias swsshfs='[[ -d /media/$USER/UTSW && -O /media/$USER/UTSW ]] || { sudo mkdir -p /media/$USER/UTSW && sudo chown -R $USER:$USER /media/$USER/UTSW }; echo "Mounting at /media/$USER/UTSW"; sshfs -f s199758@nucleus.biohpc.swmed.edu:/ /media/$USER/UTSW -o follow_symlinks -o ssh_command="ssh -J root@localhost:8222"'
 alias cmdprompt="prompt_powerlevel9k_teardown && PS1='%BC:\${\${PWD//\//\\\\}/home/Users}>%b '"
 
-alias -g @H="| head"
-alias -g @T="| tail"
-alias -g @G="| grep"
-alias -g @L="| less"
 alias -g @Q="2>/dev/null"
 alias -g @S=">/dev/null"
 alias -g @\?='; if [[ $? -eq 0 ]]; then echo "$? (true)"; else echo "$? (false)"; fi'
