@@ -167,7 +167,7 @@ EOF
 info_done
 
 info "Configuring i3"
-sudo apt install -y jq xsettingsd
+sudo apt install -y jq xsettingsd maim
 rm -rf ~/.config/i3
 cd ~/dots
 stow i3

@@ -245,9 +245,9 @@ bindsym $mod+Shift+t exec --no-startup-id trans-menu
 bindsym $mod+Shift+k exec --no-startup-id rofimoji
 
 # screenshots
-bindsym $mod+Shift+s exec --no-startup-id gnome-screenshot -af /tmp/screenshot_clipboard.png && xclip -selection clipboard -t image/png -i /tmp/screenshot_clipboard.png && rm /tmp/screenshot_clipboard.png
-bindsym $mod+Shift+f exec --no-startup-id gnome-screenshot -af /tmp/screenshot.png
-bindsym $mod+Ctrl+Shift+f exec --no-startup-id gnome-screenshot -af "/tmp/screenshot-$(date +'%Y-%m-%d-%H:%M:%S').png"
+bindsym $mod+Shift+s exec --no-startup-id "maim -c .369,.506,.675 -b 2 -u -s | xclip -selection clipboard -t image/png"
+bindsym $mod+Shift+f exec --no-startup-id "maim -c .369,.506,.675 -b 2 -u -s /tmp/screenshot.png"
+bindsym $mod+Ctrl+Shift+f exec --no-startup-id "maim -c .369,.506,.675 -b 2 -u -s \\"/tmp/screenshot-$(date +'%Y-%m-%d-%H:%M:%S').png\\""
 
 # XSettings Daemon
 exec --no-startup-id xsettingsd
