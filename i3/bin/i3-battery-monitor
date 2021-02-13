@@ -5,6 +5,10 @@ FULL=70
 LOW=30
 CRITICAL=20
 
+log() {
+	echo "[pid=$$]" "$(date +"%D %I:%M:%S %p")" "$@" >> /tmp/.i3-battery-monitor-log
+}
+
 warn() {
 	if [[ -z "$2" ]]; then
 		rofi -dmenu -p "Warning" -lines 1 <<<"$1"
@@ -16,19 +20,23 @@ warn() {
 while true; do
 	CHARGE=$(cat "/sys/class/power_supply/$BATTERY/capacity")
 	STATUS=$(cat "/sys/class/power_supply/$BATTERY/status")
+	log "$STATUS $CHARGE%"
 	if [[ $STATUS == "Discharging" ]]; then
 		if [[ $CHARGE -le $CRITICAL ]]; then
-			# Discharging, 8% or lower
-			[[ $(warn "Battery Critical ($CHARGE%)! Suspending now" "Don't suspend") -eq 1 ]] || i3lock-color-fancy suspend
+			log "Critical warning"
+			if [[ $(warn "Battery Critical ($CHARGE%)! Suspending now" "Don't suspend") -ne 1 ]]; then
+				log "Attempting to suspend"
+				i3lock-color-fancy suspend
+			fi
 		elif [[ $CHARGE -le $LOW ]]; then
-			# Discharging, 20% or lower
+			log "Low warning"
 			warn "Battery Low ($CHARGE%)"
-		fi # else: Discharging normally, more than 20%
+		fi
 	else
 		if [[ $CHARGE -ge $FULL ]]; then
-			# Charging, at 100%
+			log "Full warning"
 			warn "Battery Full ($CHARGE%)"
-		fi # else: Charging normally
+		fi
 	fi
 	sleep 30s
 done
