@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [[ $UID -ne 0 ]]; then
+	export SUDO_ASKPASS="$HOME/bin/sudo-askpass-rofi"
+	exec sudo -A $0 $@
+fi
+
+if [[ -z "$1" ]]; then
+	CURRENT_MAC="`ip link show wlp2s0 | grep -Eo "([0-9a-f]{2}:){5}[0-9a-f]{2}" | head -n1`"
+	MAC="`rofi -dmenu -p "MAC Address"  -filter "$CURRENT_MAC" -lines 0`" || { rofi -e "MAC Address unchanged from $CURRENT_MAC"; exit; }
+else
+	MAC="$1"
+fi
+
+echo "New MAC - $MAC"
+
+ip link set dev wlp2s0 down
+ip link set dev wlp2s0 address "$MAC"
+ip link set dev wlp2s0 up
+
+ip link show wlp2s0 | rofi -dmenu -p "Status"
