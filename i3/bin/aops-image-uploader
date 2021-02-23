@@ -1,0 +1,15 @@
+#!/bin/bash
+
+while [[ $# -gt 0 ]]; do
+	filepath="$1"
+	filename="${filepath##*/}"
+	if [[ $filepath == http* ]]; then
+		curl -s "$filepath" -o "$HOME/Documents/Math/AoPS-Notes/WOOT 2020/Notes/img/$filename"
+	else
+		cp "$filepath" "$HOME/Documents/Math/AoPS-Notes/WOOT 2020/Notes/img/$filename"
+	fi
+	echo "file://$HOME/Documents/Math/AoPS-Notes/WOOT%202020/Notes/img/$filename"
+	
+	[[ $filepath == $HOME/.config/Typora/typora-user-images* ]] && rm $filepath
+	shift
+done
