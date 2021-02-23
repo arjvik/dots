@@ -11,12 +11,19 @@ log() {
 
 warn() {
 	if [[ -z "$2" ]]; then
-		rofi -dmenu -p "Warning" -lines 1 <<<"$1"
+		rofi -dmenu -p "Warning" -lines 1 <<<"$1" >/dev/null
 	else
 		timeout 30s rofi -dmenu -p "Warning" -lines 2 -format i <<<"$1"$'\n'"$2"
 	fi
 }
 
+# Kill other instances of i3-battery-monitor
+if pids=$(pidof -x $0 -o $$); then
+	log "Killing PIDs: $pids"
+	kill $pids 2>/dev/null
+fi 
+
+# Loop indefinitely until killed
 while true; do
 	CHARGE=$(cat "/sys/class/power_supply/$BATTERY/capacity")
 	STATUS=$(cat "/sys/class/power_supply/$BATTERY/status")
