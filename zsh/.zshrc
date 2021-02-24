@@ -15,8 +15,8 @@ fi
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Powerlevel10k settings
-p10k-set() { for ((i=1; i < $#; i++)); { typeset -g POWERLEVEL9K_${@[$i]:u}=$@[-1] } }
-p10k-prompt() { if [[ $1 == "right" ]]; then typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(${=2}); else typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(${=2}); fi }
+function p10k-set() { for ((i=1; i < $#; i++)); { typeset -g POWERLEVEL9K_${@[$i]:u}=$@[-1] } }
+function p10k-prompt() { if [[ $1 == "right" ]]; then typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(${=2}); else typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(${=2}); fi }
 
 p10k-set mode nerdfont-complete
 p10k-prompt left "os_icon context dir vcs virtualenv singularity background_jobs status newline prompt_char"
@@ -75,7 +75,7 @@ p10k-set status_{ok_pipe,error,error_signal,error_pipe}_foreground 160
 p10k-set status_ok_visual_identifier_expansion ' '
 p10k-set status_{ok_pipe,error,error_signal,error_pipe}_visual_identifier_expansion '↵ '
 # Custom Singularity segment
-prompt_singularity() { p10k segment -c "$SINGULARITY_CONTAINER" -i '' -t "${${${SINGULARITY_CONTAINER##*/}#*LabImage?}%.*}" }
+function prompt_singularity() { p10k segment -c "$SINGULARITY_CONTAINER" -i '' -t "${${${SINGULARITY_CONTAINER##*/}#*LabImage?}%.*}" }
 p10k-set singularity_foreground 1
 
 # Antigen plugin manager
@@ -99,7 +99,7 @@ antigen apply
 # User configuration
 
 # Coloured man pages using less as pager
-man() {
+function man() {
 	env \
 		LESS_TERMCAP_mb=$(printf "\e[1;32m") \
 		LESS_TERMCAP_md=$(printf "\e[1;32m") \
@@ -112,11 +112,11 @@ man() {
 }
 
 unalias gss
-gss() { if [[ -t 1 ]]; then  git status -s; else git status -s | cut -c4-; fi }
+function gss() { if [[ -t 1 ]]; then  git status -s; else git status -s | cut -c4-; fi }
 
-highlight() { grep -Ei --color=always "$(printf -- '%s|' "$@")^" }
+function highlight() { grep -Ei --color=always "$(printf -- '%s|' "$@")^" }
 
-addswap() {
+function addswap() {
 	if ! [[ $1 == /swapfile* && $2 =~ [0-9]+[KMG]? ]]; then
 		echo "Usage example: addswap /swapfile2 5G"
 		return 1
@@ -130,7 +130,7 @@ addswap() {
 	fi
 }
 
-swssh() {
+function swssh() {
 	if [[ ! -v 1 ]]; then
 		echo "Usage: swssh <vnc port> [+L] [<ssh args>]"
 		return 1
@@ -171,6 +171,24 @@ swssh() {
 	ssh -J root@localhost:8222,s199758@nucleus.biohpc.swmed.edu s199758@$hostname "${(z)extra_args}" "$@"
 }
 
+function take() { mkdir -p "$1" && cd "$1" || return 1 }
+function _take() { _files -W "$1" -/ }
+
+function clipcopy() { xclip -in -selection clipboard < "${1:-/dev/stdin}"; }
+function clippaste() { xclip -out -selection clipboard; }
+
+
+function pdfmerge() { if [[ $# -ge 2 ]]; then command gs -sDEVICE=pdfwrite -DNOPAUSE -dBATCH -dSAFER -sOutputFile="$1" "${@:2}"; else echo "Usage: pdfmerge destination.pdf source1.pdf source2.pdf ... sourceN.pdf"; fi }
+
+function _0 .{1..9} () { local d=.; repeat ${0:1} d+=/..; cd $d;}
+
+
+export MYSQL_PS1="MySQL \d>\_"
+export PIP_REQUIRE_VIRTUALENV=true
+export PYTHONSTARTUP="$HOME/.pystartup"
+
+command -v sudo-askpass-rofi >/dev/null && export SUDO_ASKPASS=~/bin/sudo-askpass-rofi
+
 declare -A diraliases=(
 	["dots"]="$HOME/dots"
 	["amc-club"]="$HOME/Documents/Math/AMC-Club"
@@ -193,27 +211,18 @@ for key value in "${(@kv)diraliases}"; do
 	alias $key="cd \"$value\""
 done
 
-mkc() { mkdir -p "$1" && cd "$1" || return 1 }
-_mkc() { _files -W "$1" -/ }
-
-pdfmerge() { if [[ $# -ge 2 ]]; then command gs -sDEVICE=pdfwrite -DNOPAUSE -dBATCH -dSAFER -sOutputFile="$1" "${@:2}"; else echo "Usage: pdfmerge destination.pdf source1.pdf source2.pdf ... sourceN.pdf"; fi }
-
-export MYSQL_PS1="MySQL \d>\_"
-export PIP_REQUIRE_VIRTUALENV=true
-export PYTHONSTARTUP="$HOME/.pystartup"
-
-command -v sudo-askpass-rofi >/dev/null && export SUDO_ASKPASS=`echo =sudo-askpass-rofi`
-
 alias gs="git status"
 alias gdc="git diff --cached"
 alias gh="git hub"
 alias ls="lsd"
+alias ll="ls -lh"
+alias la="ls -lAh"
 alias lst="ls --tree"
 alias llt="ll --tree"
-alias la="ls -lah"
+alias lsta="llt -A"
 alias python="python3"
 alias pip="pip3"
-alias egrep='egrep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
+alias {grep=grep,egrep=egrep,fgrep=fgrep}' --color=auto --exclude-dir=.git'
 alias diff="diff --color=auto" 
 alias ng="cd-ng && exec pipenv shell"
 alias ngpy="cd-ng && exec pipenv shell python3"
