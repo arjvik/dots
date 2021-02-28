@@ -182,6 +182,7 @@ function pdfmerge() { if [[ $# -ge 2 ]]; then command gs -sDEVICE=pdfwrite -DNOP
 
 function _0 .{1..9} () { local d=.; repeat ${0:1} d+=/..; cd $d;}
 
+function docker() { systemctl is-active --quiet docker || sudo systemctl start docker && command docker "$@" }
 
 export MYSQL_PS1="MySQL \d>\_"
 export PIP_REQUIRE_VIRTUALENV=true
@@ -242,7 +243,7 @@ alias temp_venv='temp_venv=$(mktemp -d);virtualenv $temp_venv;source $temp_venv/
 alias animated_wallpaper="xwinwrap -fs -ov -ni -- mpv -wid WID -loop dots/walls/sky\$(xrandr | grep -q 'DP-2 connected' && echo '-double').mp4 & sleep 1"
 alias savediff="ls /etc/apt/sources.list.d/ | grep -v save | xargs -I {} bash -c 'diff /etc/apt/sources.list.d/{}{,.save} && echo {} == {}.save'"
 alias adb-ip="adb shell ip address show wlan0 | grep 'wlan0$' | cut -d' ' -f 6 | cut -d/ -f 1"
-alias swvpn="systemctl is-active --quiet docker || sudo systemctl start docker && docker run --cap-add=NET_ADMIN --device=/dev/net/tun -p 8222:22 --env-file <(lpass show -F 'swmed.edu' | sed -Ene '/^(Username|Password): /s/(.*): /VPN_\U\1=/p') --init -it dockervpn"
+alias swvpn="docker run --cap-add=NET_ADMIN --device=/dev/net/tun -p 8222:22 --env-file <(lpass show -F 'swmed.edu' | sed -Ene '/^(Username|Password): /s/(.*): /VPN_\U\1=/p') --init -it dockervpn"
 alias swsshfs='[[ -d /media/$USER/UTSW && -O /media/$USER/UTSW ]] || { sudo mkdir -p /media/$USER/UTSW && sudo chown -R $USER:$USER /media/$USER/UTSW }; echo "Mounting at /media/$USER/UTSW"; sshfs -f s199758@nucleus.biohpc.swmed.edu:/ /media/$USER/UTSW -o follow_symlinks -o ssh_command="ssh -J root@localhost:8222"'
 alias cmdprompt="prompt_powerlevel9k_teardown && PS1='%BC:\${\${PWD//\//\\\\}/home/Users}>%b '"
 alias i3-workspaces="i3-msg -t get_workspaces | jq -r '[\"ID\", \"Output\", \"Visibility\"], [\"-----------------------\"], (map([.num, .output, if .focused then \"Focused\" else if .visible then \"Visible\" else \"Unfocused\" end end]) | sort | .[]) | @tsv'"
