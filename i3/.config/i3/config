@@ -259,7 +259,7 @@ exec --no-startup-id ~/.fehbg
 exec --no-startup-id compton
 
 # battery monitor
-exec --no-startup-id ~/bin/i3-battery-monitor
+exec_always --no-startup-id i3-battery-monitor
 
 # network manager and bluetooth applet
 exec --no-startup-id nm-applet
