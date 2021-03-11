@@ -206,6 +206,7 @@ declare -A diraliases=(
 	["cd-ng"]="$HOME/Programming/UTSW/nuclear-grading"
 	["qpsc"]="$HOME/Programming/UTSW/QuPath/groovy/QuPath-Scripts"
 	["cd-dvcdemo"]="$HOME/Programming/python/dvc-demo"
+	["cd-mathpy"]="$HOME/Programming/python/math"
 )
 
 for key value in "${(@kv)diraliases}"; do
@@ -230,6 +231,7 @@ alias ngpy="cd-ng && exec pipenv shell python3"
 alias ng-jpurl='jq ".\"python.dataScience.jupyterServerURI\" |= \"$(head -n1 ~/jupyter.txt)\"" $diraliases[cd-ng]/.vscode/settings.json | {sleep 1 && tee $diraliases[cd-ng]/.vscode/settings.json >/dev/null}'
 alias zoomer="cd-zoomer && source venv/bin/activate"
 alias dvcdemo="cd-dvcdemo && exec pipenv shell"
+alias mathpy="cd-mathpy && source venv/bin/activate && python3"
 alias ip="ip -c"
 alias keybind="xev -event keyboard | sed -Ene 's/.*keycode\s*([0-9]*)\s*\(keysym\s*\w*,\s*(\w*)\).*/keycode \1 (\2)/' -e '/keycode/p'"
 alias fehbg="feh --bg-scale --no-fehbg"
