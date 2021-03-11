@@ -267,3 +267,9 @@ exec --no-startup-id blueman-applet
 
 # KDE Connect
 exec --no-startup-id QT_QPA_PLATFORMTHEME=gtk2 kdeconnect-indicator
+
+# Show i3bar to fill space where screen is broken (temporary fix)
+bar {
+	output eDP-1
+	tray_output none
+}
