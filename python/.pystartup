@@ -26,6 +26,6 @@ else:
                 return []
         repl.all_prompt_styles["powerline"] = PowerlinePrompt()
         repl.prompt_style = "powerline"
-        repl.show_signature = True
+        #repl.show_signature = True
         repl.show_docstring = True
     sys.exit(embed(globals(), locals(), configure=configure))

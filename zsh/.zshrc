@@ -83,7 +83,9 @@ p10k-set singularity_foreground 1
 if ! [[ -f ~/.antigen/antigen.zsh ]]; then
 	echo "Installing antigen"
 	mkdir ~/.antigen
-	wget git.io/antigen -O ~/.antigen/antigen.zsh
+	wget git.io/antigen -O ~/.antigen/antigen.zsh ||
+		curl -L git.io/antigen -o ~/.antigen/antigen.zsh ||
+		print -P '%F{red}%B!!! Unable to install antigen via wget or curl !!!%b%f'
 fi
 
 source ~/.antigen/antigen.zsh
