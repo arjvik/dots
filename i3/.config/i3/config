@@ -256,7 +256,7 @@ exec --no-startup-id xsettingsd
 exec --no-startup-id ~/.fehbg
 
 # compton
-exec --no-startup-id compton
+exec --no-startup-id picom
 
 # battery monitor
 exec_always --no-startup-id i3-battery-monitor
