@@ -1,9 +1,8 @@
 #!/bin/bash
 
-[[ "$1" == "--no-kill" ]] || i3-msg '[class="cava"]' kill
-gnome-terminal --profile=Transparent --class=cava --zoom=.5 -- /usr/local/bin/cava &
-sleep 1
-i3-msg '[class="cava"]' floating enable, \
+[[ "$1" == "--no-kill" ]] || i3-msg '[class="XAVA"]' kill
+xava & sleep 1
+i3-msg '[class="XAVA"]' floating enable, \
 						sticky enable, \
 						resize set width 1920, \
 						resize set height 50, \
