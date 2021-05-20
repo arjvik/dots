@@ -1,6 +1,8 @@
 #!/bin/bash
 
 polybar-msg cmd quit
+sleep 0.5
+pkill -x polybar
 
 # Set thermal zone
 echo "thermal-zone = `grep "." /sys/class/thermal/thermal_zone*/type | cut -c32,38- | grep "x86_pkg_temp" | cut -d":" -f1`" > ~/.config/polybar/thermal-zone

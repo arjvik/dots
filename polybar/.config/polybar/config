@@ -93,7 +93,6 @@ type = internal/fs
 interval = 25
 
 mount-0 = /
-mount-1 = /home
 
 label-mounted =  %{F#0a81f5}%mountpoint%%{F-}:%percentage_used%%
 label-unmounted = %mountpoint% not mounted
@@ -237,7 +236,7 @@ format-disconnected =
 
 [module/date]
 type = internal/date
-interval = 5
+interval = 1
 
 date =
 date-alt = " %A, %b %d %Y"
@@ -376,10 +375,10 @@ format-underline = #2193ff
 
 [module/updates]
 type = custom/script
-exec = apt list --upgradable 2>/dev/null | tail +2 | wc -l
-exec-if = apt list --upgradable 2>/dev/null | tail +2 | grep .
-interval = 3600
-click-left = gnome-terminal -- sh -c "echo '$ sudo apt update && sudo apt upgrade --autoremove' && sudo apt update && sudo apt upgrade --autoremove"
+exec = paru -Qu | wc -l
+exec-if = paru -Qu | grep .
+interval = 1200
+click-left = kitty -- sh -c "echo '$ paru' && paru"
 format-prefix = " "
 format-underline = #e95420
 
