@@ -4,7 +4,7 @@
 #   qute://help/settings.html
 
 # Uncomment this to still load settings configured via autoconfig.yml
-# config.load_autoconfig()
+config.load_autoconfig(False)
 
 # Aliases for commands. The keys of the given dictionary are the
 # aliases, while the values are the commands they map to.
@@ -16,8 +16,10 @@ c.aliases = {
     'proxy-off': 'set content.proxy system',
     'classroom-switch-account': 'jseval window.location.href=window.location.href.replace("/u/0","/u/1")',
     'medium-unblock': 'open javascript:fetch(window.location.href,{credentials:"omit",redirect:"follow",mode:"no-cors"}).then(b=>b.text()).then(b=>document.querySelector("html").innerHTML=b.replace(/<\\/?noscript>/g,""))',
-    'qute-lastpass': 'spawn --userscript qute-lastpass',
-    'qute-lastpass-pw-only': 'spawn --userscript qute-lastpass -w',
+    'qute-lastpass': 'spawn --userscript qute-lastpass.zsh',
+    'qute-lastpass-pw-only': 'spawn --userscript qute-lastpass.zsh -p',
+    'qute-lastpass-old': 'spawn --userscript qute-lastpass',
+    'qute-lastpass-old-pw-only': 'spawn --userscript qute-lastpass -w',
     'outline-unblock': 'open https://outline.com/{url}',
     'quora-unblock': 'open {url}?share',
     'easybib-unblock': 'jseval for (d of document.getElementsByTagName("div")) if (d.style["z-index"]>=9999) d.style["display"]="none";',
@@ -42,7 +44,8 @@ c.auto_save.session = False
 # The file `~/.config/qutebrowser/blocked-hosts` is always read if it
 # exists.
 # Type: List of Url
-c.content.host_blocking.lists = ['https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts']
+c.content.blocking.method = "hosts"
+c.content.blocking.hosts.lists = ['https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts']
 
 # Enable JavaScript.
 # Type: Bool
@@ -106,6 +109,8 @@ c.url.start_pages = 'https://arjvik.github.io/tab'
 ## Type: Directory
 c.downloads.location.directory = '/tmp'
 
+c.fonts.default_family = "Noto Mono Nerd Font"
+
 # Bindings for normal mode
 config.bind('<Alt+0>', 'tab-focus -1')
 config.bind('<Alt+9>', 'tab-focus 9')
@@ -120,6 +125,8 @@ config.bind('yf', 'hint all yank')
 config.bind('qm', 'medium-unblock')
 config.bind('qp', 'qute-lastpass')
 config.bind('qP', 'qute-lastpass-pw-only')
+config.bind('qlp', 'qute-lastpass-old')
+config.bind('qlP', 'qute-lastpass-old-pw-only')
 config.bind('qo', 'outline-unblock')
 config.bind('qu', 'quora-unblock')
 config.bind('qbo', 'proxy-netshare')
