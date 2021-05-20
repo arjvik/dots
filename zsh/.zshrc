@@ -15,11 +15,11 @@ fi
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Powerlevel10k settings
-function p10k-set() { for ((i=1; i < $#; i++)); { typeset -g POWERLEVEL9K_${@[$i]:u}=$@[-1] } }
+function p10k-set() { local i; for ((i=1; i < $#; i++)); { typeset -g POWERLEVEL9K_${@[$i]:u}=$@[-1] } }
 function p10k-prompt() { if [[ $1 == "right" ]]; then typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(${=2}); else typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(${=2}); fi }
 
 p10k-set mode nerdfont-complete
-p10k-prompt left "os_icon context dir vcs virtualenv singularity background_jobs status newline prompt_char"
+p10k-prompt left "os_icon context dir vcs dvc virtualenv singularity background_jobs status newline prompt_char"
 p10k-prompt right ""
 p10k-set icon_before_content true
 p10k-set icon_padding moderate
@@ -43,7 +43,8 @@ p10k-set prompt_char_{ok,error}_viowr_content_expansion 'Ⅴ'
 p10k-set prompt_char_overwrite_state true
 p10k-set prompt_char_left_prompt_{last_segment_end,first_segment_start}_symbol ''
 p10k-set prompt_char_left_{left,right}_whitespace ''
-p10k-set os_icon_foreground 202
+p10k-set os_icon_foreground 039
+p10k-set os_icon_content_expansion ' '
 p10k-set context_foreground 220
 p10k-set always_show_context false
 p10k-set always_show_user false
@@ -147,8 +148,10 @@ function swssh() {
 		[33000]="NucleusD%03d"
 		[36000]="NucleusE%03d"
 	)
-	if [[ $port -eq 005 ]]; then
+	if [[ $port == 005 ]]; then
 		local hostname=localhost
+	elif [[ $port == @* ]]; then
+		local hostname=Nucleus${port#@}
 	else
 		for min_port in "${(@Ok)portpartitions}"; do
 			if [[ $port -gt $min_port ]]; then
@@ -173,6 +176,65 @@ function swssh() {
 	ssh -J root@localhost:8222,s199758@nucleus.biohpc.swmed.edu s199758@$hostname "${(z)extra_args}" "$@"
 }
 
+function capslockava() {
+	emulate -L zsh -o extended_glob
+	[[ -n /sys/class/leds/*/brightness(#qNW) ]] ||
+		sudo chmod a+w /sys/class/leds/input*::capslock/brightness(^W)
+	cava -p  <(<<-'EOF'
+		[general]
+		framerate = 30
+		bars = 4
+		[output]
+		method = raw
+		raw_target = /dev/stdout
+		data_format = ascii
+		bit_format = 8bit
+		EOF
+	) | while IFS=';' read _ _ c _; do
+		echo "\033[2J"
+		tee /sys/class/leds/*/brightness(W) <<<$(( c >= ${last:-0} ))
+		last=$c
+	done
+}
+
+function p10k-dvc(){
+	antigen bundle mafredri/zsh-async
+	function run_dvc() {
+		emulate -L zsh
+		builtin cd -q -- $1
+		dvc status --show-json
+	}
+	
+	function dvc_async_callback() {
+		emulate -L zsh
+		if [[ $3 == '{}' ]]; then
+			typeset -g prompt_dvc_clean=1
+		else
+			typeset -g prompt_dvc_dirty=$(jq 'keys | length' <<<"$3")
+		fi
+		typeset -g prompt_dvc_loading=
+		p10k display -r
+	}
+	
+	async_stop_worker         dvc_async_worker
+	async_start_worker        dvc_async_worker -u
+	async_unregister_callback dvc_async_worker
+	async_register_callback   dvc_async_worker dvc_async_callback
+	
+	function prompt_dvc() {
+		emulate -L zsh -o extended_glob
+		(( $+commands[dvc]         )) || return
+		[[ -n ./(../)#(.dvc)(#qN/) ]] || return
+		typeset -g prompt_dvc_clean= prompt_dvc_dirty= prompt_dvc_loading=1
+		p10k segment -i $'\uF6B9' -s LOADING -c '$prompt_dvc_loading' -t 'dvc loading...'
+		p10k segment -i $'\uF6B9' -s CLEAN -c '$prompt_dvc_clean' -t 'dvc '
+		p10k segment -i $'\uF6B9' -s DIRTY -c '$prompt_dvc_dirty' -e -t 'dvc  $prompt_dvc_dirty'
+		async_job dvc_async_worker run_dvc $PWD
+	}
+	p10k-set dvc_foreground 208
+	p10k-set dvc_loading_foreground 245
+}
+
 function take() { mkdir -p "$1" && cd "$1" || return 1 }
 function _take() { _files -W "$1" -/ }
 
@@ -183,8 +245,6 @@ function clippaste() { xclip -out -selection clipboard; }
 function pdfmerge() { if [[ $# -ge 2 ]]; then command gs -sDEVICE=pdfwrite -DNOPAUSE -dBATCH -dSAFER -sOutputFile="$1" "${@:2}"; else echo "Usage: pdfmerge destination.pdf source1.pdf source2.pdf ... sourceN.pdf"; fi }
 
 function _0 .{1..9} () { local d=.; repeat ${0:1} d+=/..; cd $d;}
-
-function docker() { systemctl is-active --quiet docker || sudo systemctl start docker && command docker "$@" }
 
 export MYSQL_PS1="MySQL \d>\_"
 export PIP_REQUIRE_VIRTUALENV=true
@@ -217,7 +277,6 @@ done
 
 alias gs="git status"
 alias gdc="git diff --cached"
-alias gh="git hub"
 alias ls="lsd"
 alias ll="ls -lh"
 alias la="ls -lAh"
@@ -228,6 +287,7 @@ alias python="python3"
 alias pip="pip3"
 alias {grep=grep,egrep=egrep,fgrep=fgrep}' --color=auto --exclude-dir=.git'
 alias diff="diff --color=auto" 
+alias gh="xdg-open \$(git remote get-url origin)"
 alias ng="cd-ng && exec pipenv shell"
 alias ngpy="cd-ng && exec pipenv shell python3"
 alias ng-jpurl='jq ".\"python.dataScience.jupyterServerURI\" |= \"$(head -n1 ~/jupyter.txt)\"" $diraliases[cd-ng]/.vscode/settings.json | {sleep 1 && tee $diraliases[cd-ng]/.vscode/settings.json >/dev/null}'
@@ -243,7 +303,7 @@ alias mysqldump-aws="mysqldump -h mydbinstance.cbg4coxfme7c.us-east-2.rds.amazon
 alias speedtest-cli="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"
 alias btbattery="curl https://raw.githubusercontent.com/TheWeirdDev/Bluetooth_Headset_Battery_Level/master/bluetooth_battery.py @Q | python - FC:58:FA:78:3A:CD"
 alias sudoedit="SUDO_EDITOR=\"\$(echo =gedit)\" sudo -e"
-alias temp_venv='temp_venv=$(mktemp -d);virtualenv $temp_venv;source $temp_venv/bin/activate;_unset_venv(){deactivate;rm -rf $1};trap "_unset_venv $temp_venv" EXIT;unset temp_venv'
+alias temp_venv='temp_venv=$(mktemp -d);virtualenv $temp_venv;source $temp_venv/bin/activate;function _unset_venv(){eval deactivate;rm -rf $1};trap "_unset_venv $temp_venv" EXIT;unset temp_venv'
 alias animated_wallpaper="xwinwrap -fs -ov -ni -- mpv -wid WID -loop dots/walls/sky\$(xrandr | grep -q 'DP-2 connected' && echo '-double').mp4 & sleep 1"
 alias savediff="ls /etc/apt/sources.list.d/ | grep -v save | xargs -I {} bash -c 'diff /etc/apt/sources.list.d/{}{,.save} && echo {} == {}.save'"
 alias adb-ip="adb shell ip address show wlan0 | grep 'wlan0$' | cut -d' ' -f 6 | cut -d/ -f 1"
@@ -251,6 +311,7 @@ alias swvpn="docker run --cap-add=NET_ADMIN --device=/dev/net/tun -p 8222:22 --e
 alias swsshfs='[[ -d /media/$USER/UTSW && -O /media/$USER/UTSW ]] || { sudo mkdir -p /media/$USER/UTSW && sudo chown -R $USER:$USER /media/$USER/UTSW }; echo "Mounting at /media/$USER/UTSW"; sshfs -f s199758@nucleus.biohpc.swmed.edu:/ /media/$USER/UTSW -o follow_symlinks -o ssh_command="ssh -J root@localhost:8222"; fusermount -u /media/$USER/UTSW || true'
 alias cmdprompt="prompt_powerlevel9k_teardown && PS1='%BC:\${\${PWD//\//\\\\}/home/Users}>%b '"
 alias i3-workspaces="i3-msg -t get_workspaces | jq -r '[\"ID\", \"Output\", \"Visibility\"], [\"-----------------------\"], (map([.num, .output, if .focused then \"Focused\" else if .visible then \"Visible\" else \"Unfocused\" end end]) | sort | .[]) | @tsv'"
+alias docker-run-x11="xhost + && docker run -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=:0"
 
 alias -g @Q="2>/dev/null"
 alias -g @S=">/dev/null"
