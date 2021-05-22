@@ -1,0 +1,13 @@
+[Added Associations]
+text/x-java=org.gnome.gedit.desktop;
+application/x-shellscript=org.gnome.gedit.desktop;
+
+[Default Applications]
+application/json=org.gnome.gedit.desktop;
+application/pdf=org.gnome.Evince.desktop;
+image/png=org.gnome.eog.desktop;
+text/csv=org.gnome.gedit.desktop;
+text/plain=org.gnome.gedit.desktop;
+x-scheme-handler/http=org.qutebrowser.qutebrowser.desktop;
+x-scheme-handler/https=org.qutebrowser.qutebrowser.desktop;
+x-scheme-handler/unknown=org.qutebrowser.qutebrowser.desktop;
