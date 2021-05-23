@@ -157,4 +157,4 @@ gradient_color_3 = '#88C0D0'
 ; 4 = 1
 ; 5 = 1 # treble
 
-; vim:ft=ini
+; vim:ft=dosini
