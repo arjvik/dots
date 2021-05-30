@@ -4,8 +4,8 @@
 # Inspired by guimeira/i3lock-fancy-multimonitor and pavanjadhaw/betterlockscreen
 
 # i3lock-color Customization
-i3lock  -i "$HOME/.config/i3/lock.png" -B3 -e --pass-media-keys --pass-screen-keys --force-clock --timepos="x+110:h-70" --time-font="sans-serif" \
-		--veriftext="" --wrongtext="" --timecolor="#ffffffff" --datecolor="#ffffffff" --datestr="%a, %b %d %Y" --indpos="x+280:h-70" --radius="25" \
-		--ring-width="4" --insidevercolor="#00000000" --insidewrongcolor="#00000000" --ringwrongcolor="#ff0000ff" --line-uses-inside -c"#00000000"
+i3lock  -i "$HOME/.config/i3/lock.png" -B3 -e --pass-media-keys --pass-screen-keys --force-clock --time-pos="x+110:h-70" --time-font="sans-serif" \
+		--verif-text="" --wrong-text="" --time-color="#ffffffff" --date-color="#ffffffff" --date-str="%a, %b %d %Y" --ind-pos="x+280:h-70" --radius="25" \
+		--ring-width="4" --insidever-color="#00000000" --insidewrong-color="#00000000" --ringwrong-color="#ff0000ff" --line-uses-inside -c"#00000000"
 
 [[ "$1" == "suspend" ]] && systemctl suspend
