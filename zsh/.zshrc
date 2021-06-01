@@ -214,6 +214,7 @@ function p10k-dvc(){
 		fi
 		typeset -g prompt_dvc_loading=
 		p10k display -r
+		unset -f prompt_dvc
 	}
 	
 	async_stop_worker         dvc_async_worker
