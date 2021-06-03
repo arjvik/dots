@@ -120,8 +120,8 @@ function gss() { if [[ -t 1 ]]; then  git status -s; else git status -s | cut -c
 function highlight() { grep -Ei --color=always "$(printf -- '%s|' "$@")^" }
 
 function addswap() {
-	if ! [[ $1 == /swapfile* && $2 =~ [0-9]+[KMG]? ]]; then
-		echo "Usage example: addswap /swapfile2 5G"
+	if ! [[ $1 == /swap/swapfile<1-> && $2 =~ [0-9]+[KMG]? ]]; then
+		echo "Usage example: addswap /swap/swapfile2 5G"
 		return 1
 	else
 		sudo fallocate -l $2 $1 &&
