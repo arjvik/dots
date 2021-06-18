@@ -242,7 +242,7 @@ bindsym $mod+q exec qute-launcher
 bindsym $mod+Shift+t exec --no-startup-id trans-menu
 
 # rofimoji
-bindsym $mod+Shift+k exec --no-startup-id rofimoji
+bindsym $mod+Shift+k exec --no-startup-id rofimoji --action clipboard
 
 # screenshots
 bindsym $mod+Shift+s exec --no-startup-id "maim -c .369,.506,.675 -b 2 -u -s | xclip -selection clipboard -t image/png"
