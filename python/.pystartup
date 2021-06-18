@@ -6,8 +6,6 @@ try:
 except ImportError:
     print("ptpython is not available: falling back to standard prompt")
 else:
-    # Custom Functions
-    doc = lambda x: print(x.__doc__)
     def configure(repl):
         from prompt_toolkit.formatted_text import HTML, ANSI
         from ptpython.prompt_style import PromptStyle
@@ -28,4 +26,4 @@ else:
         repl.prompt_style = "powerline"
         #repl.show_signature = True
         repl.show_docstring = True
-    sys.exit(embed(globals(), locals(), configure=configure))
+    sys.exit(embed(globals(), locals(), configure=configure, history_filename=__file__.replace("pystartup", "python_history")))
