@@ -19,7 +19,7 @@ function p10k-set() { local i; for ((i=1; i < $#; i++)); { typeset -g POWERLEVEL
 function p10k-prompt() { if [[ $1 == "right" ]]; then typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(${=2}); else typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(${=2}); fi }
 
 p10k-set mode nerdfont-complete
-p10k-prompt left "os_icon context dir vcs dvc virtualenv singularity background_jobs status newline prompt_char"
+p10k-prompt left "os_icon context dir vcs dvc anaconda virtualenv singularity background_jobs status newline prompt_char"
 p10k-prompt right ""
 p10k-set icon_before_content true
 p10k-set icon_padding moderate
@@ -62,10 +62,10 @@ p10k-set vcs_{staged,unstaged,untracked,conflicted,commits_ahead,commits_behind}
 p10k-set vcs_{clean,untracked}_foreground 76
 p10k-set vcs_modified_foreground 178
 p10k-set vcs_git_github_icon ' '
-p10k-set virtualenv_foreground 37
-p10k-set virtualenv_show_python_version false
-p10k-set virtualenv_{left,right}_delimiter ''
-p10k-set virtualenv_visual_identifier_expansion ''
+p10k-set {anaconda,virtualenv}_foreground 37
+p10k-set {anaconda,virtualenv}_show_python_version false
+p10k-set {anaconda,virtualenv}_{left,right}_delimiter ''
+p10k-set {anaconda,virtualenv}_visual_identifier_expansion ''
 p10k-set background_jobs_verbose{,_always} true
 p10k-set background_jobs_foreground 48
 p10k-set background_jobs_visual_identifier_expansion ''
