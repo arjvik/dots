@@ -17,7 +17,7 @@ else:
             def in2_prompt(self, width):
                 if self.state == 0:
                     self.state = 1
-                    return ANSI(f"\033[3{prompt_color}m \033[0m\033[4{prompt_color}m \033[0m\033[3{prompt_color}m▓▒░\033[0m ".rjust(width+27))
+                    return ANSI(f"\033[3{prompt_color}m\033[0m\033[4{prompt_color}m \033[0m\033[3{prompt_color}m▓▒░\033[0m ".rjust(width+27))
                 else:
                     return ANSI(f"\033[4{prompt_color}m \033[0m\033[3{prompt_color}m▓▒░\033[0m ".rjust(width+18))
             def out_prompt(self):
