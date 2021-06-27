@@ -25,6 +25,7 @@ c.aliases = {
     'easybib-unblock': 'jseval for (d of document.getElementsByTagName("div")) if (d.style["z-index"]>=9999) d.style["display"]="none";',
     'youtube-speed': 'jseval document.querySelector("video, audio").playbackRate = parseFloat(prompt("Enter playback speed"))',
     'create-qr-code': 'open -t https://api.qrserver.com/v1/create-qr-code/?size=300x300&qzone=1&data={url}',
+    'invert-colors': 'jseval document.documentElement.style.filter+=" invert(100%)"',
     'autofill-name': 'fake-key Vikram<tab>Arjun<tab>',
     'q': 'quit',
     'w': 'session-save',
@@ -130,6 +131,7 @@ config.bind('qlp', 'qute-lastpass-old')
 config.bind('qlP', 'qute-lastpass-old-pw-only')
 config.bind('qo', 'outline-unblock')
 config.bind('qu', 'quora-unblock')
+config.bind('qi', 'invert-colors')
 config.bind('qbo', 'proxy-netshare')
 config.bind('qbs', 'proxy-ssh')
 config.bind('qbu', 'proxy-utsw')
