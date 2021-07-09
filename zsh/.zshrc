@@ -286,6 +286,7 @@ alias llt="ll --tree"
 alias lsta="llt -A"
 alias python="python3"
 alias pip="pip3"
+alias sudo="sudo "
 alias {grep=grep,egrep=egrep,fgrep=fgrep}' --color=auto --exclude-dir=.git'
 alias diff="diff --color=auto" 
 alias gh="xdg-open \$(git remote get-url origin)"
