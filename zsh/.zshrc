@@ -116,7 +116,17 @@ function man() {
 
 function watch() {
 	local -A opts
-	zparseopts -D -F -M -A opts c -color=c n: -interval:=n t -no-title=t e -eval=e k -keep=k
+	zparseopts -D -F -M -A opts c -color=c n: -interval:=n e -eval=e t -no-title=t k -keep=k && (( $# > 0 )) || {
+		cat <<-'USAGE'
+			watch: execute a program periodically, showing output fullscreen (zsh reimplementation)
+			    -c, --color: currently ignored, all ANSI escapes are passed through verbatim
+			    -n, --interval: specify update interval, uses $WATCH_INTERVAL or 1 by default
+			    -e, --eval: pass arguments to eval builtin (requires special quoting) instead of attempting to alias-expand and exec
+			    -t, --no-title: turn off the colored header showing time, context, and command
+			    -k, --keep: do not clear screen each time before command is run
+		USAGE
+		return 1
+	}
 	if (( ! ${+opts[-e]} )); then
 		local recursive_alias=0
 		while (( ${+aliases[$1]} )) && (( ! recursive_alias )); do
@@ -128,13 +138,13 @@ function watch() {
 	fi
 	while true; do
 		(( ${+opts[-k]} )) || clear
-		(( ${+opts[-t]} )) || print -P "%F{2}%D{%a %b %d %Y %r}%f | %F{4}%n@%m%f | Every $(printf '%.1f' ${opts[-n]:-1})s: %{\x1b[3m%}${opts[-e]+eval }$*%{\x1b[0m%}\n"
+		(( ${+opts[-t]} )) || print -P "%F{2}%D{%a %b %d %Y %r}%f | %F{4}%n@%m%f | Every $(printf '%.1f' ${opts[-n]:-${WATCH_INTERVAL:-1}})s: %{\x1b[3m%}${opts[-e]+eval }$*%{\x1b[0m%}\n"
 		if (( ${+opts[-e]} )); then
 			eval "$*"
 		else
 			$@
 		fi
-		sleep ${opts[-n]:-1}
+		sleep ${opts[-n]:-${WATCH_INTERVAL:-1}}
 	done
 }
 
