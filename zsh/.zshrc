@@ -114,6 +114,26 @@ function man() {
 			man "$@"
 }
 
+function watch() {
+	local -A opts
+	zparseopts -D -F -M -A opts c -color=c n: -interval:=n t -no-title=t e -eval=e
+	if (( ! ${+opts[-e]} )); then
+		while (( ${+aliases[$1]} )); do
+			set -- ${=aliases[$1]} ${@:2}
+		done
+	fi
+	while true; do
+		clear
+		(( ${+opts[-t]} )) || print -P "%F{2}%D{%a %b %d %Y %r}%f | %F{4}%n@%m%f | Every $(printf '%.1f' ${opts[-n]:-1})s: %{\x1b[3m%}${opts[-e]+eval }$*%{\x1b[0m%}\n"
+		if (( ${+opts[-e]} )); then
+			eval "$*"
+		else
+			$@
+		fi
+		sleep ${opts[-n]:-1}
+	done
+}
+
 unalias gss
 function gss() { if [[ -t 1 ]]; then  git status -s; else git status -s | cut -c4-; fi }
 
