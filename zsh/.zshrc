@@ -118,7 +118,8 @@ function watch() {
 	local -A opts
 	zparseopts -D -F -M -A opts c -color=c n: -interval:=n t -no-title=t e -eval=e
 	if (( ! ${+opts[-e]} )); then
-		while (( ${+aliases[$1]} )); do
+		while (( ${+aliases[$1]} )) && (( ! ${+recursive_alias} )); do
+		    if (( ${=aliases[$1]:0:1} == $1 )); then local recursive_alias=1; fi
 			set -- ${=aliases[$1]} ${@:2}
 		done
 	fi
