@@ -138,7 +138,10 @@ function watch() {
 	fi
 	while true; do
 		(( ${+opts[-k]} )) || clear
-		(( ${+opts[-t]} )) || print -P "%F{2}%D{%a %b %d %Y %r}%f | %F{4}%n@%m%f | Every $(printf '%.1f' ${opts[-n]:-${WATCH_INTERVAL:-1}})s: %{\x1b[3m%}${opts[-e]+eval }$*%{\x1b[0m%}\n"
+		(( ${+opts[-t]} )) || print -P "%F{2}%D{%a %b %d %Y %r}%f |"\
+										"%F{4}%n@%m%f |"\
+										"Every $(printf '%.1f' ${opts[-n]:-${WATCH_INTERVAL:-1}})s:"\
+										"%{\x1b[3m%}${opts[-e]+eval }$*%{\x1b[0m%}\n"
 		if (( ${+opts[-e]} )); then
 			eval "$*"
 		else
