@@ -116,15 +116,18 @@ function man() {
 
 function watch() {
 	local -A opts
-	zparseopts -D -F -M -A opts c -color=c n: -interval:=n t -no-title=t e -eval=e
+	zparseopts -D -F -M -A opts c -color=c n: -interval:=n t -no-title=t e -eval=e k -keep=k
 	if (( ! ${+opts[-e]} )); then
-		while (( ${+aliases[$1]} )) && (( ! ${+recursive_alias} )); do
-		    if (( ${=aliases[$1]:0:1} == $1 )); then local recursive_alias=1; fi
+		local recursive_alias=0
+		while (( ${+aliases[$1]} )) && (( ! recursive_alias )); do
+			#echo -n "Expanding '$*'"
+			[[ ${=aliases[$1]:0:1} == $1 ]] && recursive_alias=1
 			set -- ${=aliases[$1]} ${@:2}
+			#echo " to '$*'${recursive_alias+ (recursion)}"
 		done
 	fi
 	while true; do
-		clear
+		(( ${+opts[-k]} )) || clear
 		(( ${+opts[-t]} )) || print -P "%F{2}%D{%a %b %d %Y %r}%f | %F{4}%n@%m%f | Every $(printf '%.1f' ${opts[-n]:-1})s: %{\x1b[3m%}${opts[-e]+eval }$*%{\x1b[0m%}\n"
 		if (( ${+opts[-e]} )); then
 			eval "$*"
