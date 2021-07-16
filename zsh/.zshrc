@@ -80,7 +80,7 @@ function prompt_singularity() { p10k segment -c "$SINGULARITY_CONTAINER" -i '
 p10k-set singularity_foreground 1
 function prompt_slurm_jobs() { (( ${+commands[squeue]} )) && p10k segment -c "$(squeue -u $USER -o %i -h 2>/dev/null)" -i ''  -t "$(squeue -u $USER -o %i -h 2>/dev/null | wc -l)" }
 function instant_prompt_slurm_jobs() { (( ${+commands[squeue]} )) && p10k segment -i ' ' }
-p10k-set slurm_jobs_foreground 81
+p10k-set slurm_jobs_foreground 75
 
 # Antigen plugin manager
 
