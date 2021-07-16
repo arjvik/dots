@@ -78,8 +78,9 @@ p10k-set status_{ok_pipe,error,error_signal,error_pipe}_visual_identifier_expans
 # Custom Singularity segment
 function prompt_singularity() { p10k segment -c "$SINGULARITY_CONTAINER" -i '' -t "${${${SINGULARITY_CONTAINER##*/}#*LabImage?}%.*}" }
 p10k-set singularity_foreground 1
-function prompt_slurm_jobs() { (( ${+commands[squeue]} )) && p10k segment -c "$(squeue -u $USER -o %i -h 2>/dev/null)" -i " "  -t "$(squeue -u $USER -o %i -h 2>/dev/null | wc -l)" }
-p10k-set slurm_jobs_foreground 5
+function prompt_slurm_jobs() { (( ${+commands[squeue]} )) && p10k segment -c "$(squeue -u $USER -o %i -h 2>/dev/null)" -i ''  -t "$(squeue -u $USER -o %i -h 2>/dev/null | wc -l)" }
+function instant_prompt_slurm_jobs() { (( ${+commands[squeue]} )) && p10k segment -i ' ' }
+p10k-set slurm_jobs_foreground 81
 
 # Antigen plugin manager
 
