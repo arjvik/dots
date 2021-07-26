@@ -21,6 +21,7 @@ c.aliases = {
     'qute-lastpass-old': 'spawn --userscript qute-lastpass',
     'qute-lastpass-old-pw-only': 'spawn --userscript qute-lastpass -w',
     'outline-unblock': 'open https://outline.com/{url}',
+    'twelveft-unblock': 'open https://12ft.io/{url}',
     'quora-unblock': 'open {url}?share',
     'easybib-unblock': 'jseval for (d of document.getElementsByTagName("div")) if (d.style["z-index"]>=9999) d.style["display"]="none";',
     'youtube-speed': 'jseval document.querySelector("video, audio").playbackRate = parseFloat(prompt("Enter playback speed"))',
@@ -130,6 +131,7 @@ config.bind('qP', 'qute-lastpass-pw-only')
 config.bind('qlp', 'qute-lastpass-old')
 config.bind('qlP', 'qute-lastpass-old-pw-only')
 config.bind('qo', 'outline-unblock')
+config.bind('qt', 'twelveft-unblock')
 config.bind('qu', 'quora-unblock')
 config.bind('qi', 'invert-colors')
 config.bind('qbo', 'proxy-netshare')
