@@ -318,6 +318,7 @@ done
 
 alias gs="git status"
 alias gdc="git diff --cached"
+alias glog="git log --oneline --decorate --graph --all"
 alias ls="lsd"
 alias ll="ls -lh"
 alias la="ls -lAh"
