@@ -1,29 +1,49 @@
 #!/usr/bin/env python3
 
-import sys
+# Useful imports
+import builtins, sys, os, random, time, typing, json, io, string, pickle
+from collections import Counter
+from contextlib import contextmanager
+from functools import cache, lru_cache, partial, wraps
+from itertools import chain, permutations, combinations, product, repeat
+from pathlib import Path
+for module, name in {
+    'numpy': 'np',
+    'pandas': 'pd',
+    'sklearn': 'sklearn',
+    'skimage': 'skimage',
+    'cv2': 'cv2',
+    'tqdm': 'tqdm',
+    'yaml': 'yaml',
+    'tensorflow': 'tf'
+}.items():
+	try:
+		globals()[name] = __import__(module)
+	except ImportError:
+	    pass
+del module, name
+
+def _configure(repl):
+    from prompt_toolkit.formatted_text import HTML, ANSI
+    from ptpython.prompt_style import PromptStyle
+    prompt_color = '5'
+    class PowerlinePrompt(PromptStyle):
+        def in_prompt(self):
+            self.state = 0
+            return ANSI(f"\033[4{prompt_color}m  {repl.current_statement_index} \033[0m\033[3{prompt_color}m▓▒░\033[0m ")
+        def in2_prompt(self, width):
+            if self.state == 0:
+                self.state = 1
+                return ANSI(f"\033[3{prompt_color}m\033[0m\033[4{prompt_color}m \033[0m\033[3{prompt_color}m▓▒░\033[0m ".rjust(width+27))
+            else:
+                return ANSI(f"\033[4{prompt_color}m \033[0m\033[3{prompt_color}m▓▒░\033[0m ".rjust(width+18))
+        def out_prompt(self):
+            return []
+    repl.all_prompt_styles["powerline"] = PowerlinePrompt()
+    repl.prompt_style = "powerline"
+    #repl.show_signature = True
+    repl.show_docstring = True
 try:
-    from ptpython.repl import embed
+    sys.exit(__import__('ptpython').repl.embed(globals(), locals(), configure=_configure, history_filename=__file__.replace("pystartup", "python_history")))
 except ImportError:
     print("ptpython is not available: falling back to standard prompt")
-else:
-    def configure(repl):
-        from prompt_toolkit.formatted_text import HTML, ANSI
-        from ptpython.prompt_style import PromptStyle
-        prompt_color = '5'
-        class PowerlinePrompt(PromptStyle):
-            def in_prompt(self):
-                self.state = 0
-                return ANSI(f"\033[4{prompt_color}m  {repl.current_statement_index} \033[0m\033[3{prompt_color}m▓▒░\033[0m ")
-            def in2_prompt(self, width):
-                if self.state == 0:
-                    self.state = 1
-                    return ANSI(f"\033[3{prompt_color}m\033[0m\033[4{prompt_color}m \033[0m\033[3{prompt_color}m▓▒░\033[0m ".rjust(width+27))
-                else:
-                    return ANSI(f"\033[4{prompt_color}m \033[0m\033[3{prompt_color}m▓▒░\033[0m ".rjust(width+18))
-            def out_prompt(self):
-                return []
-        repl.all_prompt_styles["powerline"] = PowerlinePrompt()
-        repl.prompt_style = "powerline"
-        #repl.show_signature = True
-        repl.show_docstring = True
-    sys.exit(embed(globals(), locals(), configure=configure, history_filename=__file__.replace("pystartup", "python_history")))
