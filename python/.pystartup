@@ -2,10 +2,11 @@
 
 # Useful imports
 import builtins, sys, os, random, time, typing, json, io, string, pickle
-from collections import Counter
+from collections import Counter, defaultdict
 from contextlib import contextmanager
 from functools import cache, lru_cache, partial, wraps
 from itertools import chain, permutations, combinations, product, repeat
+from inspect import getsource
 from pathlib import Path
 for module, name in {
     'numpy': 'np',
