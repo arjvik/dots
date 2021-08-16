@@ -333,6 +333,7 @@ alias gh="xdg-open \$(git remote get-url origin)"
 alias ng="cd-ng && exec pipenv shell"
 alias ngpy="cd-ng && exec pipenv shell python3"
 alias ng-jpurl='jq ".\"python.dataScience.jupyterServerURI\" |= \"$(head -n1 ~/jupyter.txt)\"" $diraliases[cd-ng]/.vscode/settings.json | {sleep 1 && tee $diraliases[cd-ng]/.vscode/settings.json >/dev/null}'
+alias neofetch='neofetch --config ~/.config/neofetch/custom.conf'
 alias zoomer="cd-zoomer && source venv/bin/activate"
 alias dvcdemo="cd-dvcdemo && exec pipenv shell"
 alias mathpy="cd-mathpy && source venv/bin/activate && python3"
