@@ -30,16 +30,15 @@ p10k-set multiline_first_prompt_gap_background ''
 p10k-set background 238
 p10k-set foreground 255
 p10k-set {left,right}_{left,right}_whitespace ''
-p10k-set {left,right}_{sub,}segment_separator "%k%F{$POWERLEVEL9K_BACKGROUND}%k "
-p10k-set {left,right}_prompt_last_segment_end_symbol ''
-p10k-set {left,right}_prompt_first_segment_start_symbol ''
+p10k-set {left,right}_prompt_last_segment_end_symbol $([[ $TERM != "linux" ]] && echo '' || echo '>')
+p10k-set {left,right}_prompt_first_segment_start_symbol $([[ $TERM != "linux" ]] && echo '' || echo '<')
+p10k-set {left,right}_{sub,}segment_separator "%k%F{$POWERLEVEL9K_BACKGROUND}$POWERLEVEL9K_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL%k $POWERLEVEL9K_LEFT_PROMPT_FIRST_SEGMENT_START_SYMBOL"
 p10k-set prompt_char_background ''
 p10k-set prompt_char_ok_{viins,vicmd,vivis,viowr}_foreground 76
 p10k-set prompt_char_error_{viins,vicmd,vivis,viowr}_foreground 196
-p10k-set prompt_char_{ok,error}_viins_content_expansion '❯'
-p10k-set prompt_char_{ok,error}_vicmd_content_expansion '❮'
-p10k-set prompt_char_{ok,error}_vivis_content_expansion '❮'
-p10k-set prompt_char_{ok,error}_viowr_content_expansion 'Ⅴ'
+p10k-set prompt_char_{ok,error}_viins_content_expansion $([[ $TERM != "linux" ]] && echo '❯' || echo '>')
+p10k-set prompt_char_{ok,error}_vi{cmd,vis}_content_expansion '❮'
+p10k-set prompt_char_{ok,error}_viowr_content_expansion ''
 p10k-set prompt_char_overwrite_state true
 p10k-set prompt_char_left_prompt_{last_segment_end,first_segment_start}_symbol ''
 p10k-set prompt_char_left_{left,right}_whitespace ''
