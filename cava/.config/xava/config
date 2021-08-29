@@ -219,7 +219,7 @@ oddoneout = false
 
 # Fake shadow effect (works with transparency only)
 # To disable shadows, set size to 0
-; size = 7
+size = 0
 
 # Color format is #aarrggbb
 ; color = "#ff000000"
