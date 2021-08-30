@@ -24,6 +24,7 @@ c.aliases = {
     'twelveft-unblock': 'open https://12ft.io/{url}',
     'quora-unblock': 'open {url}?share',
     'easybib-unblock': 'jseval for (d of document.getElementsByTagName("div")) if (d.style["z-index"]>=9999) d.style["display"]="none";',
+    'disable-cert-validation': 'set content.tls.certificate_errors load-insecurely ;; message-error "SSL certificate validation DISABLED!"',
     'youtube-speed': 'jseval document.querySelector("video, audio").playbackRate = parseFloat(prompt("Enter playback speed"))',
     'create-qr-code': 'open -t https://api.qrserver.com/v1/create-qr-code/?size=300x300&qzone=1&data={url}',
     'invert-colors': 'jseval document.documentElement.style.filter+=" invert(100%)"',
@@ -140,6 +141,7 @@ config.bind('qbu', 'proxy-utsw')
 config.bind('qbx', 'proxy-off')
 config.bind('qc', 'classroom-switch-account')
 config.bind('qe', 'easybib-unblock')
+config.bind('qv', 'disable-cert-validation')
 config.bind('qf', 'autofill-name')
 config.bind('qy', 'youtube-speed')
 config.bind('qr', 'create-qr-code')
