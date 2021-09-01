@@ -11,9 +11,9 @@ log() {
 
 warn() {
 	if [[ -z "$2" ]]; then
-		timeout 30s rofi -dmenu -p "Warning" -lines 1 <<<"$1" >/dev/null
+		timeout 30s rofi -dmenu -p "Warning" -l 1 <<<"$1" >/dev/null
 	else
-		timeout 30s rofi -dmenu -p "Warning" -lines 2 -format i <<<"$1"$'\n'"$2"
+		timeout 30s rofi -dmenu -p "Warning" -l 2 -format i <<<"$1"$'\n'"$2"
 	fi
 }
 
