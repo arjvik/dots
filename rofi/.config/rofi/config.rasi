@@ -1,5 +1,4 @@
 configuration {
-	theme: "~/.local/share/rofi/themes/material.rasi";
 	modi: "drun,window,ssh";
 	show-icons: true;
 	icon-theme: "Paper";
@@ -15,5 +14,7 @@ configuration {
 	kb-row-first: "Shift+Home,Control+Home";
 	kb-row-last: "Shift+End,Control+End";
 }
+
+@theme "~/.local/share/rofi/themes/material.rasi"
 
 /* vim:ft=css */

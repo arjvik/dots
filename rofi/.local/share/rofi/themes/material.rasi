@@ -5,6 +5,8 @@
  *
  * User: Tomaszal
  * Copyright: Tomas Zaluckij
+ *
+ * Minor modifications by arjvik to fit new configuration format
  */
 
 * {
@@ -102,31 +104,31 @@ scrollbar {
 	margin: 0 0 0 20px;
 }
 
-element {
+element-text, element-icon {
 	padding: 5px;
 	highlight: bold underline;
 }
 
-element normal {
+element-text normal {
 	background-color: transparent;
 }
 
-element selected {
+element-text selected, element-icon selected {
 	background-color: @base0D;
 }
 
-element alternate {
+element-text alternate, element-icon alternate {
 	/*background-color: @base03;*/
 }
 
-element normal normal, element selected normal, element alternate normal {
+element-text normal normal, element-text selected normal, element-text alternate normal {
 	text-color: @base07;
 }
 
-element normal urgent, element selected urgent, element alternate urgent {
+element-text normal urgent, element-text selected urgent, element-text alternate urgent {
 	text-color: @base0F;
 }
 
-element normal active, element selected active, element alternate active {
+element-text normal active, element-text selected active, element-text alternate active {
 	text-color: @base0B;
 }
