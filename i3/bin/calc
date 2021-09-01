@@ -4,7 +4,7 @@ INPUT=""
 LASTINPUT="DUMMY"
 while [[ "$INPUT" != "$LASTINPUT" ]]; do
 	LASTINPUT="$INPUT"
-	INPUT=$(rofi -dmenu -p "$INPUT=" -filter "$ANS" -lines 0)
+	INPUT=$(rofi -dmenu -p "$INPUT=" -filter "$ANS" -l 0)
 	ANS=$(gcalccmd "$INPUT")
 done
 xsel -bi <<<"$INPUT"
