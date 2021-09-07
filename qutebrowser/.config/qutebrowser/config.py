@@ -107,6 +107,14 @@ c.url.searchengines = {'DEFAULT': 'https://google.com/search?query={}'}
 # Type: List of FuzzyUrl, or FuzzyUrl
 c.url.start_pages = 'https://arjvik.github.io/tab'
 
+# Use DNS requests (might be slow!).
+# Valid values:
+#   - naive
+#   - dns
+#   - schemeless
+#   - never
+c.url.auto_search = 'dns'
+
 ## Directory to save downloads to. If unset, a sensible OS-specific
 ## default is used.
 ## Type: Directory
