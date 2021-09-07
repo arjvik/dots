@@ -13,6 +13,7 @@ for module, name in {
     'pandas': 'pd',
     'sklearn': 'sklearn',
     'skimage': 'skimage',
+    'scipy': 'sp',
     'cv2': 'cv2',
     'tqdm': 'tqdm',
     'yaml': 'yaml',
