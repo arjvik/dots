@@ -46,6 +46,6 @@ def _configure(repl):
     #repl.show_signature = True
     repl.show_docstring = True
 try:
-    sys.exit(__import__('ptpython').repl.embed(globals(), locals(), configure=_configure, history_filename=__file__.replace("pystartup", "python_history")))
+    sys.exit(__import__('ptpython').repl.embed(globals(), locals(), configure=_configure, history_filename=Path(__file__).parent / ".python_history"))
 except ImportError:
     print("ptpython is not available: falling back to standard prompt")
