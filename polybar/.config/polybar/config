@@ -375,8 +375,8 @@ format-underline = #2193ff
 
 [module/updates]
 type = custom/script
-exec = paru -Qu | wc -l
-exec-if = paru -Qu | grep .
+exec = paru -Qu | cut -d' ' -f1 | sort | comm -3 - <(sort /tmp/pkg-skip 2>/dev/null) | wc -l
+exec-if = paru -Qu | cut -d' ' -f1 | sort | comm -3 - <(sort /tmp/pkg-skip 2>/dev/null) | grep .
 interval = 1200
 click-left = kitty -- sh -c "echo '$ paru' && paru"
 format-prefix = " "
