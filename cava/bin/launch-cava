@@ -7,5 +7,5 @@ i3-msg '[class="XAVA"]' floating enable, \
 						resize set width 1920, \
 						resize set height 50, \
 						move to absolute position $(xrandr | grep -q "DP-2 connected" \
-													&& echo "1920px" || echo "0px") 1035px, \
+													&& echo "1920px" || echo "0px") 1030px, \
 						border none
