@@ -180,7 +180,7 @@ gradient_color_3 = '#88C0D0'
 
 
 
-[smoothing]
+[filter]
 
 # Percentage value for integral smoothing. Takes values from 0 - 100.
 # Higher values means smoother, but less precise. 0 to disable.
