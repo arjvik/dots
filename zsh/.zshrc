@@ -230,8 +230,7 @@ function capslockava() {
 		bit_format = 8bit
 		EOF
 	) | while IFS=';' read _ _ c _; do
-		echo "\033[2J"
-		tee /sys/class/leds/*/brightness(W) <<<$(( c >= ${last:-0} ))
+		tee /sys/class/leds/*/brightness(W) <<<$(( c >= ${last:-0} )) >/dev/null
 		last=$c
 	done
 }
