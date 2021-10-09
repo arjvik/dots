@@ -45,6 +45,8 @@ p10k-set prompt_char_left_{left,right}_whitespace ''
 p10k-set os_icon_foreground 039
 p10k-set os_icon_content_expansion ' '
 p10k-set context_foreground 220
+p10k-set context_root_foreground 46
+p10k-set context_root_prefix ' '
 p10k-set always_show_context false
 p10k-set always_show_user false
 p10k-set dir_foreground 31
