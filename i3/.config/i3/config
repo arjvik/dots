@@ -249,6 +249,9 @@ bindsym $mod+Shift+s exec --no-startup-id "maim -c .369,.506,.675 -b 2 -u -s | x
 bindsym $mod+Shift+f exec --no-startup-id "maim -c .369,.506,.675 -b 2 -u -s /tmp/screenshot.png"
 bindsym $mod+Ctrl+Shift+f exec --no-startup-id "maim -c .369,.506,.675 -b 2 -u -s \\"/tmp/screenshot-$(date +'%Y-%m-%d-%H:%M:%S').png\\""
 
+# temporary i3bar
+bindsym $mod+Shift+b exec --no-startup-id "echo 'bar { }' >> ~/.config/i3/config; i3-msg restart; sed -Ee '/^bar \{ \}/d' -i ~/.config/i3/config"
+
 # XSettings Daemon
 exec --no-startup-id xsettingsd
 
