@@ -271,11 +271,11 @@ exec --no-startup-id blueman-applet
 # KDE Connect
 exec --no-startup-id QT_QPA_PLATFORMTHEME=gtk2 kdeconnect-indicator
 
-bindsym $mod+KP_Up exec --no-startup-id xdotool mousemove_relative 0 -10
-bindsym $mod+KP_Down exec --no-startup-id xdotool mousemove_relative 0 10
-bindsym $mod+KP_Right exec --no-startup-id xdotool mousemove_relative 10 0
-bindsym $mod+KP_Left exec --no-startup-id xdotool mousemove_relative -10 0
-bindsym $mod+Shift+KP_Up exec --no-startup-id xdotool mousemove_relative 0 -1
-bindsym $mod+Shift+KP_Down exec --no-startup-id xdotool mousemove_relative 0 1
-bindsym $mod+Shift+KP_Right exec --no-startup-id xdotool mousemove_relative 1 0
-bindsym $mod+Shift+KP_Left exec --no-startup-id xdotool mousemove_relative -1 0
+bindsym $mod+KP_Up			exec --no-startup-id xdotool mousemove_relative -- 0 -10
+bindsym $mod+KP_Down		exec --no-startup-id xdotool mousemove_relative -- 0 10
+bindsym $mod+KP_Right		exec --no-startup-id xdotool mousemove_relative -- 10 0
+bindsym $mod+KP_Left		exec --no-startup-id xdotool mousemove_relative -- -10 0
+bindsym $mod+Shift+KP_Up	exec --no-startup-id xdotool mousemove_relative -- 0 -1
+bindsym $mod+Shift+KP_Down	exec --no-startup-id xdotool mousemove_relative -- 0 1
+bindsym $mod+Shift+KP_Right	exec --no-startup-id xdotool mousemove_relative -- 1 0
+bindsym $mod+Shift+KP_Left	exec --no-startup-id xdotool mousemove_relative -- -1 0
