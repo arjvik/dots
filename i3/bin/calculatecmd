@@ -1,0 +1,27 @@
+#!/usr/bin/python3
+
+import math
+
+from math import pi, tau, e
+g = 9.81
+G = 6.67e-11
+
+def _compose(f, g): return lambda x: f(g(x))
+sin = _compose(math.sin, math.radians)
+cos = _compose(math.cos, math.radians)
+tan = _compose(math.tan, math.radians)
+
+from math import sin as rsin, cos as rcos, tan as rtan
+
+asin = _compose(math.degrees, math.asin)
+acos = _compose(math.degrees, math.acos)
+atan = _compose(math.degrees, math.atan)
+
+from math import asin as rasin, acos as racos, atan as ratan
+
+from math import sqrt, exp, perm, comb, degrees, radians, floor, ceil, factorial, lcm, gcd
+from math import log10 as log, log as ln
+
+del _compose
+
+print(eval(__import__('sys').argv[1].replace('^', '**')))
