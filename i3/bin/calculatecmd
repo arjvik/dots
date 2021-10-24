@@ -20,7 +20,7 @@ atan = _compose(math.degrees, math.atan)
 from math import asin as rasin, acos as racos, atan as ratan
 
 from math import sqrt, exp, perm, comb, degrees, radians, floor, ceil, factorial, lcm, gcd
-from math import log10 as log, log as ln
+from math import log10 as log, log as ln, log2
 
 del _compose
 
