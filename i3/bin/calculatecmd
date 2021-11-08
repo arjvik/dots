@@ -3,8 +3,19 @@
 import math
 
 from math import pi, tau, e
+from fractions import Fraction
+
+# Gravitational constants
 g = 9.81
 G = 6.67e-11
+
+# Electrostatics constants
+K  = 8.98755e9 # Coulomb's Constant
+e0 = 8.85e-12 # Permitivity of free space
+qe = 1.60e-19 # charge magnitude of electron
+mp = 1.67e-27 # mass of proton
+me = 9.11e-31 # mass of neutron
+eV = qe #electron-Volt
 
 def _compose(f, g): return lambda x: f(g(x))
 sin = _compose(math.sin, math.radians)
@@ -24,4 +35,8 @@ from math import log10 as log, log as ln, log2
 
 del _compose
 
-print(eval(__import__('sys').argv[1].replace('^', '**')))
+import sys as _sys
+_input = _sys.argv[1].replace('^', '**')
+_ans = eval(_input)
+_output = str(_ans)
+print(_output)
