@@ -376,6 +376,7 @@ format-underline = #2193ff
 [module/updates]
 type = custom/script
 exec = "echo 痢; pkg="$(paru -Qu 2>/dev/null | cut -d' ' -f1 | sort | comm -3 - <(sort ~/PKG-SKIP 2>/dev/null))"; [[ -n "$pkg" ]] && wc -l <<<"$pkg" || echo"
+exec-if = nc -zw1 aur.archlinux.org 443
 tail = true 
 interval = 1200
 click-left = kitty -- sh -c "echo '$ paru' && paru"
