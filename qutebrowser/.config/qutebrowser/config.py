@@ -49,6 +49,7 @@ c.auto_save.session = False
 # Type: List of Url
 c.content.blocking.method = "hosts"
 c.content.blocking.hosts.lists = ['https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts']
+c.content.blocking.whitelist = ['https://*.split.io/*']
 
 # Enable JavaScript.
 # Type: Bool
