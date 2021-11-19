@@ -271,6 +271,9 @@ exec --no-startup-id blueman-applet
 # KDE Connect
 exec --no-startup-id QT_QPA_PLATFORMTHEME=gtk2 kdeconnect-indicator
 
+# Notification Daemon
+exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd
+
 bindsym $mod+KP_Up			exec --no-startup-id xdotool mousemove_relative -- 0 -10
 bindsym $mod+KP_Down		exec --no-startup-id xdotool mousemove_relative -- 0 10
 bindsym $mod+KP_Right		exec --no-startup-id xdotool mousemove_relative -- 10 0
