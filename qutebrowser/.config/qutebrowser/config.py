@@ -88,6 +88,13 @@ c.editor.command = ['gedit', '{file}']
 # Type: Bool
 c.input.insert_mode.auto_load = True
 
+# Force a Qt platformtheme to use. This sets the QT_QPA_PLATFORMTHEME
+# environment variable which controls dialogs like the filepicker. By
+# default, Qt determines the platform theme based on the desktop
+# environment.
+# Type: String
+c.qt.force_platformtheme = 'gtk3'
+
 # Page to open if :open -t/-b/-w is used without URL. Use `about:blank`
 # for a blank page.
 # Type: FuzzyUrl
