@@ -278,7 +278,9 @@ bindsym $mod+KP_Up			exec --no-startup-id xdotool mousemove_relative -- 0 -10
 bindsym $mod+KP_Down		exec --no-startup-id xdotool mousemove_relative -- 0 10
 bindsym $mod+KP_Right		exec --no-startup-id xdotool mousemove_relative -- 10 0
 bindsym $mod+KP_Left		exec --no-startup-id xdotool mousemove_relative -- -10 0
+bindsym $mod+KP_Begin		exec --no-startup-id xdotool click 1
 bindsym $mod+Shift+KP_Up	exec --no-startup-id xdotool mousemove_relative -- 0 -1
 bindsym $mod+Shift+KP_Down	exec --no-startup-id xdotool mousemove_relative -- 0 1
 bindsym $mod+Shift+KP_Right	exec --no-startup-id xdotool mousemove_relative -- 1 0
 bindsym $mod+Shift+KP_Left	exec --no-startup-id xdotool mousemove_relative -- -1 0
+bindsym $mod+Shift+KP_Begin	exec --no-startup-id xdotool click 3
