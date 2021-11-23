@@ -1,0 +1,180 @@
+# i3 config file (v4)
+#
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+
+set $exec exec --no-startup-id
+set $exec_always exec_always --no-startup-id
+
+set $mod Mod4
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font pango:Roboto 8
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec i3-sensible-terminal
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# move/change focus
+bindsym $mod+!!<1!,Shift+>!!<2!Left,Right,Up,Down> !!<1!focus,move> !!<2!left,right,up,down>
+
+# split orientation
+bindsym $mod+!!<h,v> split !!<h,v>
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+!!<s,w,e> layout !!<stacking,tabbed,toggle split>
+
+# toggle tiling / floating
+bindsym $mod+!!<Shift,Ctrl>+space !!<floating ,focus mode_>toggle
+
+# focus the parent container
+bindsym $mod+!!<,Shift+>a focus !!<parent,child>
+
+# move/switch to workspace
+bindsym $mod+!!<1!,Shift+>!!<2!1..9,0> !!<1!,move container to >workspace number !!<2!1..10>
+
+# switch workspace with scroll
+bindsym --whole-window --border $mod+button!!<4,5> workspace !!<prev,next>_on_output
+
+# move workspace to different monitor
+bindsym $mod+Ctrl+Shift+!!<Left,Right> move workspace to output !!<left,right>
+
+# restart i3
+bindsym $mod+Shift+!!<r,c> exec i3bang ~/.config/i3/config.i3bang ~/.config/i3/config && i3-msg !!<restart,reload>
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec [ "$(echo 'No|Yes' | rofi -dmenu -i -sep '|' -lines 2 -p 'Do you really want to exit i3?' -a 0 -u 1 -no-custom)" = "Yes" ] && i3-msg exit
+
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+	bindsym !!<Left,Right,Up,Down> resize !!<shrink,grow,shrink,grow> !!<width,width,height,height> 10 px or 10 ppt
+
+	# back to normal: Enter or Escape or $mod+r
+	bindsym !!<Return,Escape,$mod+r> mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+mode "passthrough" {
+	bindsym $mod+Ctrl+Escape mode "default"
+}
+
+bindsym $mod+Ctrl+Escape mode "passthrough"
+
+mode "swap" {
+	# switch to workspace
+	bindsym $mod+!!<1..9,0> workspace number !!<1..10>
+
+	# change focus
+	bindsym !!<1!,$mod+>!!<2!Left,Right,Up,Down> focus !!<2!left,right,up,down>
+
+	bindsym !!<Return,KP_Enter> swap container with mark "swapee"; unmark "swapee"; mode "default"
+	bindsym Escape unmark "swapee"; mode "default"
+}
+
+bindsym $mod+Shift+i mark --add "swapee"; mode "swap"
+
+set $side_gaps_on 300
+set $side_gaps_off 0
+
+mode "gaps" {
+	bindsym !!<,Shift+>!!<2!plus,minus> gaps inner all !!<2!plus,minus> 10
+
+	bindsym !!<r,s,x> gaps horizontal !!<current,current,all> set $side_gaps_!!<on,off,on>
+
+	# back to normal
+	bindsym !!<Return,Escape> mode "default"
+}
+
+bindsym $mod+Shift+g mode "gaps"
+
+# enable gaps
+gaps inner 10
+gaps horizontal $side_gaps_on
+smart_gaps inverse_outer
+
+# Fullscreen popups
+popup_during_fullscreen leave_fullscreen
+
+# swap workspaces
+bindsym $mod+Shift+o exec i3-swap-workspaces
+
+# Launch polybar
+$exec_always launch-polybar
+bindsym $mod+Shift+p $exec launch-polybar
+
+# disable window title bars for gaps to work correctly
+for_window [class="^.*"] border none
+
+# scratchpad
+bindsym $mod+minus move scratchpad
+bindsym $mod+plus scratchpad show; floating disable
+
+# volume keys
+bindsym !!<1!,Shift+>XF86Audio!!<2!Raise,Lower>Volume $exec pactl set-sink-volume @DEFAULT_SINK@ !!<2!+,->!!<1!5,1>%
+bindsym XF86AudioMute $exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym Shift+XF86AudioMute $exec pactl list short sinks | cut -f1 | xargs -n1 -I {} -- pactl set-sink-volume {} 0%
+
+# brightness keys
+bindsym !!<1!,Shift+>XF86MonBrightness!!<2!Up,Down> $exec ~/bin/xbacklight -!!<2!inc,dec> 2!!<1!0,> # increase screen brightness
+
+# media keys (mpd)
+bindsym XF86Audio!!<Play,Pause,Prev,Next> $exec playerctl !!<play-pause,play-pause,previous,next>
+
+# i3lock
+bindsym $mod+!!<,Shift+>l exec ~/bin/i3lock-color-fancy!!<, suspend>
+
+# start rofi (dmenu replacement)
+bindsym $mod+!!<d,p> exec rofi -show drun
+
+# rofi calculator
+bindsym $mod+c $exec calc
+
+# start qutebrowser menu (web browser)
+bindsym $mod+q $exec qute-launcher
+
+# translate
+bindsym $mod+Shift+t $exec trans-menu
+
+# rofimoji
+bindsym $mod+Shift+k $exec rofimoji --action clipboard
+
+# screenshots
+bindsym $mod+Shift+!!<s,f,Ctrl+f> $exec "maim -c .369,.506,.675 -b 2 -u -s !!<| xclip -selection clipboard -t image/png",/tmp/screenshot.png",\\"/tmp/screenshot-$(date +'%Y-%m-%d-%H:%M:%S').png\\"">
+
+# temporary i3bar
+bindsym $mod+Shift+b $exec "echo 'bar { }' >> ~/.config/i3/config; i3-msg restart; sed -Ee '/^bar \{ \}/d' -i ~/.config/i3/config"
+
+# XSettings Daemon
+$exec xsettingsd
+
+# wallpaper
+$exec ~/.fehbg
+
+# compton
+$exec picom
+
+# battery monitor
+$exec_always i3-battery-monitor
+
+# network manager and bluetooth applet
+$exec nm-applet
+$exec blueman-applet
+
+# KDE Connect
+$exec_always env QT_QPA_PLATFORMTHEME=gtk2 kdeconnect-indicator
+
+# Notification Daemon
+$exec /usr/lib/xfce4/notifyd/xfce4-notifyd
+
+bindsym $mod+KP_!!<Left,Right,Up,Down> $exec xdotool mousemove_relative -- !!<-10 0,10 0,0 -10,0 10>
+bindsym $mod+Shift+KP_!!<Left,Right,Up,Down> $exec xdotool mousemove_relative -- !!<-1 0,1 0,0 -1,0 1>
+bindsym $mod+!!<,Shift+>KP_Begin $exec xdotool click !!<1,3>
