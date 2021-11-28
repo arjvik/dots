@@ -286,6 +286,8 @@ bar-volume-empty = ━
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
+click-right = pavucontrol &
+
 [module/battery]
 type = internal/battery
 battery = BAT0
@@ -351,7 +353,7 @@ label-separator-foreground = ${colors.foreground-alt}
 
 menu-0-0 = reboot
 menu-0-0-exec = systemctl reboot
-menu-0-1 = power off
+menu-0-1 = poweroff
 menu-0-1-exec = systemctl poweroff
 menu-0-2 = exit
 menu-0-2-exec = i3-msg exit
