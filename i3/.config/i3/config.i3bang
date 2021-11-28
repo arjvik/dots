@@ -48,7 +48,7 @@ bindsym --whole-window --border $mod+button!!<4,5> workspace !!<prev,next>_on_ou
 bindsym $mod+Ctrl+Shift+!!<Left,Right> move workspace to output !!<left,right>
 
 # restart i3
-bindsym $mod+Shift+!!<r,c> exec i3bang ~/.config/i3/config.i3bang ~/.config/i3/config && i3-msg !!<restart,reload>
+bindsym $mod+Shift+!!<r,c> exec i3bang .config/i3/config.i3bang ~/.config/i3/config && i3-msg !!<restart,reload>
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec [ "$(echo 'No|Yes' | rofi -dmenu -i -sep '|' -lines 2 -p 'Do you really want to exit i3?' -a 0 -u 1 -no-custom)" = "Yes" ] && i3-msg exit
 
