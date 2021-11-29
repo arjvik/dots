@@ -22,18 +22,22 @@ sin = _compose(math.sin, math.radians)
 cos = _compose(math.cos, math.radians)
 tan = _compose(math.tan, math.radians)
 
-from math import sin as rsin, cos as rcos, tan as rtan
-
 asin = _compose(math.degrees, math.asin)
 acos = _compose(math.degrees, math.acos)
 atan = _compose(math.degrees, math.atan)
 
+
+from math import sin as rsin, cos as rcos, tan as rtan
 from math import asin as rasin, acos as racos, atan as ratan
 
-from math import sqrt, exp, perm, comb, degrees, radians, floor, ceil, factorial, lcm, gcd
-from math import log10 as log, log as ln, log2
+def rcis(theta): return math.cos(theta) + 1j*math.sin(theta)
+def dcis(theta): return cos(theta) + 1j*sin(theta)
 
 del _compose
+
+from math import sqrt, exp, perm, comb, degrees, radians, floor, ceil, factorial, lcm, gcd
+
+from math import log10 as log, log as ln, log2
 
 import sys as _sys
 _input = _sys.argv[1].replace('^', '**')
