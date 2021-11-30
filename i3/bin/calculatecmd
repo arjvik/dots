@@ -40,7 +40,7 @@ from math import sqrt, exp, perm, comb, degrees, radians, floor, ceil, factorial
 from math import log10 as log, log as ln, log2
 
 import sys as _sys
-_input = _sys.argv[1].replace('^', '**')
-_ans = eval(_input)
-_output = str(_ans)
-print(_output)
+if _sys.stdout.isatty():
+    _sys.exit(__import__('ptpython').repl.embed(globals(), locals(), history_filename=__import__('pathlib').Path(__file__).parent / ".python_history"))
+else:
+    print(str(eval(_sys.argv[1].replace('^', '**'))))
