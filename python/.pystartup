@@ -1,31 +1,5 @@
 #!/usr/bin/env python3
 
-# Useful imports
-import builtins, sys, os, random, time, typing, json, io, string, pickle
-from collections import Counter, defaultdict
-from contextlib import contextmanager
-from functools import cache, lru_cache, partial, wraps
-from itertools import chain, permutations, combinations, product, repeat
-from fractions import Fraction
-from inspect import getsource
-from pathlib import Path
-for module, name in {
-    'numpy': 'np',
-    'pandas': 'pd',
-    'sklearn': 'sklearn',
-    'skimage': 'skimage',
-    'scipy': 'sp',
-    'cv2': 'cv2',
-    'tqdm': 'tqdm',
-    'yaml': 'yaml',
-    'tensorflow': 'tf'
-}.items():
-	try:
-		globals()[name] = __import__(module)
-	except ImportError:
-	    pass
-del module, name
-
 def _configure(repl):
     from prompt_toolkit.formatted_text import HTML, ANSI
     from ptpython.prompt_style import PromptStyle
@@ -46,7 +20,35 @@ def _configure(repl):
     repl.prompt_style = "powerline"
     #repl.show_signature = True
     repl.show_docstring = True
-try:
-    sys.exit(__import__('ptpython').repl.embed(globals(), locals(), configure=_configure, history_filename=Path(__file__).parent / ".python_history"))
-except ImportError:
-    print("ptpython is not available: falling back to standard prompt")
+
+if __name__ == '__main__':
+    # Useful imports
+    import builtins, sys, os, random, time, typing, json, io, string, pickle
+    from collections import Counter, defaultdict
+    from contextlib import contextmanager
+    from functools import cache, lru_cache, partial, wraps
+    from itertools import chain, permutations, combinations, product, repeat
+    from fractions import Fraction
+    from inspect import getsource
+    from pathlib import Path
+    for module, name in {
+        'numpy': 'np',
+        'pandas': 'pd',
+        'sklearn': 'sklearn',
+        'skimage': 'skimage',
+        'scipy': 'sp',
+        'cv2': 'cv2',
+        'tqdm': 'tqdm',
+        'yaml': 'yaml',
+        'tensorflow': 'tf'
+    }.items():
+        try:
+            globals()[name] = __import__(module)
+        except ImportError:
+            pass
+    del module, name
+
+    try:
+        sys.exit(__import__('ptpython').repl.embed(globals(), locals(), configure=_configure, history_filename=Path(__file__).parent / ".python_history"))
+    except ImportError:
+        print("ptpython is not available: falling back to standard prompt")
