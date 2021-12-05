@@ -1,7 +1,15 @@
 #!/bin/bash
 
 [[ "$1" == "--no-kill" ]] || i3-msg '[class="XAVA"]' kill
-xava & sleep 1
+
+XDG_CONFIG_HOME=~/.config xava &
+
+until i3-msg -t subscribe '[ "window" ]' |
+	  jq -e '.container.window_properties.class == "XAVA"';
+	do :; done
+
+sleep 1
+
 i3-msg '[class="XAVA"]' floating enable, \
 						sticky enable, \
 						resize set width 1920, \

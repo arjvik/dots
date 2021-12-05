@@ -8,4 +8,4 @@ TryExec=bin/launch-cava
 Exec=bin/launch-cava
 Terminal=false
 Categories=AudioVideo;Audio;Player;ConsoleOnly;
-StartupNotify=true
+StartupNotify=false
