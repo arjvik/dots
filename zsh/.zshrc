@@ -287,7 +287,7 @@ function pdfmerge() { if [[ $# -ge 2 ]]; then command gs -sDEVICE=pdfwrite -DNOP
 
 function _0 .{1..9} () { local d=.; repeat ${0:1} d+=/..; cd $d;}
 
-function 0x0.st() { curl -Ffile="@$1" 0x0.st -s | tee >(clipcopy) }
+function 0x0.st() { curl -Ffile="@$1" 0x0.st -s | sed -e 's_http://_https://_' | tee >(clipcopy) }
 
 export MYSQL_PS1="MySQL \d>\_"
 export PIP_REQUIRE_VIRTUALENV=true
