@@ -118,6 +118,21 @@ function man() {
 			man "$@"
 }
 
+function dig() {
+	if [[ ! -t 1 ]]; then
+		dig "$@"
+	else
+		# https://github.com/repro/dig-color/blob/master/dig-color.sh
+		command dig "$@" | awk '
+			!/^;/		{ print "\x1b[32m"$0 }
+			/^;[^;]/	{ print "\x1b[35m"$0 }
+			/^;;/		{ print "\x1b[38;5;242m"$0 }
+			END			{ print "\x1b[0m" }
+		';
+	fi
+}
+
+
 function watch() {
 	local -A opts
 	zparseopts -D -F -M -A opts c -color=c n: -interval:=n e -eval=e t -no-title=t k -keep=k && (( $# > 0 )) || {
