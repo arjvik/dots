@@ -132,6 +132,10 @@ bindsym XF86AudioPlay $exec playerctl play-pause
 bindsym XF86AudioPause $exec playerctl play-pause
 bindsym XF86AudioPrev $exec playerctl previous
 bindsym XF86AudioNext $exec playerctl next
+bindsym Ctrl+XF86AudioRaiseVolume $exec playerctl volume 0.05+
+bindsym Ctrl+XF86AudioLowerVolume $exec playerctl volume 0.05-
+bindsym Ctrl+Shift+XF86AudioRaiseVolume $exec playerctl volume 0.01+
+bindsym Ctrl+Shift+XF86AudioLowerVolume $exec playerctl volume 0.01-
 bindsym $mod+l exec ~/bin/i3lock-color-fancy
 bindsym $mod+Shift+l exec ~/bin/i3lock-color-fancy suspend
 bindsym $mod+d exec rofi -show drun
