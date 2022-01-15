@@ -322,6 +322,7 @@ declare -A diraliases=(
 	["automl"]="$HOME/Programming/python/AutoML"
 	["vui"]="$HOME/Programming/python/needletail-vui"
 	["asl"]="$HOME/Programming/python/ASLTranslator"
+	["bee"]="$HOME/Programming/python/BeeHealthy"
 	["cd-zoomer"]="$HOME/Programming/python/Zoomer"
 	["cd-ng"]="$HOME/Programming/UTSW/nuclear-grading"
 	["qpsc"]="$HOME/Programming/UTSW/QuPath/groovy/QuPath-Scripts"
