@@ -128,7 +128,7 @@ bindsym !!<1!,Shift+>XF86MonBrightness!!<2!Up,Down> $exec ~/bin/xbacklight -!!<2
 
 # media keys (mpd)
 bindsym XF86Audio!!<Play,Pause,Prev,Next> $exec playerctl !!<play-pause,play-pause,previous,next>
-bindsym Ctrl+!!<1!,Shift+>XF86Audio!!<2!Raise,Lower>Volume $exec playerctl volume 0.0!!<1!5,1>!!<2!+,->
+bindsym Ctrl+XF86Audio!!<Raise,Lower>Volume $exec playerctl volume 0.05!!<+,->
 
 # i3lock
 bindsym $mod+!!<,Shift+>l exec ~/bin/i3lock-color-fancy!!<, suspend>
