@@ -120,7 +120,7 @@ function man() {
 
 function dig() {
 	if [[ ! -t 1 ]]; then
-		dig "$@"
+		command dig "$@"
 	else
 		# https://github.com/repro/dig-color/blob/master/dig-color.sh
 		command dig "$@" | awk '
