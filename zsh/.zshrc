@@ -105,6 +105,9 @@ antigen apply
 
 # User configuration
 
+# Enable extended globs
+setopt extendedglob
+
 # Coloured man pages using less as pager
 function man() {
 	env \
