@@ -19,7 +19,7 @@ function p10k-set() { local i; for ((i=1; i < $#; i++)); { typeset -g POWERLEVEL
 function p10k-prompt() { if [[ $1 == "right" ]]; then typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(${=2}); else typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(${=2}); fi }
 
 p10k-set mode nerdfont-complete
-p10k-prompt left "os_icon context dir vcs dvc anaconda virtualenv singularity slurm_jobs background_jobs status newline prompt_char"
+p10k-prompt left "os_icon context dir vcs dvc anaconda virtualenv singularity slurm_jobs docker_context background_jobs status newline prompt_char"
 p10k-prompt right ""
 p10k-set icon_before_content true
 p10k-set icon_padding moderate
@@ -79,9 +79,11 @@ p10k-set status_{ok_pipe,error,error_signal,error_pipe}_visual_identifier_expans
 # Custom Singularity segment
 function prompt_singularity() { p10k segment -c "$SINGULARITY_CONTAINER" -i '' -t "${${${SINGULARITY_CONTAINER##*/}#*LabImage?}%.*}" }
 p10k-set singularity_foreground 1
-function prompt_slurm_jobs() { (( ${+commands[squeue]} )) && p10k segment -c "$(squeue -u $USER -o %i -h 2>/dev/null)" -i ''  -t "$(squeue -u $USER -o %i -h 2>/dev/null | wc -l)" }
+function prompt_slurm_jobs() { (( ${+commands[squeue]} )) && p10k segment -c "$(squeue -u $USER -o %i -h 2>/dev/null)" -i '' -t "$(squeue -u $USER -o %i -h 2>/dev/null | wc -l)" }
 function instant_prompt_slurm_jobs() { (( ${+commands[squeue]} )) && p10k segment -i ' ' }
 p10k-set slurm_jobs_foreground 75
+function prompt_docker_context() { local context="$(docker context inspect -f '{{.Name}}')"; p10k segment -c "${context:/default}" -i '' -t "${context}" }
+p10k-set docker_context_foreground 39
 
 # Antigen plugin manager
 
@@ -372,7 +374,7 @@ alias temp_venv='temp_venv=$(mktemp -d);virtualenv $temp_venv;source $temp_venv/
 alias animated_wallpaper="xwinwrap -fs -ov -ni -- mpv -wid WID -loop dots/walls/sky\$(xrandr | grep -q 'DP-2 connected' && echo '-double').mp4 & sleep 1"
 alias savediff="ls /etc/apt/sources.list.d/ | grep -v save | xargs -I {} bash -c 'diff /etc/apt/sources.list.d/{}{,.save} && echo {} == {}.save'"
 alias adb-ip="adb shell ip address show wlan0 | grep 'wlan0$' | cut -d' ' -f 6 | cut -d/ -f 1"
-alias swvpn="docker run --cap-add=NET_ADMIN --device=/dev/net/tun -p 8222:22 --env-file <(lpass show -F 'swmed.edu' | sed -Ene '/^(Username|Password): /s/(.*): /VPN_\U\1=/p') --rm --init -it --name dockervpn dockervpn"
+alias swvpn="docker --context default run --cap-add=NET_ADMIN --device=/dev/net/tun -p 8222:22 --env-file <(lpass show -F 'swmed.edu' | sed -Ene '/^(Username|Password): /s/(.*): /VPN_\U\1=/p') --rm --init -it --name dockervpn dockervpn"
 alias swsshfs='[[ -d /media/$USER/UTSW && -O /media/$USER/UTSW ]] || { sudo mkdir -p /media/$USER/UTSW && sudo chown -R $USER:$USER /media/$USER/UTSW }; echo "Mounting at /media/$USER/UTSW"; sshfs -f s199758@nucleus.biohpc.swmed.edu:/ /media/$USER/UTSW -o follow_symlinks -o ssh_command="ssh -J root@localhost:8222"; fusermount -u /media/$USER/UTSW || true'
 alias swproxy='ssh root@localhost -p 8222 -D 9050'
 alias cmdprompt="prompt_powerlevel9k_teardown && PS1='%BC:\${\${PWD//\//\\\\}/home/Users}>%b '"
