@@ -310,6 +310,33 @@ function _0 .{1..9} () { local d=.; repeat ${0:1} d+=/..; cd $d;}
 
 function 0x0.st() { curl -Ffile="@$1" 0x0.st -s | sed -e 's_http://_https://_' | tee >(clipcopy) }
 
+function flashiso() {
+	if ! [[ $# == 2 && -e $1 && -b $2 && $2 == /dev/* ]]; then
+		echo "Usage: $0 ./live.iso /dev/device"
+		return 1
+	fi
+	# Important check
+	if [[ $2 == /dev/nvme* ]]; then
+		echo "Refusing to flash NVMe drive! You definitely don't know what you're doing!" 
+		return 1
+	fi
+	if ! [[ $2 == "/dev/sda" ]]; then
+		read -q "?Selected a device other than /dev/sda ($2). Are you sure you know what you're doing? " || { echo "\nAborted" && return 1 }
+		echo
+	fi
+	if file -b $1 | grep -vq "ISO 9660 CD-ROM filesystem data"; then
+		read -q "?Selected an image other than a ISO9660 file ($1). Are you sure you know what you're doing? " || { echo "\nAborted" && return 1 }
+		echo
+	fi
+	echo "\nDevice: $(cat /sys/block/${2##/dev/}/device/model 2>/dev/null) ($(grep --color=never DEVNAME= /sys/block/${2##/dev/}/uevent))"
+	local size="$(sudo blockdev --getsize64 $2)"
+	echo "Size: $(numfmt --to=si <<<"$size")B ($(numfmt --to=iec-i <<<"$size")B)"
+	read -q "?Are you 100% sure you want to overwrite all data on this device? " || { echo "\nAborted" && return 1 }
+	echo
+	sudo -kv
+	pv $1 | sudo dd iflag=fullblock of=$2 oflag=direct bs=1M
+}
+
 export MYSQL_PS1="MySQL \d>\_"
 export PIP_REQUIRE_VIRTUALENV=true
 export PYTHONSTARTUP="$HOME/.pystartup"
