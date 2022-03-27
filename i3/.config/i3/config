@@ -152,7 +152,7 @@ $exec picom
 $exec_always i3-battery-monitor
 $exec nm-applet
 $exec blueman-applet
-$exec_always env QT_QPA_PLATFORMTHEME=gtk2 bash -c "sleep 2 && kdeconnect-indicator"
+$exec_always sleep 2 && QT_QPA_PLATFORMTHEME=gtk2 kdeconnect-indicator
 $exec /usr/lib/xfce4/notifyd/xfce4-notifyd
 bindsym $mod+KP_Left $exec xdotool mousemove_relative -- -10 0
 bindsym $mod+KP_Right $exec xdotool mousemove_relative -- 10 0
