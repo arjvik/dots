@@ -76,7 +76,7 @@ p10k-set status_ok_foreground 70
 p10k-set status_{ok_pipe,error,error_signal,error_pipe}_foreground 160
 p10k-set status_ok_visual_identifier_expansion ' '
 p10k-set status_{ok_pipe,error,error_signal,error_pipe}_visual_identifier_expansion '↵ '
-# Custom Singularity segment
+# Custom segments
 function prompt_singularity() { p10k segment -c "$SINGULARITY_CONTAINER" -i '' -t "${${${SINGULARITY_CONTAINER##*/}#*LabImage?}%.*}" }
 p10k-set singularity_foreground 1
 function prompt_slurm_jobs() { (( ${+commands[squeue]} )) && p10k segment -c "$(squeue -u $USER -o %i -h 2>/dev/null)" -i '' -t "$(squeue -u $USER -o %i -h 2>/dev/null | wc -l)" }
@@ -336,6 +336,8 @@ function flashiso() {
 	sudo -kv
 	pv $1 | sudo dd iflag=fullblock of=$2 oflag=direct bs=1M
 }
+
+function gedit() { command $0 $@ 2>/dev/null & }
 
 export MYSQL_PS1="MySQL \d>\_"
 export PIP_REQUIRE_VIRTUALENV=true
