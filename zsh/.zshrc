@@ -328,8 +328,8 @@ function flashiso() {
 		echo "Refusing to flash NVMe drive! You definitely don't know what you're doing!" 
 		return 1
 	fi
-	if ! [[ $2 == "/dev/sda" ]]; then
-		read -q "?Selected a device other than /dev/sda ($2). Are you sure you know what you're doing? " || { echo "\nAborted" && return 1 }
+	if ! [[ $2 == "/dev/sda" || $2 == "/dev/mmcblk0" ]]; then
+		read -q "?Selected a device other than /dev/sda or /dev/mmcblk0 ($2). Are you sure you know what you're doing? " || { echo "\nAborted" && return 1 }
 		echo
 	fi
 	if file -b $1 | grep -vq "ISO 9660 CD-ROM filesystem data"; then
