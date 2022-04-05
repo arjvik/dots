@@ -302,7 +302,15 @@ function _take() { _files -W "$1" -/ }
 function clipcopy() { xclip -in -selection clipboard < "${1:-/dev/stdin}"; }
 function clippaste() { xclip -out -selection clipboard; }
 
-function ipinfo() { curl ipinfo.io/${1:-$(</dev/stdin)} }
+function ipinfo() {
+	if [[ $# -gt 0 ]]; then
+		for ip in $@; do curl -s ipinfo.io/$ip; done | jq
+	elif [[ -t 0 ]]; then
+		curl -s ipinfo.io | jq
+	else
+		xargs -i curl -s ipinfo.io/{} | jq
+	fi
+}
 
 function pdfmerge() { if [[ $# -ge 2 ]]; then command gs -sDEVICE=pdfwrite -DNOPAUSE -dBATCH -dSAFER -sOutputFile="$1" "${@:2}"; else echo "Usage: pdfmerge destination.pdf source1.pdf source2.pdf ... sourceN.pdf"; fi }
 
