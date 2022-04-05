@@ -16,6 +16,7 @@ qe = 1.60e-19 # charge magnitude of electron
 mp = 1.67e-27 # mass of proton
 me = 9.11e-31 # mass of neutron
 eV = qe #electron-Volt
+mu0 = pi*4e-7 # permitivity of free space
 
 def _compose(f, g): return lambda x: f(g(x))
 sin = _compose(math.sin, math.radians)
@@ -26,6 +27,9 @@ asin = _compose(math.degrees, math.asin)
 acos = _compose(math.degrees, math.acos)
 atan = _compose(math.degrees, math.atan)
 
+arcsin = asin
+arccos = acos
+arctan = atan
 
 from math import sin as rsin, cos as rcos, tan as rtan
 from math import asin as rasin, acos as racos, atan as ratan
