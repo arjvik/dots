@@ -82,7 +82,7 @@ p10k-set singularity_foreground 1
 function prompt_slurm_jobs() { (( ${+commands[squeue]} )) && p10k segment -c "$(squeue -u $USER -o %i -h 2>/dev/null)" -i '' -t "$(squeue -u $USER -o %i -h 2>/dev/null | wc -l)" }
 function instant_prompt_slurm_jobs() { (( ${+commands[squeue]} )) && p10k segment -i ' ' }
 p10k-set slurm_jobs_foreground 75
-function prompt_docker_context() { local context="$(jq -r '$docker_host // $docker_context // .currentContext // ""' --argjson docker_host "${${DOCKER_HOST:+\"DOCKER_HOST=$DOCKER_HOST\"}:-null}" --argjson docker_context "${${DOCKER_CONTEXT:+\"$DOCKER_CONTEXT\"}:-null}" <~/.docker/config.json)"; p10k segment -c "${context}" -i '' -t "${context}" }
+function prompt_docker_context() { local context="${DOCKER_HOST:+DOCKER_HOST=}${DOCKER_HOST:-${DOCKER_CONTEXT:-$(grep -Fq 'currentContext' ~/.docker/config.json && jq -r '.currentContext // ""' ~/.docker/config.json)}}"; p10k segment -c "${context}" -i '' -t "${context}" }
 p10k-set docker_context_foreground 39
 
 # Antigen plugin manager
