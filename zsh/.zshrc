@@ -418,6 +418,7 @@ alias swproxy='ssh root@localhost -p 8222 -D 9050'
 alias cmdprompt="prompt_powerlevel9k_teardown && PS1='%BC:\${\${PWD//\//\\\\}/home/Users}>%b '"
 alias i3-workspaces="i3-msg -t get_workspaces | jq -r '[\"ID\", \"Output\", \"Visibility\"], [\"-----------------------\"], (map([.num, .output, if .focused then \"Focused\" else if .visible then \"Visible\" else \"Unfocused\" end end]) | sort | .[]) | @tsv'"
 alias docker-run-x11="xhost + && docker run -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=:0"
+alias docker-run-x11-xephyr="{ pgrep -f 'Xephyr :1' || Xephyr :1 @Q &} && docker run -v /tmp/.X11-unix/X1:/tmp/.X11-unix/X1 -e DISPLAY=:1"
 
 alias -g @Q="2>/dev/null"
 alias -g @S=">/dev/null"
