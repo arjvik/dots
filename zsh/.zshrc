@@ -123,12 +123,12 @@ function man() {
 			man "$@"
 }
 
-function dig() {
+function dig drill () {
 	if [[ ! -t 1 ]]; then
-		command dig "$@"
+		command $0 "$@"
 	else
 		# https://github.com/repro/dig-color/blob/master/dig-color.sh
-		command dig "$@" | awk '
+		command $0 "$@" | awk '
 			!/^;/		{ print "\x1b[32m"$0 }
 			/^;[^;]/	{ print "\x1b[35m"$0 }
 			/^;;/		{ print "\x1b[38;5;242m"$0 }
