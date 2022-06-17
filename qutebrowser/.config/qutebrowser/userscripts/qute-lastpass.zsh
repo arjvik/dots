@@ -7,7 +7,7 @@ function qutectl() {
 
 function fakekey() {
 	emulate -L zsh -o extended_glob
-	typeset -A keysubst=('<' '<less>' '>' '<greater>')
+	typeset -A keysubst=('<' '<less>' '>' '<greater>' $'\t' '<Tab>')
 	qutectl fake-key "${1//(#m)?/${keysubst[$MATCH]:-$MATCH}}${2:+<Tab>${2//(#m)?/${keysubst[$MATCH]:-$MATCH}}}"
 }
 
@@ -35,7 +35,6 @@ function get_candidate_domains() {
 		candidates+=($prefix)
 	fi
 }
-		
 
 function get_entry() {
 	get_candidate_domains ${${${QUTE_URL#*://}%%/*}%%:*}
@@ -54,7 +53,7 @@ function get_entry() {
 }
 
 [[ -n "$QUTE_URL" ]] || consoledie "Run as a Qutebrowser userscript or populate \$QUTE_URL"
-login=("${(f)$(get_entry)}")
+typeset -a login=("${(f)"$(get_entry)"}")
 if [[ $1 == "" || $1 == "-a" ]]; then
 	# Username and password
 	fakekey $login[1] $login[2]
