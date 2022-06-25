@@ -132,6 +132,10 @@ c.downloads.location.directory = '/tmp'
 
 c.fonts.default_family = "Noto Mono Nerd Font"
 
+# Custom headers for qutebrowser HTTP requests.
+# Type: Dict
+config.set('content.headers.custom', {'x-colab-tunnel': 'Google'}, 'https://colab.research.google.com/tun/m/*')
+
 # Bindings for normal mode
 config.bind('<Alt+0>', 'tab-focus -1')
 config.bind('<Alt+9>', 'tab-focus 9')
