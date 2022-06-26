@@ -347,6 +347,8 @@ function flashiso() {
 
 function gedit() { command $0 $@ 2>/dev/null & }
 
+function aws() { env $(lpass show -F 'AWS Access Key' --notes) $0 "$@" }
+
 export MYSQL_PS1="MySQL \d>\_"
 export PIP_REQUIRE_VIRTUALENV=true
 export PYTHONSTARTUP="$HOME/.pystartup"
