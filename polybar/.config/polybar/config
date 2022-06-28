@@ -89,7 +89,7 @@ click-left = "setxkbmap -query | grep -q intl && setxkbmap us || setxkbmap us in
 
 [module/keyboardcpm]
 type = custom/script
-exec = (timeout 20s stdbuf -o0 xinput test 10 | stdbuf -o0 awk '$1 == "key" && $2 == "press" && (($3 >= 10 && $3 <= 19) || ($3 >= 24 && $3 <= 33) || ($3 >= 37 && $3 <= 53) || ($3 >= 52 && $3 <= 58)) {printf "..."}') | wc -c
+exec = if $PRIMARY; then (timeout 20s stdbuf -o0 xinput test-xi2 --root | stdbuf -o0 grep -A2 RawKeyPress | stdbuf -o0 grep detail | awk '(($2 >= 10 && $2 <= 19) || ($2 >= 24 && $2 <= 33) || ($2 >= 37 && $2 <= 53) || ($2 >= 52 && $2 <= 58)) {printf "..."}') | wc -c | tee /run/user/1000/keyboardcpm; else sleep 20; cat /run/user/1000/keyboardcpm 2>/dev/null; fi
 interval = 0
 format-foreground = ${colors.foreground-alt}
 format-underline = #10b030
