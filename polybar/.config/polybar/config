@@ -89,8 +89,8 @@ click-left = "setxkbmap -query | grep -q intl && setxkbmap us || setxkbmap us in
 
 [module/keyboardcpm]
 type = custom/script
-exec = if $PRIMARY; then (timeout 20s stdbuf -o0 xinput test-xi2 --root | stdbuf -o0 grep -A2 RawKeyPress | stdbuf -o0 grep detail | awk '(($2 >= 10 && $2 <= 19) || ($2 >= 24 && $2 <= 33) || ($2 >= 37 && $2 <= 53) || ($2 >= 52 && $2 <= 58)) {printf "..."}') | wc -c | tee /run/user/1000/keyboardcpm; else sleep 20; cat /run/user/1000/keyboardcpm 2>/dev/null; fi
-interval = 0
+exec = "INTERVAL=20s; CACHE=/run/user/1000/keyboardcpm; if $PRIMARY; then (pkill xinput; timeout $INTERVAL stdbuf -o0 xinput test-xi2 --root | stdbuf -o0 grep -A2 RawKeyPress | stdbuf -o0 grep detail | awk '(($2 >= 10 && $2 <= 19) || ($2 >= 24 && $2 <= 33) || ($2 >= 37 && $2 <= 53) || ($2 >= 52 && $2 <= 58)) {printf "..."}') | wc -c | tee -a $CACHE; else sleep $INTERVAL; tail -n1 $CACHE; truncate -s0 $CACHE; fi"
+interval = 10
 format-foreground = ${colors.foreground-alt}
 format-underline = #10b030
 label = 龍 %output%cpm
