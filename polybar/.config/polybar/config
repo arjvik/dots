@@ -54,7 +54,7 @@ font-1 = SauceCodePro Nerd Font:pixelsize=10
 
 modules-left = i3
 modules-center = 
-modules-right = filesystem backlight-acpi pulseaudio mpd playerctl xkeyboard xkeyboardlayout memory cpu updates wlan eth vpn bluetooth battery temperature date powermenu
+modules-right = filesystem backlight-acpi pulseaudio mpd playerctl xkeyboard xkeyboardlayout keyboardcpm memory cpu updates wlan eth vpn bluetooth battery temperature date powermenu
 
 enable-ipc = true
 
@@ -87,6 +87,13 @@ hook-0 = "setxkbmap -query | tail -n+3 | sed -e 's/\S*\s*//' | xargs"
 initial = 1
 click-left = "setxkbmap -query | grep -q intl && setxkbmap us || setxkbmap us intl; polybar-msg hook xkeyboardlayout 1"
 
+[module/keyboardcpm]
+type = custom/script
+exec = (timeout 20s stdbuf -o0 xinput test 10 | stdbuf -o0 awk '$1 == "key" && $2 == "press" && (($3 >= 10 && $3 <= 19) || ($3 >= 24 && $3 <= 33) || ($3 >= 37 && $3 <= 53) || ($3 >= 52 && $3 <= 58)) {printf "..."}') | wc -c
+interval = 0
+format-foreground = ${colors.foreground-alt}
+format-underline = #10b030
+label = 龍 %output%cpm
 
 [module/filesystem]
 type = internal/fs
