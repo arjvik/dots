@@ -1,10 +1,10 @@
 #!/bin/bash
 
 cat >/dev/null <<ENDCOMMENT
-Please add the following lines to /etc/sudoers (using sudo visudo). Change arjvik to your username:
+Please add the following lines to /etc/sudoers (using sudo visudo), substituting in the value of $HOME:
 
 # Allow all users to run xbacklight without a password
-ALL ALL=(root) NOPASSWD: /home/arjvik/bin/xbacklight
+ALL ALL=(root) NOPASSWD: $HOME/bin/xbacklight
 ENDCOMMENT
 
 
