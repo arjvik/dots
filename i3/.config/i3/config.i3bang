@@ -176,6 +176,9 @@ $exec_always sleep 2 && QT_QPA_PLATFORMTHEME=gtk2 kdeconnect-indicator
 # Notification Daemon
 $exec /usr/lib/xfce4/notifyd/xfce4-notifyd
 
+# Morning Launch
+$exec "[[ 630 -lt $(date +%H%M) && $(date +%H%M) -lt 930 && $(date +%u) -le 5 ]] && morning"
+
 # Mouse keys
 bindsym $mod+KP_!!<Left,Right,Up,Down> $exec xdotool mousemove_relative -- !!<-10 0,10 0,0 -10,0 10>
 bindsym $mod+Shift+KP_!!<Left,Right,Up,Down> $exec xdotool mousemove_relative -- !!<-1 0,1 0,0 -1,0 1>
