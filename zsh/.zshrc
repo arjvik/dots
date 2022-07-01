@@ -410,7 +410,7 @@ alias mysqldump-aws="mysqldump -h mydbinstance.cbg4coxfme7c.us-east-2.rds.amazon
 alias speedtest-cli="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"
 alias btbattery="curl https://raw.githubusercontent.com/TheWeirdDev/Bluetooth_Headset_Battery_Level/master/bluetooth_battery.py @Q | python - FC:58:FA:78:3A:CD"
 alias sudoedit="SUDO_EDITOR=\"\$(echo =gedit)\" sudo -e"
-alias temp_venv='temp_venv=$(mktemp -d);virtualenv $temp_venv;source $temp_venv/bin/activate;function _unset_venv(){eval deactivate;rm -rf $1};trap "_unset_venv $temp_venv" EXIT;unset temp_venv'
+alias temp_venv='temp_venv=$(mktemp -d);python3 -m venv $temp_venv;source $temp_venv/bin/activate;function _unset_venv(){eval deactivate;rm -rf $1};trap "_unset_venv $temp_venv" EXIT;unset temp_venv'
 alias animated_wallpaper="xwinwrap -fs -ov -ni -- mpv -wid WID -loop dots/walls/sky\$(xrandr | grep -q 'DP-2 connected' && echo '-double').mp4 & sleep 1"
 alias savediff="ls /etc/apt/sources.list.d/ | grep -v save | xargs -I {} bash -c 'diff /etc/apt/sources.list.d/{}{,.save} && echo {} == {}.save'"
 alias adb-ip="adb shell ip address show wlan0 | grep 'wlan0$' | cut -d' ' -f 6 | cut -d/ -f 1"
