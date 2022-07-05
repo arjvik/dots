@@ -1,0 +1,6 @@
+#!/bin/zsh
+
+mkfifo ${FIFO::=$(mktemp -u /tmp/show-env.XXXXXXXXXX)}
+trap "rm -f $FIFO" INT EXIT
+kitty -- zsh -c '{ env | sort | grep -E "^[^=]*=" --color=always; print -Pl -- "${(r:$COLUMNS::─:)}" "Arguments ($#):" $(printf "%%F{blue}%s%%f\n" "$@") "${(r:$COLUMNS::─:)}" "Standard Input (buffered):"; tail -f "'$FIFO'"} | less -R' - $@ 2>/dev/null &
+>$FIFO
