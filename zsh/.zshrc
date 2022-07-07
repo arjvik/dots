@@ -84,7 +84,7 @@ function instant_prompt_slurm_jobs() { (( ${+commands[squeue]} )) && p10k segmen
 p10k-set slurm_jobs_foreground 75
 function prompt_docker_context() { local context="${DOCKER_HOST:+DOCKER_HOST=}${DOCKER_HOST:-${DOCKER_CONTEXT:-$(grep -Fq '"currentContext"' ~/.docker/config.json && grep -Po '(?<="currentContext": ")[^"]*(?=")' ~/.docker/config.json)}}"; p10k segment -c "${context}" -i '' -t "${context}" }
 p10k-set docker_context_foreground 39
-function prompt_aws_profile() { if [[ -n ${AWS_ACCESS_KEY_ID} ]]; then p10k segment -i ' ' -s sourced -t "$AWS_ACCESS_KEY_ID[2]"; else p10k segment -c "${AWS_PROFILE:#default}" -i '' -t "$AWS_PROFILE"; fi }
+function prompt_aws_profile() { if [[ -n ${AWS_ACCESS_KEY_ID} ]]; then p10k segment -i ' ' -s sourced -t "$AWS_ACCESS_KEY_ID[2]"; else p10k segment -c "${AWS_PROFILE:#$_AWS_DEFAULT_PROFILE}" -i '' -t "$AWS_PROFILE"; fi }
 p10k-set aws_profile_foreground 208
 p10k-set aws_profile_sourced_foreground 160
 
@@ -350,22 +350,25 @@ function flashiso() {
 
 function gedit() { command $0 $@ 2>/dev/null & }
 
+_AWS_DEFAULT_PROFILE='dagshub-devrel'
 function aws() {
 	if [[ $# -eq 0 ]]; then
 		echo "Use the source, Luke!" >&2
 		return 42
 	elif [[ $0 == "aws" && $1 == (add|rotate|exec|remove|login) ]]; then 
-		aws-vault $1 ${AWS_PROFILE:-default} $@[2,-1]
+		aws-vault $1 ${AWS_PROFILE:-$_AWS_DEFAULT_PROFILE} $@[2,-1]
 	elif [[ $0 == "aws" && $1 == (list|clear|--help*) ]]; then 
 		aws-vault $@
 	elif [[ $0 == "aws" && $1 == "source" ]]; then
-		eval $(aws-vault exec ${AWS_PROFILE:-default} -- zsh -c "typeset -pm 'AWS_*'")
+		eval $(aws-vault exec ${AWS_PROFILE:-$_AWS_DEFAULT_PROFILE} -- zsh -c "typeset -pm 'AWS_*'")
 	elif [[ $0 == "aws" && $1 == "unsource" ]]; then
 		[[ -v AWS_PROFILE ]] && local _AWS_PROFILE=$AWS_PROFILE || true
 		unset -m 'AWS_*'
 		[[ -v _AWS_PROFILE ]] && AWS_PROFILE=$_AWS_PROFILE || true
+	elif [[ $0 == "aws" && $1 == "whoami" ]]; then
+		aws-vault exec ${AWS_PROFILE:-$_AWS_DEFAULT_PROFILE} -n -- aws iam get-user | jq
 	else
-		aws-vault exec ${AWS_PROFILE:-default} -- $0 $@
+		aws-vault exec ${AWS_PROFILE:-$_AWS_DEFAULT_PROFILE} -- $0 $@
 	fi
 }
 
