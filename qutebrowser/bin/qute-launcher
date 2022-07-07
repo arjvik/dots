@@ -1,13 +1,15 @@
 #!/bin/bash
 
-sites=" ;-T;:open -p"
+input="$(rofi -dmenu -sep ';' -p "qutebrowser" -theme-str 'listview { lines: 1; columns: 3; }' <<<" ;-T;-p")" || exit $?
 
-input="`echo "$sites"|rofi -dmenu -sep ';' -l 1 -columns 8 -p "qutebrowser"`"
+set -- $input
 
-if [[ "$input" != "" ]]; then
-	if [[ "$input" != " " ]]; then
-		qutebrowser --target window "$input"
-	else
-		qutebrowser --target window
-	fi
+if [[ $1 == -p ]]; then
+	shift
+	qutebrowser --target private-window "$@"
+elif [[ $1 == -T ]]; then
+	shift
+	qutebrowser -T "$@"
+else
+	qutebrowser --target window "$@"
 fi
