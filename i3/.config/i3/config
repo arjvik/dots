@@ -111,6 +111,12 @@ bindsym $mod+Shift+g mode "gaps"
 gaps inner 10
 gaps horizontal $side_gaps_on
 smart_gaps inverse_outer
+mode "kdeconnect-presenter" {
+	bindsym Prior $exec xdotool click 1
+	bindsym Next $exec xdotool click 3
+	bindsym F5 mode "default"
+	bindsym Escape mode "default"
+}
 popup_during_fullscreen leave_fullscreen
 bindsym $mod+Shift+o exec i3-swap-workspaces
 $exec_always launch-polybar

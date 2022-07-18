@@ -101,6 +101,11 @@ gaps inner 10
 gaps horizontal $side_gaps_on
 smart_gaps inverse_outer
 
+mode "kdeconnect-presenter" {
+	bindsym !!<Prior,Next> $exec xdotool click !!<1,3>
+	bindsym !!<F5,Escape> mode "default"
+}
+
 # Fullscreen popups
 popup_during_fullscreen leave_fullscreen
 
