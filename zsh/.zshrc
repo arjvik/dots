@@ -11,6 +11,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 	source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Increase history file storage
+typeset -i HISTSIZE=10_000_000 SAVEHIST=100_000
+
 # If you come from bash you might have to change your $PATH.
 export PATH=~/bin:~/.local/bin:/usr/local/bin:$PATH
 
