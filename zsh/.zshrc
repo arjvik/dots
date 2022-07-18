@@ -369,7 +369,7 @@ function aws() {
 		unset -m 'AWS_*'
 		[[ -v _AWS_PROFILE ]] && AWS_PROFILE=$_AWS_PROFILE || true
 	elif [[ $0 == "aws" && $1 == "whoami" ]]; then
-		aws-vault exec ${AWS_PROFILE:-$_AWS_DEFAULT_PROFILE} -- aws sts get-caller-identity | jq
+		aws-vault exec ${AWS_PROFILE:-$_AWS_DEFAULT_PROFILE} -- aws sts get-caller-identity
 	else
 		aws-vault exec ${AWS_PROFILE:-$_AWS_DEFAULT_PROFILE} -- $0 $@
 	fi
