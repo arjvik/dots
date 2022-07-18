@@ -6,10 +6,10 @@ set -- $input
 
 if [[ $1 == -p ]]; then
 	shift
-	qutebrowser --target private-window "$@"
+	qutebrowser --target private-window "$*"
 elif [[ $1 == -T ]]; then
 	shift
-	qutebrowser -T "$@"
+	qutebrowser -T "$*"
 else
-	qutebrowser --target window "$@"
+	qutebrowser --target window "$*"
 fi
