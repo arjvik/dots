@@ -87,7 +87,7 @@ function instant_prompt_slurm_jobs() { (( ${+commands[squeue]} )) && p10k segmen
 p10k-set slurm_jobs_foreground 75
 function prompt_docker_context() { local context="${DOCKER_HOST:+DOCKER_HOST=}${DOCKER_HOST:-${DOCKER_CONTEXT:-$(grep -Fq '"currentContext"' ~/.docker/config.json && grep -Po '(?<="currentContext": ")[^"]*(?=")' ~/.docker/config.json)}}"; p10k segment -c "${context}" -i '' -t "${context}" }
 p10k-set docker_context_foreground 39
-function prompt_aws_profile() { if [[ -n ${AWS_ACCESS_KEY_ID} ]]; then p10k segment -i ' ' -s sourced -t "$AWS_ACCESS_KEY_ID[1,4]…$AWS_ACCESS_KEY_ID[-4,-1]"; else p10k segment -c "${AWS_PROFILE:#$_AWS_DEFAULT_PROFILE}" -i '' -t "$AWS_PROFILE"; fi }
+function prompt_aws_profile() { if [[ -n ${AWS_ACCESS_KEY_ID} ]]; then p10k segment -i ' ' -s sourced -t "$AWS_ACCESS_KEY_ID[1,4]…$AWS_ACCESS_KEY_ID[-4,-1]"; else p10k segment -c "${AWS_PROFILE}" -i '' -t "$AWS_PROFILE"; fi }
 p10k-set aws_profile_foreground 208
 p10k-set aws_profile_sourced_foreground 160
 
