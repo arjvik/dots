@@ -32,6 +32,7 @@ if __name__ == '__main__':
     from inspect import getsource
     from pathlib import Path
     for module, name in {
+    	'requests': 'requests',
         'numpy': 'np',
         'pandas': 'pd',
         'sklearn': 'sklearn',
