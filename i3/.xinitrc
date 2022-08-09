@@ -21,7 +21,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-xrandr --output eDP-1 --mode 1920x1080
-xrandr | grep "DP-2 connected" && xrandr --output DP-2 --right-of eDP-1
+xrandr --output eDP-1 --scale 1x1 --mode 1920x1080 --primary
+xrandr | grep "DP-2 connected" && xrandr --output DP-2 --scale 1x1 --mode 1920x1080 --right-of eDP-1
 
 exec i3
