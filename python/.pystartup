@@ -23,7 +23,7 @@ def _configure(repl):
 
 if __name__ == '__main__':
     # Useful imports
-    import builtins, sys, os, random, time, typing, json, io, string, pickle
+    import builtins, sys, os, random, time, typing, json, io, string, pickle, math
     from collections import Counter, defaultdict
     from contextlib import contextmanager
     from functools import cache, lru_cache, partial, wraps
@@ -32,7 +32,7 @@ if __name__ == '__main__':
     from inspect import getsource
     from pathlib import Path
     for module, name in {
-    	'requests': 'requests',
+        'requests': 'requests',
         'numpy': 'np',
         'pandas': 'pd',
         'sklearn': 'sklearn',
@@ -48,7 +48,18 @@ if __name__ == '__main__':
         except ImportError:
             pass
     del module, name
-
+    
+    def inspect(f):
+        try:
+            import prompt_toolkit as pt
+            import pygments as pyg
+            pt.print_formatted_text(pt.formatted_text.PygmentsTokens(pyg.lex(getsource(f), lexer=pyg.lexers.python.PythonLexer())))
+        except ImportError:
+            print(getsource(f))
+    
+    # CVE-2020-10735 workaround
+    sys.set_int_max_str_digits(0)
+    
     try:
         sys.exit(__import__('ptpython').repl.embed(globals(), locals(), configure=_configure, history_filename=Path(__file__).parent / ".python_history"))
     except ImportError:

@@ -2,7 +2,7 @@
 
 import math
 
-from math import pi, tau, e
+from math import pi, tau, e, perm, comb
 from fractions import Fraction
 
 # Gravitational constants
@@ -44,6 +44,10 @@ from math import sqrt, exp, perm, comb, degrees, radians, floor, ceil, factorial
 from math import log10 as log, log as ln, log2
 
 import sys as _sys
+
+# CVE-2020-10735 workaround
+_sys.set_int_max_str_digits(0)
+
 if _sys.stdout.isatty():
     _sys.exit(__import__('ptpython').repl.embed(globals(), locals(), history_filename=__import__('pathlib').Path(__file__).parent / ".python_history"))
 else:
