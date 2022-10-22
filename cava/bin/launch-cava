@@ -1,5 +1,7 @@
 #!/bin/bash
 
+function xrandr_is_connected() { xrandr | grep -q "^$1 connected"; }
+
 [[ "$1" == "--no-kill" ]] || i3-msg '[class="XAVA"]' kill
 
 XDG_CONFIG_HOME=~/.config xava &
@@ -10,10 +12,25 @@ until i3-msg -t subscribe '[ "window" ]' |
 
 sleep 1
 
-i3-msg '[class="XAVA"]' floating enable, \
+height=50
+
+if xrandr_is_connected "DP-1"; then
+	width=2560px
+	posx=0px
+	posy=1390px
+elif xrandr_is_connected "DP-2"; then
+	width=1920px
+	posx=1920px
+	posy=1030px
+else
+	width=1920px
+	posx=0px
+	posy=1030px
+fi
+
+echo i3-msg '[class="XAVA"]' floating enable, \
 						sticky enable, \
-						resize set width 1920, \
-						resize set height 50, \
-						move to absolute position $(xrandr | grep -q "DP-2 connected" \
-													&& echo "1920px" || echo "0px") 1030px, \
+						resize set width $width, \
+						resize set height $height, \
+						move to absolute position $posx $posy, \
 						border none
