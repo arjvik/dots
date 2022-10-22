@@ -28,7 +28,7 @@ else
 	posy=1030px
 fi
 
-echo i3-msg '[class="XAVA"]' floating enable, \
+i3-msg '[class="XAVA"]' floating enable, \
 						sticky enable, \
 						resize set width $width, \
 						resize set height $height, \
