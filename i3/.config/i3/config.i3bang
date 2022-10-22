@@ -176,7 +176,7 @@ $exec nm-applet
 $exec blueman-applet
 
 # KDE Connect
-$exec_always sleep 2 && QT_QPA_PLATFORMTHEME=gtk2 kdeconnect-indicator
+$exec_always sleep 2 && QT_QPA_PLATFORMTHEME=gtk3 kdeconnect-indicator
 
 # Notification Daemon
 $exec /usr/lib/xfce4/notifyd/xfce4-notifyd

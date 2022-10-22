@@ -158,7 +158,7 @@ $exec picom
 $exec_always i3-battery-monitor
 $exec nm-applet
 $exec blueman-applet
-$exec_always sleep 2 && QT_QPA_PLATFORMTHEME=gtk2 kdeconnect-indicator
+$exec_always sleep 2 && QT_QPA_PLATFORMTHEME=gtk3 kdeconnect-indicator
 $exec /usr/lib/xfce4/notifyd/xfce4-notifyd
 $exec "[[ 630 -lt $(date +%H%M) && $(date +%H%M) -lt 930 && $(date +%u) -le 5 ]] && morning"
 bindsym $mod+KP_Left $exec xdotool mousemove_relative -- -10 0
