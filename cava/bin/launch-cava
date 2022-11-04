@@ -12,20 +12,20 @@ until i3-msg -t subscribe '[ "window" ]' |
 
 sleep 1
 
-height=50
+height=100
 
 if xrandr_is_connected "DP-1"; then
 	width=2560px
 	posx=0px
-	posy=1390px
+	posy=1340px
 elif xrandr_is_connected "DP-2"; then
 	width=1920px
 	posx=1920px
-	posy=1030px
+	posy=980px
 else
 	width=1920px
 	posx=0px
-	posy=1030px
+	posy=980px
 fi
 
 i3-msg '[class="XAVA"]' floating enable, \
