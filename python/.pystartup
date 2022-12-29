@@ -31,23 +31,41 @@ if __name__ == '__main__':
     from fractions import Fraction
     from inspect import getsource
     from pathlib import Path
-    for module, name in {
+    from math import sqrt
+    
+    for _module, _name in {
         'requests': 'requests',
         'numpy': 'np',
         'pandas': 'pd',
         'sklearn': 'sklearn',
         'skimage': 'skimage',
-        'scipy': 'sp',
+        'scipy': 'scipy',
         'cv2': 'cv2',
-        'tqdm': 'tqdm',
         'yaml': 'yaml',
-        'tensorflow': 'tf'
+        #'tensorflow': 'tf', # takes too long
     }.items():
         try:
-            globals()[name] = __import__(module)
+            globals()[_name] = __import__(_module)
         except ImportError:
             pass
-    del module, name
+    del _module, _name
+    
+    def _plt_show(_path='/tmp/matplotlib.png'):
+        plt.savefig(_path)
+        os.system(f'feh {_path}')
+    
+    for _code in [
+        'from scipy import stats',
+        'from tqdm import tqdm, trange',
+        'import matplotlib.pyplot as plt; plt.show = _plt_show',
+    ]:
+        try:
+            exec(_code)
+        except:
+            pass
+    del _code
+    
+    del _plt_show
     
     def inspect(f):
         try:
@@ -64,3 +82,5 @@ if __name__ == '__main__':
         sys.exit(__import__('ptpython').repl.embed(globals(), locals(), configure=_configure, history_filename=Path(__file__).parent / ".python_history"))
     except ImportError:
         print("ptpython is not available: falling back to standard prompt")
+
+# vim:expandtab:tabstop=4:shiftwidth=4
