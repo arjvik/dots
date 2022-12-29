@@ -122,6 +122,7 @@ bindsym $mod+Shift+o exec i3-swap-workspaces
 $exec_always launch-polybar
 bindsym $mod+Shift+p $exec launch-polybar
 for_window [class="^.*"] border none
+for_window [title="Lock Screen — 1Password"] floating enable; resize set width 784 px height 400 px
 bindsym $mod+minus move scratchpad
 bindsym $mod+plus scratchpad show; floating disable
 bindsym XF86AudioRaiseVolume $exec pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -160,7 +161,7 @@ $exec nm-applet
 $exec blueman-applet
 $exec_always sleep 2 && QT_QPA_PLATFORMTHEME=gtk3 kdeconnect-indicator
 $exec /usr/lib/xfce4/notifyd/xfce4-notifyd
-$exec "[[ 630 -lt $(date +%H%M) && $(date +%H%M) -lt 930 && $(date +%u) -le 5 ]] && morning"
+$exec 1password --silent
 bindsym $mod+KP_Left $exec xdotool mousemove_relative -- -10 0
 bindsym $mod+KP_Right $exec xdotool mousemove_relative -- 10 0
 bindsym $mod+KP_Up $exec xdotool mousemove_relative -- 0 -10

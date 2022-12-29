@@ -119,6 +119,9 @@ bindsym $mod+Shift+p $exec launch-polybar
 # disable window title bars for gaps to work correctly
 for_window [class="^.*"] border none
 
+# floating 1password
+for_window [title="Lock Screen — 1Password"] floating enable; resize set width 784 px height 400 px
+
 # scratchpad
 bindsym $mod+minus move scratchpad
 bindsym $mod+plus scratchpad show; floating disable
@@ -181,8 +184,8 @@ $exec_always sleep 2 && QT_QPA_PLATFORMTHEME=gtk3 kdeconnect-indicator
 # Notification Daemon
 $exec /usr/lib/xfce4/notifyd/xfce4-notifyd
 
-# Morning Launch
-$exec "[[ 630 -lt $(date +%H%M) && $(date +%H%M) -lt 930 && $(date +%u) -le 5 ]] && morning"
+# 1Password Launch
+$exec 1password --silent
 
 # Mouse keys
 bindsym $mod+KP_!!<Left,Right,Up,Down> $exec xdotool mousemove_relative -- !!<-10 0,10 0,0 -10,0 10>
