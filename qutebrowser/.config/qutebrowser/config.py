@@ -16,10 +16,9 @@ c.aliases = {
     'proxy-off': 'set content.proxy system',
     'classroom-switch-account': 'jseval window.location.href=window.location.href.replace("/u/0","/u/1")',
     'medium-unblock': 'open javascript:fetch(window.location.href,{credentials:"omit",redirect:"follow",mode:"no-cors"}).then(b=>b.text()).then(b=>document.querySelector("html").innerHTML=b.replace(/<\\/?noscript>/g,""))',
-    'qute-lastpass': 'spawn --userscript qute-lastpass.zsh',
-    'qute-lastpass-pw-only': 'spawn --userscript qute-lastpass.zsh -p',
-    'qute-lastpass-old': 'spawn --userscript qute-lastpass',
-    'qute-lastpass-old-pw-only': 'spawn --userscript qute-lastpass -w',
+    'qute-1password': 'spawn --userscript qute-1password.zsh',
+    'qute-1password-pw-only': 'spawn --userscript qute-1password.zsh -p',
+    'qute-1password-totp': 'spawn --userscript qute-1password.zsh -t',
     'outline-unblock': 'open https://outline.com/{url}',
     'twelveft-unblock': 'open https://12ft.io/{url}',
     'quora-unblock': 'open {url}?share',
@@ -31,6 +30,7 @@ c.aliases = {
     'invert-colors': 'jseval document.documentElement.style.filter+=" invert(100%)"',
     'autofill-name': 'fake-key Vikram<tab>Arjun<tab>',
     'kdeconnect-share': 'spawn bash -c "kdeconnect-cli -d $(kdeconnect-cli -a --id-only) --share \'{url}\'"',
+    'zotero': 'spawn --userscript qute-zotero.py',
     'q': 'quit',
     'w': 'session-save',
     'wq': 'quit --save'
@@ -149,10 +149,9 @@ config.bind('}}', 'navigate next')
 config.bind('wi', 'devtools window')
 config.bind('yf', 'hint all yank')
 config.bind('qm', 'medium-unblock')
-config.bind('qp', 'qute-lastpass')
-config.bind('qP', 'qute-lastpass-pw-only')
-config.bind('qlp', 'qute-lastpass-old')
-config.bind('qlP', 'qute-lastpass-old-pw-only')
+config.bind('qp', 'qute-1password')
+config.bind('qP', 'qute-1password-pw-only')
+config.bind('qh', 'qute-1password-totp')
 config.bind('qo', 'outline-unblock')
 config.bind('qt', 'twelveft-unblock')
 config.bind('qu', 'quora-unblock')
@@ -169,6 +168,7 @@ config.bind('qf', 'autofill-name')
 config.bind('qy', 'youtube-speed')
 config.bind('qr', 'create-qr-code')
 config.bind('qk', 'kdeconnect-share')
+config.bind('qz', 'zotero')
 
 config.unbind('<Ctrl+a>')
 config.unbind('<Ctrl+x>')
