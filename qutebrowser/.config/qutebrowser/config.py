@@ -111,7 +111,17 @@ c.url.default_page = 'https://arjvik.github.io/tab'
 # used by prepending the search engine name to the search term, e.g.
 # `:open google qutebrowser`.
 # Type: Dict
-c.url.searchengines = {'DEFAULT': 'https://google.com/search?query={}'}
+c.url.searchengines = {
+  'DEFAULT': 'https://google.com/search?query={}',
+  'gh':      'https://github.com/{}',
+  'gs':      'https://scholar.google.com/scholar?q={}',
+  'timer':   'https://duckduckgo.com/?q=timer+{}',
+  'hn':      'https://hn.algolia.com/?q={}',
+  'wa':      'https://www.wolframalpha.com/input?i={}',
+  'pypi':    'https://pypi.org/search/?q={}',
+  'npm':     'https://www.npmjs.com/search?q={}',
+  'maven':   'https://search.maven.org/search?q={}'
+}
 
 # Page(s) to open at the start.
 # Type: List of FuzzyUrl, or FuzzyUrl
