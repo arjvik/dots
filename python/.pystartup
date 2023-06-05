@@ -23,10 +23,10 @@ def _configure(repl):
 
 if __name__ == '__main__':
     # Useful imports
-    import builtins, sys, os, random, time, typing, json, io, string, pickle, math
+    import builtins, sys, os, random, time, typing, json, io, string, pickle, functools, math, operator
     from collections import Counter, defaultdict
     from contextlib import contextmanager
-    from functools import cache, lru_cache, partial, wraps
+    from functools import lru_cache, partial, wraps
     from itertools import chain, permutations, combinations, product, repeat
     from fractions import Fraction
     from inspect import getsource
@@ -42,6 +42,7 @@ if __name__ == '__main__':
         'scipy': 'scipy',
         'cv2': 'cv2',
         'yaml': 'yaml',
+        'torch': 'torch'
         #'tensorflow': 'tf', # takes too long
     }.items():
         try:
@@ -55,6 +56,7 @@ if __name__ == '__main__':
         os.system(f'feh {_path}')
     
     for _code in [
+        'from functools import cache',
         'from scipy import stats',
         'from tqdm import tqdm, trange',
         'import matplotlib.pyplot as plt; plt.show = _plt_show',
@@ -74,6 +76,13 @@ if __name__ == '__main__':
             pt.print_formatted_text(pt.formatted_text.PygmentsTokens(pyg.lex(getsource(f), lexer=pyg.lexers.python.PythonLexer())))
         except ImportError:
             print(getsource(f))
+    
+    class A:
+        def __class_getitem__(cls, k): return np.array(list(k) if isinstance(k, tuple) else [k])
+        def __new__(cls, k): return np.arange(functools.reduce(operator.mul, k)).reshape(k) if isinstance(k, tuple) else np.array(k)
+    class T:
+        def __class_getitem__(cls, k): return torch.tensor(list(k) if isinstance(k, tuple) else [k])
+        def __new__(cls, k): return torch.arange(functools.reduce(operator.mul, k)).reshape(k) if isinstance(k, tuple) else torch.tensor(k)
     
     # CVE-2020-10735 workaround
     sys.set_int_max_str_digits(0)
